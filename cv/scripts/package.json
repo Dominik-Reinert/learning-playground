@@ -2,6 +2,10 @@
   "name": "cv-scripts",
   "version": "0.0.1",
   "main": "index.js",
+  "bin": {
+    "cv-scripts": "./index.js",
+    "copy-font-awesome": "./copy_font_awesome.js"
+  },
   "license": "MIT",
   "private": true,
   "dependencies": {}
