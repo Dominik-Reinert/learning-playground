@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.27",
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -11,6 +12,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "cv-scripts": "file:./scripts/",
     "emotion-theming": "^10.0.27",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -18,6 +20,7 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "copy": "cv-scripts copyFontAwesome",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

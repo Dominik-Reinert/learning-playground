@@ -7,6 +7,8 @@ import { ImageComponent } from "./image/image_component";
 import { PageBase } from "./page_base/page_base";
 import { ButtonComponent } from "./button/button_component";
 import { Theme } from "./page_base/page_base_theme_provider";
+import { BrandIconComponent, BrandIcon } from "./webfont_icon/brand_icon";
+import { WebfontIcon } from "./webfont_icon/webfont_icon";
 
 const App = () => {
   const [currentInput, setCurrentInput] = React.useState<string>(
@@ -36,6 +38,7 @@ const App = () => {
           </p>
           <ButtonComponent
             label="Change the theme"
+            icon={{ webfontIcon: WebfontIcon.ACCESSABILITY }}
             onClick={handleThemeChange}
           />
           <TextAreaComponent
