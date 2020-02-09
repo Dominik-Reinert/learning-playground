@@ -20,7 +20,7 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "copy": "cv-scripts:copy-font-awesome",
+    "copy": "copy-font-awesome",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

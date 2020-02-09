@@ -2,3 +2,7 @@
 # yarn lockfile v1
 
 
+find-git-root@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/find-git-root/-/find-git-root-1.0.2.tgz#1b22195cef4bde0a0133d426baf424809da44e57"
+  integrity sha512-4RvQEPt1yDFrom3rEG30DN8L8dhNbxq2iKBwGUQlYNUPVDuS/Kmsz0O/xkSOCPEGFeNZYLKZ7XQku2GfhUa4Pw==
