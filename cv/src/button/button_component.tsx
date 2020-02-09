@@ -38,6 +38,7 @@ const useButtonComponentStyle = () => {
 
     .icon {
       color: ${theme.mainColors.ligthest};
+      
     }
   `;
 };
