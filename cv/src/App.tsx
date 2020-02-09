@@ -5,6 +5,8 @@ import { TextAreaComponent } from "./text_area/text_area_component";
 import { Callback } from "./manual_typings/generic_types";
 import { ImageComponent } from "./image/image_component";
 import { PageBase } from "./page_base/page_base";
+import { ButtonComponent } from "./button/button_component";
+import { Theme } from "./page_base/page_base_theme_provider";
 
 const App = () => {
   const [currentInput, setCurrentInput] = React.useState<string>(
@@ -14,8 +16,14 @@ const App = () => {
     value => setCurrentInput(value),
     []
   );
+  const [theme, setTheme] = React.useState<Theme>(Theme.CORAL);
+  const handleThemeChange = React.useCallback(
+    () =>
+      theme === Theme.CORAL ? setTheme(Theme.INDIGO) : setTheme(Theme.CORAL),
+    [theme]
+  );
   return (
-    <PageBase>
+    <PageBase theme={theme}>
       <div className="App">
         <header className="App-header">
           <ImageComponent
@@ -26,6 +34,10 @@ const App = () => {
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
+          <ButtonComponent
+            label="Change the theme"
+            onClick={handleThemeChange}
+          />
           <TextAreaComponent
             value={currentInput}
             onChange={handleInputChange}

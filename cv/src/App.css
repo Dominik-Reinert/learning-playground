@@ -37,6 +37,18 @@
   }
 }
 
+.logo {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: salmon;
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+}
+
 .text-area {
   position: relative;
   width: 100%;
@@ -72,16 +84,4 @@
   resize: none;
   width: calc(100% - 12px);
   height: calc(100% - 12px);
-}
-
-.logo {
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  background-color: salmon;
-}
-
-.logo img {
-  height: 50px;
-  width: 50px;
 }
