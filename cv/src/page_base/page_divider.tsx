@@ -1,10 +1,12 @@
 import * as React from "react";
 import { ImageComponent } from "../image/image_component";
 import { css, jsx } from "@emotion/core";
+import { TabsComponentProps } from "../tabs/tabs_component";
 /** @jsx jsx */
 
 interface PageDividerProps {
   backgroundImage: string;
+  children: React.FunctionComponentElement<TabsComponentProps>;
 }
 
 export const PageDividerComponent: React.FunctionComponent<PageDividerProps> = props => {
@@ -17,7 +19,7 @@ export const PageDividerComponent: React.FunctionComponent<PageDividerProps> = p
         src={props.backgroundImage}
         cssStyle={backgroundImageStyle}
       />
-      <div css={pageContentStyle}>Content</div>
+      <div css={pageContentStyle}>{props.children}</div>
     </div>
   );
 };

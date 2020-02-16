@@ -13,6 +13,8 @@ import { WebfontIcon } from "./webfont_icon/webfont_icon";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { PageDividerComponent } from "./page_base/page_divider";
 import { jsx } from "@emotion/core";
+import { TabsComponent } from "./tabs/tabs_component";
+import { TabComponent } from "./tabs/tab_component";
 /** @jsx jsx */
 
 const App = () => {
@@ -31,7 +33,11 @@ const App = () => {
   );
   return (
     <PageBase theme={theme}>
-      <PageDividerComponent backgroundImage={"image url"} />
+      <PageDividerComponent backgroundImage={"image url"}>
+        <TabsComponent>
+          <TabComponent label="hello" />
+        </TabsComponent>
+      </PageDividerComponent>
       <TextAreaComponent value={"something"} />
     </PageBase>
   );
