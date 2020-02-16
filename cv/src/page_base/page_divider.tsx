@@ -26,6 +26,8 @@ const usePageDividerCss = () => {
   return css`
     label: page-divider;
 
+    height: 100%;
+
     display: flex;
     flex-direction: column;
   `;
