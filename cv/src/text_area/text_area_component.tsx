@@ -15,7 +15,6 @@ export const TextAreaComponent = (props: TextAreaComponentProps) => {
     event => props.onChange?.((event.target as HTMLSpanElement).innerText),
     [props]
   );
-  const theme = usePageBaseTheme();
   const textAreaCss = useTextAreaCss();
   return (
     <div css={textAreaCss}>
