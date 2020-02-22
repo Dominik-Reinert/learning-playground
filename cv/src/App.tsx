@@ -26,11 +26,14 @@ const App = () => {
   return (
     <PageBase theme={theme}>
       <PageDividerComponent backgroundImage={""}>
-        <TabsComponent selectedTabLabel={selectedTab}>
-          <TabComponent label={Tabs.CV} onSelect={setSelectedTab}>
+        <TabsComponent
+          selectedTabLabel={selectedTab}
+          onSelectTab={setSelectedTab}
+        >
+          <TabComponent label={Tabs.CV}>
             Hello CV tab!
           </TabComponent>
-          <TabComponent label={Tabs.SOME_OTHER} onSelect={setSelectedTab}>
+          <TabComponent label={Tabs.SOME_OTHER}>
             Hello Some other tab!
           </TabComponent>
         </TabsComponent>

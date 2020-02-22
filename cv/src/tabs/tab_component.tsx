@@ -4,19 +4,12 @@ import { ButtonComponent } from "../button/button_component";
 import { Tabs } from "../hooks/use_tab_state";
 
 export interface TabComponentProps {
+  //The label is used in the enclosing TabsComponent to handlle tab selection
   label: Tabs;
-  onSelect: Callback<Tabs>;
 }
 
-export const TabComponent: React.FunctionComponent<TabComponentProps> = props => {
-  const selectCallback = React.useCallback(() => props.onSelect(props.label), [
-    props.onSelect
-  ]);
-  return (
-    <div>
-      <ButtonComponent label="select me!" onClick={selectCallback} />
-      <div>{props.label}</div>
-      {props.children}
-    </div>
-  );
+export const TabComponent: React.FunctionComponent<TabComponentProps> = (
+  props: React.PropsWithChildren<Omit<TabComponentProps, "label">>
+) => {
+  return <div>{props.children}</div>;
 };
