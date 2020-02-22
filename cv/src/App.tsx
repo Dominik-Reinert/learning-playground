@@ -17,25 +17,43 @@ import { TabsComponent } from "./tabs/tabs_component";
 import { TabComponent } from "./tabs/tab_component";
 /** @jsx jsx */
 
+enum Tabs {
+  CV = "CV",
+  SOME_OTHER = "SOME_OTHER"
+}
+
 const App = () => {
   const [currentInput, setCurrentInput] = React.useState<string>(
     "This is the current input!"
   );
+  const [theme, setTheme] = React.useState<Theme>(Theme.CORAL);
+  const [selectedTabLabel, setSelectedTabLabel] = React.useState<string>(
+    Tabs.CV
+  );
+
   const handleInputChange = React.useCallback(
     value => setCurrentInput(value),
     []
   );
-  const [theme, setTheme] = React.useState<Theme>(Theme.CORAL);
   const handleThemeChange = React.useCallback(
     () =>
       theme === Theme.CORAL ? setTheme(Theme.INDIGO) : setTheme(Theme.CORAL),
     [theme]
   );
+  const handleTabChange = React.useCallback(
+    tabLabel => setSelectedTabLabel(tabLabel),
+    []
+  );
   return (
     <PageBase theme={theme}>
-      <PageDividerComponent backgroundImage={"image url"}>
-        <TabsComponent>
-          <TabComponent label="hello" />
+      <PageDividerComponent backgroundImage={""}>
+        <TabsComponent selectedTabLabel={selectedTabLabel}>
+          <TabComponent label={Tabs.CV} onSelect={handleTabChange}>
+            Hello CV tab!
+          </TabComponent>
+          <TabComponent label={Tabs.SOME_OTHER} onSelect={handleTabChange}>
+            Hello Some other tab!
+          </TabComponent>
         </TabsComponent>
       </PageDividerComponent>
       <TextAreaComponent value={"something"} />
