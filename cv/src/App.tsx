@@ -15,43 +15,22 @@ import { PageDividerComponent } from "./page_base/page_divider";
 import { jsx } from "@emotion/core";
 import { TabsComponent } from "./tabs/tabs_component";
 import { TabComponent } from "./tabs/tab_component";
+import { useThemeState } from "./hooks/use_theme_state";
+import { useTabState, Tabs } from "./hooks/use_tab_state";
 /** @jsx jsx */
 
-enum Tabs {
-  CV = "CV",
-  SOME_OTHER = "SOME_OTHER"
-}
-
 const App = () => {
-  const [currentInput, setCurrentInput] = React.useState<string>(
-    "This is the current input!"
-  );
-  const [theme, setTheme] = React.useState<Theme>(Theme.CORAL);
-  const [selectedTabLabel, setSelectedTabLabel] = React.useState<string>(
-    Tabs.CV
-  );
+  const [theme] = useThemeState();
+  const [selectedTab, setSelectedTab] = useTabState(Tabs.CV);
 
-  const handleInputChange = React.useCallback(
-    value => setCurrentInput(value),
-    []
-  );
-  const handleThemeChange = React.useCallback(
-    () =>
-      theme === Theme.CORAL ? setTheme(Theme.INDIGO) : setTheme(Theme.CORAL),
-    [theme]
-  );
-  const handleTabChange = React.useCallback(
-    tabLabel => setSelectedTabLabel(tabLabel),
-    []
-  );
   return (
     <PageBase theme={theme}>
       <PageDividerComponent backgroundImage={""}>
-        <TabsComponent selectedTabLabel={selectedTabLabel}>
-          <TabComponent label={Tabs.CV} onSelect={handleTabChange}>
+        <TabsComponent selectedTabLabel={selectedTab}>
+          <TabComponent label={Tabs.CV} onSelect={setSelectedTab}>
             Hello CV tab!
           </TabComponent>
-          <TabComponent label={Tabs.SOME_OTHER} onSelect={handleTabChange}>
+          <TabComponent label={Tabs.SOME_OTHER} onSelect={setSelectedTab}>
             Hello Some other tab!
           </TabComponent>
         </TabsComponent>
