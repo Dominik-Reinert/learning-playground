@@ -40,12 +40,19 @@ const useBackgroundImageCss = () => {
     label: background-image;
 
     flex: 6 0 0;
+    max-height: 30vh;
+    max-width: 100vw;
   `;
 };
 
 const usePageContentCss = () => {
   return css`
     label: page-content;
+
+    position: absolute;
+    width: 100vw;
+    height: 80vh;
+    top: 20vh;
 
     flex: 12 0 0;
   `;

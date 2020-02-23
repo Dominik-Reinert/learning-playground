@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <PageBase theme={theme}>
-      <PageDividerComponent backgroundImage={""}>
+      <PageDividerComponent backgroundImage="tab-cv-bg.jpg">
         <TabsComponent
           selectedTabLabel={selectedTab}
           onSelectTab={setSelectedTab}
