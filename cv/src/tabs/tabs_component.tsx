@@ -1,9 +1,14 @@
 import * as React from "react";
-import { TabComponent, TabComponentProps } from "./tab_component";
+import {
+  TabComponent,
+  TabComponentProps,
+  TabContentProps
+} from "./tab_component";
 import { Tabs } from "../hooks/use_tab_state";
 import { Callback } from "../manual_typings/generic_types";
 
 type TabsChild = React.FunctionComponentElement<TabComponentProps>;
+type TabsContent = React.FunctionComponentElement<TabContentProps>;
 
 export interface TabsComponentProps {
   children: TabsChild | TabsChild[];
@@ -15,8 +20,8 @@ export interface TabsComponentProps {
 export const TabsComponent: React.FunctionComponent<TabsComponentProps> = (
   props: TabsComponentProps
 ) => {
-  let selectionLabels: [Tabs, Callback<void>][] = [];
-  let content: TabsChild;
+  let selectionLabels: [Tabs, React.ReactNode, Callback<void>][] = [];
+  let content: TabsContent;
   const handleTabSelection = React.useCallback(
     (tab: Tabs) => () => props.onSelectTab(tab),
     [props.selectedTabLabel]
@@ -26,10 +31,11 @@ export const TabsComponent: React.FunctionComponent<TabsComponentProps> = (
     props.children.forEach(child => {
       selectionLabels.push([
         child.props.label,
+        child.props.children[0],
         handleTabSelection(child.props.label)
       ]);
       if (child.props.label === props.selectedTabLabel) {
-        content = child;
+        content = child.props.children[1];
       }
     });
     const index = props.children.findIndex(
@@ -40,17 +46,17 @@ export const TabsComponent: React.FunctionComponent<TabsComponentProps> = (
         `Cannot find tab with given selected tab label ${props.selectedTabLabel}!`
       );
     }
-    content = props.children[index];
+    content = props.children[index].props.children[1];
   } else {
-    content = props.children;
+    content = props.children.props.children[1];
   }
 
   return (
     <>
       <div className="tabs-selection-bar">
-        {selectionLabels.map(([label, handleClick]) => (
+        {selectionLabels.map(([label, selectorNode, handleClick]) => (
           <span key={`tabs-selection-${label}`} onClick={() => handleClick()}>
-            {label}
+            {selectorNode}
           </span>
         ))}
       </div>

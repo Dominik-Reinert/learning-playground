@@ -14,7 +14,7 @@ import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 import { PageDividerComponent } from "./page_base/page_divider";
 import { jsx } from "@emotion/core";
 import { TabsComponent } from "./tabs/tabs_component";
-import { TabComponent } from "./tabs/tab_component";
+import { TabComponent, TabSelector, TabContent } from "./tabs/tab_component";
 import { useThemeState } from "./hooks/use_theme_state";
 import { useTabState, Tabs } from "./hooks/use_tab_state";
 /** @jsx jsx */
@@ -31,10 +31,20 @@ const App = () => {
           onSelectTab={setSelectedTab}
         >
           <TabComponent label={Tabs.CV}>
-            Hello CV tab!
+            <TabSelector>
+              <ImageComponent src="logo192.png"  />
+            </TabSelector>
+            <TabContent>
+              <div>cv content</div>
+            </TabContent>
           </TabComponent>
           <TabComponent label={Tabs.SOME_OTHER}>
-            Hello Some other tab!
+            <TabSelector>
+              <span>hello selector for some other!</span>
+            </TabSelector>
+            <TabContent>
+              <div>some other content</div>
+            </TabContent>
           </TabComponent>
         </TabsComponent>
       </PageDividerComponent>
