@@ -1,7 +1,9 @@
 import * as React from "react";
+import { jsx } from "@emotion/core";
 import { Tabs } from "../hooks/use_tab_state";
 import { ImageComponent } from "../image/image_component";
-import { TabComponent, TabContent, TabSelector } from "../tabs/tab_component";
+import { TabComponent, TabContent } from "../tabs/tab_component";
+/** @jsx jsx */
 
 export const TabCvContent: React.FunctionComponent<{}> = () => {
   return (

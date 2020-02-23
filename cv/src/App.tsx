@@ -1,24 +1,15 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { TextAreaComponent } from "./text_area/text_area_component";
-import { Callback } from "./manual_typings/generic_types";
-import { ImageComponent } from "./image/image_component";
-import { PageBase } from "./page_base/page_base";
-import { ButtonComponent } from "./button/button_component";
-import { Theme } from "./page_base/page_base_theme_provider";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BrandIconComponent, BrandIcon } from "./webfont_icon/brand_icon";
-import { WebfontIcon } from "./webfont_icon/webfont_icon";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
-import { PageDividerComponent } from "./page_base/page_divider";
-import { jsx } from "@emotion/core";
-import { TabsComponent } from "./tabs/tabs_component";
-import { TabComponent, TabSelector, TabContent } from "./tabs/tab_component";
+import { Tabs, useTabState } from "./hooks/use_tab_state";
 import { useThemeState } from "./hooks/use_theme_state";
-import { useTabState, Tabs } from "./hooks/use_tab_state";
+import { PageBase } from "./page_base/page_base";
+import { PageDividerComponent } from "./page_base/page_divider";
 import { TabCvContent } from "./page_content/tab_cv_content";
-/** @jsx jsx */
+import { TabCvSelector } from "./page_content/tab_cv_selector";
+import { TabsComponent } from "./tabs/tabs_component";
+import { TabComponent, TabContent } from "./tabs/tab_component";
+import { TextAreaComponent } from "./text_area/text_area_component";
+import { TabSelector } from "./tabs/tab_selector";
 
 const App = () => {
   const [theme] = useThemeState();
@@ -32,15 +23,15 @@ const App = () => {
           onSelectTab={setSelectedTab}
         >
           <TabComponent label={Tabs.CV}>
-            <TabSelector>
-              <ImageComponent src="logo192.png" />
+            <TabSelector active={selectedTab === Tabs.CV}>
+              <TabCvSelector />
             </TabSelector>
             <TabContent>
               <TabCvContent />
             </TabContent>
           </TabComponent>
           <TabComponent label={Tabs.SOME_OTHER}>
-            <TabSelector>
+            <TabSelector active={selectedTab === Tabs.SOME_OTHER}>
               <span>hello selector for some other!</span>
             </TabSelector>
             <TabContent>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Tabs } from "../hooks/use_tab_state";
+import { TabSelectorProps } from "./tab_selector";
 
 export interface TabComponentProps {
   //The label is used in the enclosing TabsComponent to handlle tab selection
@@ -14,16 +15,6 @@ export const TabComponent: React.FunctionComponent<TabComponentProps> = (
   props: React.PropsWithChildren<Omit<TabComponentProps, "label">>
 ) => {
   return <div>{props.children}</div>;
-};
-
-export interface TabSelectorProps {
-  children: React.ReactNode;
-}
-
-export const TabSelector: React.FunctionComponent<TabSelectorProps> = (
-  props: React.PropsWithChildren<TabSelectorProps>
-) => {
-  return <>{props.children}</>;
 };
 
 export interface TabContentProps {
