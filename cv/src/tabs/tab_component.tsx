@@ -1,6 +1,4 @@
 import * as React from "react";
-import { Callback } from "../manual_typings/generic_types";
-import { ButtonComponent } from "../button/button_component";
 import { Tabs } from "../hooks/use_tab_state";
 
 export interface TabComponentProps {

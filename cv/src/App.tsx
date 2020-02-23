@@ -17,6 +17,7 @@ import { TabsComponent } from "./tabs/tabs_component";
 import { TabComponent, TabSelector, TabContent } from "./tabs/tab_component";
 import { useThemeState } from "./hooks/use_theme_state";
 import { useTabState, Tabs } from "./hooks/use_tab_state";
+import { TabCvContent } from "./page_content/tab_cv_content";
 /** @jsx jsx */
 
 const App = () => {
@@ -32,10 +33,10 @@ const App = () => {
         >
           <TabComponent label={Tabs.CV}>
             <TabSelector>
-              <ImageComponent src="logo192.png"  />
+              <ImageComponent src="logo192.png" />
             </TabSelector>
             <TabContent>
-              <div>cv content</div>
+              <TabCvContent />
             </TabContent>
           </TabComponent>
           <TabComponent label={Tabs.SOME_OTHER}>
