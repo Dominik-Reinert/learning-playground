@@ -4,29 +4,29 @@ import { css, jsx } from "@emotion/core";
 import { TabsComponentProps } from "../tabs/tabs_component";
 /** @jsx jsx */
 
-interface PageDividerProps {
+interface CardDividerProps {
   backgroundImage: string;
   children: React.FunctionComponentElement<TabsComponentProps>;
 }
 
-export const PageDividerComponent: React.FunctionComponent<PageDividerProps> = props => {
-  const pageDividerStyle = usePageDividerCss();
+export const CardDividerComponent: React.FunctionComponent<CardDividerProps> = props => {
+  const cardDividerStyle = useCardDividerCss();
   const backgroundImageStyle = useBackgroundImageCss();
-  const pageContentStyle = usePageContentCss();
+  const cardContentStyle = useCardContentCss();
   return (
-    <div css={pageDividerStyle}>
+    <div css={cardDividerStyle}>
       <ImageComponent
         src={props.backgroundImage}
         cssStyle={backgroundImageStyle}
       />
-      <div css={pageContentStyle}>{props.children}</div>
+      <div css={cardContentStyle}>{props.children}</div>
     </div>
   );
 };
 
-const usePageDividerCss = () => {
+const useCardDividerCss = () => {
   return css`
-    label: page-divider;
+    label: card-divider;
 
     height: 100%;
 
@@ -39,21 +39,18 @@ const useBackgroundImageCss = () => {
   return css`
     label: background-image;
 
-    flex: 6 0 0;
-    max-height: 30vh;
-    max-width: 100vw;
+    flex: 12 0 0;
   `;
 };
 
-const usePageContentCss = () => {
+const useCardContentCss = () => {
   return css`
-    label: page-content;
-
+    label: card-content;
+    flex: 36 0 0;
     position: absolute;
-    width: 100vw;
-    height: 80vh;
-    top: 20vh;
+    top: 40%;
 
-    flex: 12 0 0;
+    width: 100%;
+    height: 44.9%;
   `;
 };

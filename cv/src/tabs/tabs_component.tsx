@@ -52,19 +52,26 @@ export const TabsComponent: React.FunctionComponent<TabsComponentProps> = (
     }
     content = props.children[selectedItemIdx].props.children[contentIdx];
   } else {
+    const element = props.children;
+    selectionLabels.push([
+      element.props.label,
+      element.props.children[selectorIdx],
+      handleTabSelection(element.props.label)
+    ]);
     content = props.children.props.children[contentIdx];
   }
   const tabSelectionBarStyle = useTabsSelectionBarStyle();
+  const tabContentStyle = useTabsContentStyle();
   return (
     <>
-      <div css={useTabsSelectionBarStyle}>
+      <div css={tabSelectionBarStyle}>
         {selectionLabels.map(([label, selectorNode, handleClick]) => (
           <span key={`tabs-selection-${label}`} onClick={() => handleClick()}>
             {selectorNode}
           </span>
         ))}
       </div>
-      <div className="tabs-content">{content}</div>
+      <div css={tabContentStyle}>{content}</div>
     </>
   );
 };
@@ -72,4 +79,9 @@ export const TabsComponent: React.FunctionComponent<TabsComponentProps> = (
 const useTabsSelectionBarStyle = () => css`
   label: tabs-selection-bar;
   display: flex;
+`;
+
+const useTabsContentStyle = () => css`
+  label: tabs-content;
+  height: 100%;
 `;
