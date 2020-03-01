@@ -2,21 +2,25 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import { bigFiveEn, bigFiveDe } from "./big_five";
+import { welcomeEn, welcomeDe, welcomeMsgEn, welcomeMsgDe } from "./welcome";
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    // we init with resources
     resources: {
       en: {
         translations: {
-          bigFive: bigFiveEn
+          bigFive: bigFiveEn,
+          welcome: welcomeEn,
+          welcomeMsg: welcomeMsgEn
         }
       },
       de: {
         translations: {
-          bigFive: bigFiveDe
+          bigFive: bigFiveDe,
+          welcome: welcomeDe,
+          welcomeMsg: welcomeMsgDe
         }
       }
     },

@@ -35,7 +35,7 @@ const useCardComponentStyle = () => {
     label: card;
 
     background-color: white;
-    box-shadow: 3px 3px 5px 0px ${theme.mainColors.ligthest};
+    box-shadow: 3px 3px 5px 2px ${theme.mainColors.ligthest};
     border-radius: 2px;
 
     margin: 16px 0;
