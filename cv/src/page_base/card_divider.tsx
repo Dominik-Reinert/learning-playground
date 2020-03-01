@@ -19,7 +19,9 @@ export const CardDividerComponent: React.FunctionComponent<CardDividerProps> = p
         src={props.backgroundImage}
         cssStyle={backgroundImageStyle}
       />
-      <div css={cardContentStyle}>{props.children}</div>
+      <span>
+        <div css={cardContentStyle}>{props.children}</div>
+      </span>
     </div>
   );
 };

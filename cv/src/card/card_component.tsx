@@ -38,6 +38,7 @@ const useCardComponentStyle = () => {
     box-shadow: 3px 3px 5px 0px ${theme.mainColors.ligthest};
     border-radius: 2px;
 
+    margin: 16px 0;
     max-width: 80vw;
     display: flex;
     flex-direction: column;

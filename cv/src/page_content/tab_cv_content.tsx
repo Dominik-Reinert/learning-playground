@@ -4,21 +4,22 @@ import { Tabs } from "../hooks/use_tab_state";
 import { ImageComponent } from "../image/image_component";
 import { TabComponent, TabContent } from "../tabs/tab_component";
 import { CardComponent } from "../card/card_component";
-import { bigFive } from "../data/big_five";
+import { bigFiveEn } from "../data/big_five";
+import { CardDividerComponent } from "../page_base/card_divider";
+import { useTranslation, Trans } from "react-i18next";
 /** @jsx jsx */
 
 export const TabCvContent: React.FunctionComponent<{}> = () => {
   const cvContentStyle = useCvContentStyle();
   const cvSidebarStyle = useCvSidebarStyle();
   const cvMainContentStyle = useCvMainContentStyle();
+  const { t, i18n } = useTranslation();
   return (
     <React.Fragment>
-      <div css={cvContentStyle}>
-        <div css={cvSidebarStyle}>Sidebar</div>
-        <div css={cvMainContentStyle}>data: {}</div>
-      </div>
+      <CardComponent></CardComponent>
+
       <CardComponent headerProps={{ title: "The big five" }}>
-        {bigFive}
+        <Trans i18nKey="bigFive">trans</Trans>
       </CardComponent>
     </React.Fragment>
   );
