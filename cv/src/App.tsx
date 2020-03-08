@@ -12,28 +12,43 @@ import { TextAreaComponent } from "./text_area/text_area_component";
 import { TabSelector } from "./tabs/tab_selector";
 import { CardComponent } from "./card/card_component";
 import "./data/i18n";
+import { css, jsx } from "@emotion/core";
+import { usePageBaseTheme } from "./hooks/use_page_base_theme";
+/** @jsx jsx */
 
 const App = () => {
   const [theme] = useThemeState();
   const [selectedTab, setSelectedTab] = useTabState(Tabs.CV);
-
+  const backgroundStyle = useBackgroundStyle();
   return (
     <PageBase theme={theme}>
-      <TabsComponent
-        selectedTabLabel={selectedTab}
-        onSelectTab={setSelectedTab}
-      >
-        <TabComponent label={Tabs.CV}>
-          <TabSelector active={selectedTab === Tabs.CV}>
-            <TabCvSelector />
-          </TabSelector>
-          <TabContent>
-            <TabCvContent />
-          </TabContent>
-        </TabComponent>
-      </TabsComponent>
+      <div css={backgroundStyle}>
+        <TabsComponent
+          selectedTabLabel={selectedTab}
+          onSelectTab={setSelectedTab}
+        >
+          <TabComponent label={Tabs.CV}>
+            <TabSelector active={selectedTab === Tabs.CV}>
+              <TabCvSelector />
+            </TabSelector>
+            <TabContent>
+              <TabCvContent />
+            </TabContent>
+          </TabComponent>
+        </TabsComponent>
+      </div>
     </PageBase>
   );
+};
+
+const useBackgroundStyle = () => {
+  const theme = usePageBaseTheme();
+  return css`
+    label: background;
+
+    height: 100%;
+    background-color: ${theme.background};
+  `;
 };
 
 export default App;

@@ -6,6 +6,7 @@ export interface PageBaseTheme {
     ligther: string;
     ligthest: string;
   };
+  background: string;
 }
 
 export const coralTheme: PageBaseTheme = {
@@ -15,7 +16,8 @@ export const coralTheme: PageBaseTheme = {
     normal: "#F26D21",
     ligther: "#F58B4C",
     ligthest: "#FFF1B2"
-  }
+  },
+  background: "#FFFCF3"
 };
 
 export const indigoTheme: PageBaseTheme = {
@@ -25,5 +27,6 @@ export const indigoTheme: PageBaseTheme = {
     normal: "#0D3D56",
     ligther: "#3C6478",
     ligthest: "#A2CADE"
-  }
+  },
+  background: "#F0F6F9"
 };
