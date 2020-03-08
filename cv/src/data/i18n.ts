@@ -3,6 +3,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
 import { bigFiveEn, bigFiveDe } from "./big_five";
 import { welcomeEn, welcomeDe, welcomeMsgEn, welcomeMsgDe } from "./welcome";
+import { timelineEn, timelineDe } from "./timeline";
 
 i18n
   .use(LanguageDetector)
@@ -13,14 +14,16 @@ i18n
         translations: {
           bigFive: bigFiveEn,
           welcome: welcomeEn,
-          welcomeMsg: welcomeMsgEn
+          welcomeMsg: welcomeMsgEn,
+          timeline: timelineEn
         }
       },
       de: {
         translations: {
           bigFive: bigFiveDe,
           welcome: welcomeDe,
-          welcomeMsg: welcomeMsgDe
+          welcomeMsg: welcomeMsgDe,
+          timeline: timelineDe
         }
       }
     },
