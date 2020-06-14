@@ -1,12 +1,7 @@
+import { css, jsx } from "@emotion/core";
 import * as React from "react";
-import { jsx, css } from "@emotion/core";
-import { Tabs } from "../hooks/use_tab_state";
-import { ImageComponent } from "../image/image_component";
-import { TabComponent, TabContent } from "../tabs/tab_component";
+import { Trans, useTranslation } from "react-i18next";
 import { CardComponent } from "../card/card_component";
-import { bigFiveEn } from "../data/big_five";
-import { CardDividerComponent } from "../page_base/card_divider";
-import { useTranslation, Trans } from "react-i18next";
 /** @jsx jsx */
 
 export const TabCvContent: React.FunctionComponent<{}> = () => {
@@ -16,10 +11,6 @@ export const TabCvContent: React.FunctionComponent<{}> = () => {
   const { t, i18n } = useTranslation();
   return (
     <React.Fragment>
-      <CardComponent headerProps={{ title: t("welcome") }}>
-        <Trans i18nKey="welcomeMsg" />
-      </CardComponent>
-
       <CardComponent headerProps={{ title: "The big five" }}>
         <Trans i18nKey="bigFive" />
       </CardComponent>
