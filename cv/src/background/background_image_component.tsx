@@ -8,7 +8,7 @@ interface BackgroundImageComponentProps {
 
 export const BackgroundImageComponent: React.FunctionComponent<React.PropsWithChildren<BackgroundImageComponentProps>> = (props: React.PropsWithChildren<BackgroundImageComponentProps>) => {
     const backgroundImageStyle = useBackgroundImageStyle();
-    return <img css={backgroundImageStyle} src={props.backgroundImage}></img>
+    return <img css={backgroundImageStyle} src={props.backgroundImage} />
 }
 
 const useBackgroundImageStyle = () => {
