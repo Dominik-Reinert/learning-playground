@@ -5,6 +5,13 @@ import { bigFiveEn, bigFiveDe } from "./big_five";
 import { welcomeEn, welcomeDe, welcomeMsgEn, welcomeMsgDe } from "./welcome";
 import { timelineEn, timelineDe } from "./timeline";
 import { interactiveResumeEn, interactiveResumeDe } from "./interactive_resume";
+import { profileEn, profileDe } from "./profile";
+import {
+  profileQuoteAuthorEn,
+  profileQuoteEn,
+  profileQuoteDe,
+  profileQuoteAuthorDe,
+} from "./profile_quote";
 
 i18n
   .use(LanguageDetector)
@@ -18,6 +25,9 @@ i18n
           welcomeMsg: welcomeMsgEn,
           timeline: timelineEn,
           interactiveResume: interactiveResumeEn,
+          profile: profileEn,
+          profileQuote: profileQuoteEn,
+          profileQuoteAuthor: profileQuoteAuthorEn,
         },
       },
       de: {
@@ -27,6 +37,9 @@ i18n
           welcomeMsg: welcomeMsgDe,
           timeline: timelineDe,
           interactiveResume: interactiveResumeDe,
+          profile: profileDe,
+          profileQuote: profileQuoteDe,
+          profileQuoteAuthor: profileQuoteAuthorDe,
         },
       },
     },
