@@ -26,7 +26,7 @@ const App = () => {
   const imageCenterStyle = useImageCenterStyle();
   const nameStyle = useNameStyle();
   const subpageheaderStyle = useSubpageHeaderStyle();
-  
+
   const { t, i18n } = useTranslation();
   return (
     <PageBase theme={theme}>
@@ -43,37 +43,7 @@ const App = () => {
           quote={t("profileQuote")}
           quoteAuthor={t("profileQuoteAuthor")}
         >
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <div style={{ flex: "1 0 0" }}>
-              <div>About me:</div>
-              <div>
-                I am an allround web developer. I am a senior programmer with
-                good knowledge of front-end techniques. I love structure and
-                order and I also stand for quality. I love spending time on
-                fixing little details and optimizing web apps. Also I like
-                working in a team, you'll learn faster and much more. As the
-                saying goes: 'two heads are better than one'.
-              </div>
-            </div>
-            <div style={{ flex: "1 0 0" }}>
-              Here will be an awesome profile pic!
-            </div>
-            <div style={{ flex: "1 0 0" }}>
-              <div>Details</div>
-              <div>
-                <b>Name:</b>
-                <span>Dominik Reinert</span>
-              </div>
-              <div>
-                <b>Age:</b>
-                <span>33 years</span>
-              </div>
-              <div>
-                <b>Location</b>
-                <span>'s-Hertogenbosch, The Netherlands, Earth</span>
-              </div>
-            </div>
-          </div>
+         <ProfilePageComponent />
         </SubPageComponent>
 
         {false && (
