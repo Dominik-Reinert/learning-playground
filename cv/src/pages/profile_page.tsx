@@ -49,9 +49,9 @@ export const ProfilePageComponent: React.FunctionComponent<React.PropsWithChildr
         <Header>Details</Header>
         <Content>
           <ContentPart header="Name:">Dominik Reinert</ContentPart>
-          <ContentPart header="Age:">33 years</ContentPart>
+          <ContentPart header="Age:">27 years</ContentPart>
           <ContentPart header="Location:">
-            's-Hertogenbosch, The Netherlands, Earth
+            Am Jungenwäldchen 8, 66663 Merzig
           </ContentPart>
         </Content>
       </Divider>
@@ -73,15 +73,22 @@ export const useProfilePageComponentStyle = () => {
       }
 
       &-header {
-        color: ${theme.mainColors.normal};
+        color: ${theme.mainColors.ligther};
         font-size: x-large;
 
         margin: 16px 8px;
       }
 
       &-content {
-        color: ${theme.mainColors.ligther};
+        color: black;
         font-size: normal;
+
+        &-part {
+          display: flex;
+          flex-direction: column;
+
+          margin-bottom 8px;
+        }
       }
     }
   `;

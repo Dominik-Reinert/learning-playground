@@ -16,6 +16,7 @@ import { TabComponent, TabContent } from "./tabs/tab_component";
 import { TabSelector } from "./tabs/tab_selector";
 import { interactiveResumeDe } from "./data/interactive_resume";
 import { SubPageComponent } from "./subpage/subpage_component";
+import { ProfilePageComponent } from "./pages/profile_page";
 /** @jsx jsx */
 
 const App = () => {
@@ -43,7 +44,7 @@ const App = () => {
           quote={t("profileQuote")}
           quoteAuthor={t("profileQuoteAuthor")}
         >
-         <ProfilePageComponent />
+          <ProfilePageComponent />
         </SubPageComponent>
 
         {false && (
