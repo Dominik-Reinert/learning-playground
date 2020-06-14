@@ -4,6 +4,7 @@ import { initReactI18next } from "react-i18next";
 import { bigFiveEn, bigFiveDe } from "./big_five";
 import { welcomeEn, welcomeDe, welcomeMsgEn, welcomeMsgDe } from "./welcome";
 import { timelineEn, timelineDe } from "./timeline";
+import { interactiveResumeEn, interactiveResumeDe } from "./interactive_resume";
 
 i18n
   .use(LanguageDetector)
@@ -15,17 +16,19 @@ i18n
           bigFive: bigFiveEn,
           welcome: welcomeEn,
           welcomeMsg: welcomeMsgEn,
-          timeline: timelineEn
-        }
+          timeline: timelineEn,
+          interactiveResume: interactiveResumeEn,
+        },
       },
       de: {
         translations: {
           bigFive: bigFiveDe,
           welcome: welcomeDe,
           welcomeMsg: welcomeMsgDe,
-          timeline: timelineDe
-        }
-      }
+          timeline: timelineDe,
+          interactiveResume: interactiveResumeDe,
+        },
+      },
     },
     fallbackLng: "en",
     debug: true,
@@ -37,8 +40,8 @@ i18n
     keySeparator: false, // we use content as keys
 
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   });
 
 export default i18n;

@@ -14,6 +14,7 @@ import { TabCvSelector } from "./page_content/tab_cv_selector";
 import { TabsComponent } from "./tabs/tabs_component";
 import { TabComponent, TabContent } from "./tabs/tab_component";
 import { TabSelector } from "./tabs/tab_selector";
+import { interactiveResumeDe } from "./data/interactive_resume";
 /** @jsx jsx */
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
   const imageCenterRootStyle = useImageCenterRootStyle();
   const imageCenterStyle = useImageCenterStyle();
   const nameStyle = useNameStyle();
+  const subpageheaderStyle = useSubpageHeaderStyle();
   const { t, i18n } = useTranslation();
   return (
     <PageBase theme={theme}>
@@ -31,24 +33,25 @@ const App = () => {
           <BackgroundImageComponent backgroundImage="bg-img.jpg" />
           <div css={imageCenterStyle}>
             <h1 css={nameStyle}>Dominik Reinert</h1>
-            <CardComponent headerProps={{ title: t("welcome") }}>
-              <Trans i18nKey="welcomeMsg" />
-            </CardComponent>
+            <p css={subpageheaderStyle}>{t("interactiveResume")}</p>
           </div>
         </div>
-        <TabsComponent
-          selectedTabLabel={selectedTab}
-          onSelectTab={setSelectedTab}
-        >
-          <TabComponent label={Tabs.CV}>
-            <TabSelector active={selectedTab === Tabs.CV}>
-              <TabCvSelector />
-            </TabSelector>
-            <TabContent>
-              <TabCvContent />
-            </TabContent>
-          </TabComponent>
-        </TabsComponent>
+
+        {false && (
+          <TabsComponent
+            selectedTabLabel={selectedTab}
+            onSelectTab={setSelectedTab}
+          >
+            <TabComponent label={Tabs.CV}>
+              <TabSelector active={selectedTab === Tabs.CV}>
+                <TabCvSelector />
+              </TabSelector>
+              <TabContent>
+                <TabCvContent />
+              </TabContent>
+            </TabComponent>
+          </TabsComponent>
+        )}
       </div>
     </PageBase>
   );
@@ -70,21 +73,20 @@ const useImageCenterRootStyle = () => {
 
     position: relative;
   `;
-}
+};
 
 const useImageCenterStyle = () => {
   return css`
     label: image-center-style;
 
-    left:50%;
-    top:50%;
+    left: 50%;
+    top: 50%;
     -webkit-transform: translate(-50%, -50%);
-     -moz-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    position:absolute;
+    position: absolute;
   `;
-
-}
+};
 
 const useNameStyle = () => {
   const theme = usePageBaseTheme();
@@ -92,15 +94,29 @@ const useNameStyle = () => {
     label: name-style;
 
     margin: 8px;
-    padding-bottom:8px;
-    
+    padding-bottom: 8px;
+
     text-align: center;
     font-size: xxx-large;
 
-    color: ${theme.mainColors?.ligther ?? 'white'};
+    color: ${theme.mainColors?.ligther ?? "white"};
 
-    border-bottom: 1px solid ${theme.mainColors?.ligther ?? 'white'};
-      `
-}
+    border-bottom: 1px solid ${theme.mainColors?.ligther ?? "white"};
+  `;
+};
+
+const useSubpageHeaderStyle = () => {
+  const theme = usePageBaseTheme();
+  return css`
+    label: subpage-header-style;
+
+    margin: 8px;
+
+    text-align: center;
+    font-size: x-large;
+
+    color: ${theme.mainColors?.ligther ?? "white"};
+  `;
+};
 
 export default App;

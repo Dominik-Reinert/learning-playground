@@ -11,6 +11,9 @@ export const TabCvContent: React.FunctionComponent<{}> = () => {
   const { t, i18n } = useTranslation();
   return (
     <React.Fragment>
+      <CardComponent headerProps={{ title: t("welcome") }}>
+        <Trans i18nKey="welcomeMsg" />
+      </CardComponent>
       <CardComponent headerProps={{ title: "The big five" }}>
         <Trans i18nKey="bigFive" />
       </CardComponent>
