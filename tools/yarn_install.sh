@@ -1,4 +1,4 @@
 #!/bin/bash
-cd ..
+cd ~/dev/CV/cv
 yarn install
 cd -
