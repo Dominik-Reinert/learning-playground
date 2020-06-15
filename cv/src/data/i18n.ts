@@ -31,6 +31,13 @@ import {
   ageHeadlineEn,
   ageHeadlineDe,
 } from "./profile_data";
+import { cvHeadlineEn, cvHeadlineDe } from "./cv";
+import {
+  cvQuoteEn,
+  cvQuoteAuthorEn,
+  cvQuoteDe,
+  cvQuoteAuthorDe,
+} from "./cv_quote";
 
 i18n
   .use(LanguageDetector)
@@ -56,6 +63,9 @@ i18n
           ageHeadline: ageHeadlineEn,
           location: locationDe,
           locationHeadline: locationHeadlineEn,
+          cvHeadline: cvHeadlineEn,
+          cvQuote: cvQuoteEn,
+          cvQuoteAuthor: cvQuoteAuthorEn,
         },
       },
       de: {
@@ -77,6 +87,9 @@ i18n
           ageHeadline: ageHeadlineDe,
           location: locationDe,
           locationHeadline: locationHeadlineDe,
+          cvHeadline: cvHeadlineDe,
+          cvQuote: cvQuoteDe,
+          cvQuoteAuthor: cvQuoteAuthorDe,
         },
       },
     },

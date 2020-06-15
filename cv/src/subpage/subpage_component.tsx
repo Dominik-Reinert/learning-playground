@@ -7,12 +7,13 @@ interface SubPageComponentProps {
   headline: string;
   quote: string;
   quoteAuthor?: string;
+  colorBackground?: boolean;
 }
 
 export const SubPageComponent: React.FunctionComponent<React.PropsWithChildren<
   SubPageComponentProps
 >> = (props: React.PropsWithChildren<SubPageComponentProps>) => {
-  const subPageStyle = useSubPageStyle();
+  const subPageStyle = useSubPageStyle(props.colorBackground);
   return (
     <div css={subPageStyle}>
       <div className="spacer" />
@@ -31,12 +32,16 @@ export const SubPageComponent: React.FunctionComponent<React.PropsWithChildren<
   );
 };
 
-const useSubPageStyle = () => {
+const useSubPageStyle = (colorBackground?: boolean) => {
   const theme = usePageBaseTheme();
   return css`
     label: subpage-style;
 
     display: flex;
+
+    background-color: ${colorBackground
+      ? theme.mainColors.ligthest
+      : theme.background};
 
     height: 80vh;
     width: 100vw;

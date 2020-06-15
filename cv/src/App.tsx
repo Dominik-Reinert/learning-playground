@@ -47,6 +47,13 @@ const App = () => {
           <ProfilePageComponent />
         </SubPageComponent>
 
+        <SubPageComponent
+          headline={t("cvHeadline")}
+          quote={t("cvQuote")}
+          quoteAuthor={t("cvQuoteAuthor")}
+          colorBackground={true}
+        ></SubPageComponent>
+
         {false && (
           <TabsComponent
             selectedTabLabel={selectedTab}
