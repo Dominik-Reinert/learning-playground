@@ -2,6 +2,7 @@ import * as React from "react";
 import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { ImageComponent } from "../image/image_component";
+import { useTranslation } from "react-i18next";
 /** @jsx jsx */
 
 interface ProfilePageComponentProps {}
@@ -11,6 +12,7 @@ export const ProfilePageComponent: React.FunctionComponent<React.PropsWithChildr
 >> = (props: React.PropsWithChildren<ProfilePageComponentProps>) => {
   const style = useProfilePageComponentStyle();
   const profilePicStyle = useProfilePicStyle();
+  const { t, i18n } = useTranslation();
 
   const Divider = (props) => (
     <div className="profile-page-divider">{props.children}</div>
@@ -34,28 +36,21 @@ export const ProfilePageComponent: React.FunctionComponent<React.PropsWithChildr
   return (
     <div css={style}>
       <Divider>
-        <Header>About me:</Header>
+        <Header>{t("aboutMeHeadline")}</Header>
         <Content>
-          <ContentPart header="">
-            I am an allround web developer. I am a senior programmer with good
-            knowledge of front-end techniques. I love structure and order and I
-            also stand for quality. I love spending time on fixing little
-            details and optimizing web apps. Also I like working in a team,
-            you'll learn faster and much more. As the saying goes: 'two heads
-            are better than one'.
-          </ContentPart>
+          <ContentPart header="">{t("aboutMe")}</ContentPart>
         </Content>
       </Divider>
       <Divider>
         <ImageComponent src="20200226_183837-01.jpeg" css={profilePicStyle} />
       </Divider>
       <Divider>
-        <Header>Details</Header>
+        <Header>{t("detailsHeadline")}</Header>
         <Content>
-          <ContentPart header="Name:">Dominik Reinert</ContentPart>
-          <ContentPart header="Age:">27 years</ContentPart>
-          <ContentPart header="Location:">
-            Am Jungenwäldchen 8, 66663 Merzig
+          <ContentPart header={t("nameHeadline")}>{t("name")}</ContentPart>
+          <ContentPart header={t("ageHeadline")}>{t("age")}</ContentPart>
+          <ContentPart header={t("locationHeadline")}>
+            {t("location")}
           </ContentPart>
         </Content>
       </Divider>

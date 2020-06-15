@@ -12,6 +12,25 @@ import {
   profileQuoteDe,
   profileQuoteAuthorDe,
 } from "./profile_quote";
+import {
+  aboutMeHeadlineEn,
+  aboutMeHeadlineDe,
+  aboutMeEn,
+  aboutMeDe,
+} from "./about_me";
+import {
+  detailsHeadlineDe,
+  nameDe,
+  detailsHeadlineEn,
+  nameHeadlineDe,
+  ageDe,
+  locationDe,
+  ageEn,
+  locationHeadlineEn,
+  locationHeadlineDe,
+  ageHeadlineEn,
+  ageHeadlineDe,
+} from "./profile_data";
 
 i18n
   .use(LanguageDetector)
@@ -28,6 +47,15 @@ i18n
           profile: profileEn,
           profileQuote: profileQuoteEn,
           profileQuoteAuthor: profileQuoteAuthorEn,
+          aboutMeHeadline: aboutMeHeadlineEn,
+          aboutMe: aboutMeEn,
+          detailsHeadline: detailsHeadlineEn,
+          name: nameDe,
+          nameHeadline: nameHeadlineDe,
+          age: ageEn,
+          ageHeadline: ageHeadlineEn,
+          location: locationDe,
+          locationHeadline: locationHeadlineEn,
         },
       },
       de: {
@@ -40,6 +68,15 @@ i18n
           profile: profileDe,
           profileQuote: profileQuoteDe,
           profileQuoteAuthor: profileQuoteAuthorDe,
+          aboutMeHeadline: aboutMeHeadlineDe,
+          aboutMe: aboutMeDe,
+          detailsHeadline: detailsHeadlineDe,
+          name: nameDe,
+          nameHeadline: nameHeadlineDe,
+          age: ageDe,
+          ageHeadline: ageHeadlineDe,
+          location: locationDe,
+          locationHeadline: locationHeadlineDe,
         },
       },
     },
