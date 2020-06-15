@@ -1,6 +1,7 @@
 import * as React from "react";
 import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
+import { ImageComponent } from "../image/image_component";
 /** @jsx jsx */
 
 interface ProfilePageComponentProps {}
@@ -9,6 +10,7 @@ export const ProfilePageComponent: React.FunctionComponent<React.PropsWithChildr
   ProfilePageComponentProps
 >> = (props: React.PropsWithChildren<ProfilePageComponentProps>) => {
   const style = useProfilePageComponentStyle();
+  const profilePicStyle = useProfilePicStyle();
 
   const Divider = (props) => (
     <div className="profile-page-divider">{props.children}</div>
@@ -44,7 +46,9 @@ export const ProfilePageComponent: React.FunctionComponent<React.PropsWithChildr
           </ContentPart>
         </Content>
       </Divider>
-      <Divider>Here will be an awesome profile pic!</Divider>
+      <Divider>
+        <ImageComponent src="20200226_183837-01.jpeg" css={profilePicStyle} />
+      </Divider>
       <Divider>
         <Header>Details</Header>
         <Content>
@@ -90,6 +94,28 @@ export const useProfilePageComponentStyle = () => {
           margin-bottom 8px;
         }
       }
+    }
+  `;
+};
+
+const useProfilePicStyle = () => {
+  const theme = usePageBaseTheme();
+  return css`
+    label: profile-pic;
+
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 5px solid ${theme.mainColors.ligther};
+
+    > img {
+      display: inline;
+      margin: 0 auto;
+      margin-left: -25%; //centers the image
+      height: 100%;
+      width: auto;
     }
   `;
 };
