@@ -43,7 +43,7 @@ const useSubPageStyle = (colorBackground?: boolean) => {
       ? theme.mainColors.ligthest
       : theme.background};
 
-    height: 80vh;
+    min-height: 80vh;
     width: 100vw;
 
     .spacer {
