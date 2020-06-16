@@ -4,7 +4,7 @@ import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { useTranslation } from "react-i18next";
 import { useHeaderStyle } from "../shared_styles/shared_styles";
 import { CvExperience } from "./cv_experience";
-import { scholaryExperience } from "../data/cv_data";
+import { scholaryExperience, jobExperience } from "../data/cv_data";
 /** @jsx jsx */
 
 interface CvPageComponentProps {}
@@ -13,7 +13,7 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
   CvPageComponentProps
 >> = (props: React.PropsWithChildren<CvPageComponentProps>) => {
   const Header = ({ title }: { title: string }) => (
-    <div className="cv-header">{title}</div>
+    <div className="cv-subheader">{title}</div>
   );
 
   const Experience = (
@@ -66,6 +66,15 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
         .map((experience) => (
           <Experience {...experience} />
         ))}
+      <Header title="Berufserfahrung" />
+      {jobExperience
+        .sort(
+          /* TODO: check localization to turn around order for english */
+          (experienceA, experienceB) => experienceA.order - experienceB.order
+        )
+        .map((experience) => (
+          <Experience {...experience} />
+        ))}
     </div>
   );
 };
@@ -91,8 +100,14 @@ const useCvPageStyle = () => {
         flex: 12 0 0;
       }
 
-      &-header {
+      &-subheader {
         ${headerStyle}
+
+        &:not(:first-child) {
+          margin: 8px 8px 16px;
+          padding: 72px 0 0 0;
+          border-top: 1px solid ${theme.mainColors?.ligther ?? "white"};
+        }
       }
 
       &-institute {
