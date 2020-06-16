@@ -28,23 +28,27 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
     index: number
   ) => (
     <div key={`experience-${index}-${institute}`} className="cv-entry">
-      <b className="cv-institute">{institute}</b>
-      <div className="cv-date">
-        <span>{date.start}</span>-<span>{date.end}</span>
+      <div className="cv-left">
+        <b className="cv-institute">{institute}</b>
+        <div className="cv-date">
+          <span>{date.start}</span>-<span>{date.end}</span>
+        </div>
       </div>
-      <b className="cv-headline">{headline}</b>
-      {text && <div className="cv-text">{text}</div>}
-      <div className="cv-location">
-        {location}
-        {locationWebsite && (
-          <a
-            className="cv-location-website"
-            href={locationWebsite}
-            target="_blank"
-          >
-            {locationWebsite}
-          </a>
-        )}
+      <div className="cv-right">
+        <b className="cv-headline">{headline}</b>
+        {text && <div className="cv-text">{text}</div>}
+        <div className="cv-location">
+          {location}
+          {locationWebsite && (
+            <a
+              className="cv-location-website"
+              href={locationWebsite}
+              target="_blank"
+            >
+              {locationWebsite}
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -75,6 +79,16 @@ const useCvPageStyle = () => {
     .cv {
       &-entry {
         margin-bottom: 80px;
+
+        display: flex;
+      }
+
+      &-left {
+        flex: 8 0 0;
+      }
+
+      &-right {
+        flex: 12 0 0;
       }
 
       &-header {
