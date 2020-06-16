@@ -27,7 +27,7 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
     }: CvExperience,
     index: number
   ) => (
-    <div key={`experience-${index}-${institute}`}>
+    <div key={`experience-${index}-${institute}`} className="cv-entry">
       <b className="cv-institute">{institute}</b>
       <div className="cv-date">
         <span>{date.start}</span>-<span>{date.end}</span>
@@ -54,9 +54,14 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
   return (
     <div css={cvPageStyle}>
       <Header title="Schulische Laufbahn" />
-      {scholaryExperience.map((experience) => (
-        <Experience {...experience} />
-      ))}
+      {scholaryExperience
+        .sort(
+          /* TODO: check localization to turn around order for english */
+          (experienceA, experienceB) => experienceA.order - experienceB.order
+        )
+        .map((experience) => (
+          <Experience {...experience} />
+        ))}
     </div>
   );
 };
@@ -68,6 +73,10 @@ const useCvPageStyle = () => {
     label: cv-page;
 
     .cv {
+      &-entry {
+        margin-bottom: 80px;
+      }
+
       &-header {
         ${headerStyle}
       }
