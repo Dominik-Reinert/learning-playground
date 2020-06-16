@@ -17,6 +17,7 @@ import { TabSelector } from "./tabs/tab_selector";
 import { interactiveResumeDe } from "./data/interactive_resume";
 import { SubPageComponent } from "./subpage/subpage_component";
 import { ProfilePageComponent } from "./pages/profile_page";
+import { CvPageComponent } from "./pages/cv_page";
 /** @jsx jsx */
 
 const App = () => {
@@ -52,7 +53,9 @@ const App = () => {
           quote={t("cvQuote")}
           quoteAuthor={t("cvQuoteAuthor")}
           colorBackground={true}
-        ></SubPageComponent>
+        >
+          <CvPageComponent />
+        </SubPageComponent>
 
         {false && (
           <TabsComponent
