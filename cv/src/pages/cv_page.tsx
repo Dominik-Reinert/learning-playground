@@ -3,37 +3,15 @@ import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { useTranslation } from "react-i18next";
 import { useHeaderStyle } from "../shared_styles/shared_styles";
+import { CvExperience } from "./cv_experience";
+import { scholaryExperience } from "../data/cv_data";
 /** @jsx jsx */
 
 interface CvPageComponentProps {}
 
-interface CvExperience {
-  institute: string;
-  date: {
-    start: number;
-    end: number;
-  };
-  headline: string;
-  text?: string;
-  location: string;
-  locationWebsite?: string;
-}
-
 export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
   CvPageComponentProps
 >> = (props: React.PropsWithChildren<CvPageComponentProps>) => {
-  const exampleExperience: CvExperience = {
-    institute: "Grundschule 'Marienschule' Brotdorf",
-    date: {
-      start: 1999,
-      end: 2000,
-    },
-    headline: "Grundschule",
-    text: "Ein schöner Ort für die grundsätzliche Sozialisierung kleiner Wesen",
-    location: "Brotdorf",
-    locationWebsite: "http://www.gs-brotdorf.de/",
-  };
-
   const Header = ({ title }: { title: string }) => (
     <div className="cv-header">{title}</div>
   );
@@ -76,7 +54,9 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
   return (
     <div css={cvPageStyle}>
       <Header title="Schulische Laufbahn" />
-      <Experience {...exampleExperience} />
+      {scholaryExperience.map((experience) => (
+        <Experience {...experience} />
+      ))}
     </div>
   );
 };
