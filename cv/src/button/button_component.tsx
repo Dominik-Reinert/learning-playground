@@ -5,7 +5,7 @@ import { css, jsx } from "@emotion/core";
 import {
   WebfontIcon,
   WebfontIconComponentProps,
-  WebfontIconComponent
+  WebfontSolidIconComponent
 } from "../webfont_icon/webfont_icon";
 import {
   BrandIconComponentProps,
@@ -33,7 +33,7 @@ export const ButtonComponent: React.FunctionComponent<ButtonComponentProps> = (
   const renderIcon = () => {
     if (props.icon) {
       return isWebfontIcon(props.icon) ? (
-        <WebfontIconComponent {...props.icon} />
+        <WebfontSolidIconComponent {...props.icon} />
       ) : (
         <BrandIconComponent {...props.icon} />
       );

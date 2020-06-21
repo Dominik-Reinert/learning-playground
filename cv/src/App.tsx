@@ -18,7 +18,7 @@ import { interactiveResumeDe } from "./data/interactive_resume";
 import { SubPageComponent } from "./subpage/subpage_component";
 import { ProfilePageComponent } from "./pages/profile_page";
 import { CvPageComponent } from "./pages/cv_page";
-import { WebfontIconComponent, WebfontIcon } from "./webfont_icon/webfont_icon";
+import { WebfontSolidIconComponent, WebfontIcon } from "./webfont_icon/webfont_icon";
 import { SkillsPageComponent } from "./pages/skills_page";
 /** @jsx jsx */
 
@@ -43,7 +43,7 @@ const App = () => {
             <p css={subpageheaderStyle}>{t("interactiveResume")}</p>
           </div>
           <div css={scrollDownCTAStyle}>
-            <WebfontIconComponent webfontIcon={WebfontIcon.CHEVRON_DOWN} />
+            <WebfontSolidIconComponent webfontIcon={WebfontIcon.CHEVRON_DOWN} />
           </div>
         </div>
         <SubPageComponent

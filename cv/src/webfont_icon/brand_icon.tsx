@@ -2,7 +2,8 @@ import * as React from "react";
 
 export enum BrandIcon {
   LINKED_IN_HOLLOW = "linkedin-in",
-  LINKED_IN = "linkedin"
+  LINKED_IN = "linkedin",
+  REACT = "react",
 }
 
 export interface BrandIconComponentProps {
