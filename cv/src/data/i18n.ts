@@ -39,6 +39,7 @@ import {
   cvQuoteDe,
   cvQuoteAuthorDe,
 } from "./cv_quote";
+import { skillsHeadlineEn, skillsHeadlineDe, skillsQuoteDe, skillsQuoteAuthorDe, skillsQuoteEn, skillsQuoteAuthorEn } from "./skills";
 
 i18n
   .use(LanguageDetector)
@@ -67,6 +68,9 @@ i18n
           cvHeadline: cvHeadlineEn,
           cvQuote: cvQuoteEn,
           cvQuoteAuthor: cvQuoteAuthorEn,
+          skillsHeadline: skillsHeadlineEn,
+          skillsQuote: skillsQuoteEn,
+          skillsQuoteAuthor: skillsQuoteAuthorEn,
         },
       },
       de: {
@@ -91,6 +95,9 @@ i18n
           cvHeadline: cvHeadlineDe,
           cvQuote: cvQuoteDe,
           cvQuoteAuthor: cvQuoteAuthorDe,
+          skillsHeadline: skillsHeadlineDe,
+          skillsQuote: skillsQuoteDe,
+          skillsQuoteAuthor: skillsQuoteAuthorDe,
         },
       },
     },

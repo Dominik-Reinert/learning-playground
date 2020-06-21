@@ -62,6 +62,14 @@ const App = () => {
           <CvPageComponent />
         </SubPageComponent>
 
+        <SubPageComponent
+          headline={t("skillsHeadline")}
+          quote={t("skillsQuote")}
+          quoteAuthor={t("skillsQuoteAuthor")}
+        >
+          
+        </SubPageComponent>
+
         {false && (
           <TabsComponent
             selectedTabLabel={selectedTab}
