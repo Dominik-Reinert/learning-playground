@@ -11,7 +11,8 @@ export const locationHeadlineEn = "Location:";
 
 export const nameDe = "Dominik Reinert";
 
-export const locationDe = "Am Jungenwäldchen 8";
+export const locationDe = "66663 Brotdorf";
+export const locationEn = "D-66663 Brotdorf";
 
 export const ageDe = "27 Jahre";
 export const ageEn = "27 years";

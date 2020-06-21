@@ -30,6 +30,7 @@ import {
   locationHeadlineDe,
   ageHeadlineEn,
   ageHeadlineDe,
+  locationEn,
 } from "./profile_data";
 import { cvHeadlineEn, cvHeadlineDe } from "./cv";
 import {
@@ -61,7 +62,7 @@ i18n
           nameHeadline: nameHeadlineDe,
           age: ageEn,
           ageHeadline: ageHeadlineEn,
-          location: locationDe,
+          location: locationEn,
           locationHeadline: locationHeadlineEn,
           cvHeadline: cvHeadlineEn,
           cvQuote: cvQuoteEn,
