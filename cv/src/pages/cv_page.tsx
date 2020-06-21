@@ -85,6 +85,19 @@ const useCvPageStyle = () => {
   return css`
     label: cv-page;
 
+    @media only screen and (max-width: 1000px) {
+      .cv {
+        &-entry {
+          flex-direction: column;
+        }
+
+        &-left {
+          border-bottom: 1px solid ${theme.mainColors?.ligther};
+          margin-bottom: 25px;
+        }
+      }
+    }
+
     .cv {
       &-entry {
         margin-bottom: 80px;
