@@ -27,6 +27,7 @@ const App = () => {
   const backgroundStyle = useBackgroundStyle();
   const imageCenterRootStyle = useImageCenterRootStyle();
   const imageCenterStyle = useImageCenterStyle();
+  const scrollDownCTAStyle = useScrollDownCTAStyle();
   const nameStyle = useNameStyle();
   const subpageheaderStyle = useSubpageHeaderStyle();
 
@@ -40,7 +41,7 @@ const App = () => {
             <h1 css={nameStyle}>Dominik Reinert</h1>
             <p css={subpageheaderStyle}>{t("interactiveResume")}</p>
           </div>
-          <div>
+          <div css={scrollDownCTAStyle}>
             <WebfontIconComponent webfontIcon={WebfontIcon.CHEVRON_DOWN} />
           </div>
         </div>
@@ -109,6 +110,19 @@ const useImageCenterStyle = () => {
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     position: absolute;
+  `;
+};
+
+const useScrollDownCTAStyle = () => {
+  return css`
+    label: scroll-down-cta;
+
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+    bottom: 50px;
+    right: 50px;
   `;
 };
 
