@@ -106,6 +106,8 @@ const useCvPageStyle = () => {
       }
 
       &-left {
+        display: flex;
+        flex-direction: column;
         flex: 8 0 0;
       }
 
@@ -125,7 +127,8 @@ const useCvPageStyle = () => {
 
       &-institute {
         font-size: large;
-        margin: 8px;
+        margin: 0 8px 8px;
+        float: left;
       }
 
       &-date {
