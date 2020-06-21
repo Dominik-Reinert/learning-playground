@@ -19,6 +19,7 @@ import { SubPageComponent } from "./subpage/subpage_component";
 import { ProfilePageComponent } from "./pages/profile_page";
 import { CvPageComponent } from "./pages/cv_page";
 import { WebfontIconComponent, WebfontIcon } from "./webfont_icon/webfont_icon";
+import { SkillsPageComponent } from "./pages/skills_page";
 /** @jsx jsx */
 
 const App = () => {
@@ -67,7 +68,7 @@ const App = () => {
           quote={t("skillsQuote")}
           quoteAuthor={t("skillsQuoteAuthor")}
         >
-          
+          <SkillsPageComponent />
         </SubPageComponent>
 
         {false && (
