@@ -2,7 +2,8 @@ import * as React from "react";
 
 export enum WebfontIcon {
   ACCESSABILITY = "fa-accessible-icon",
-  CAMERA = "fa-camera"
+  CAMERA = "fa-camera",
+  CHEVRON_DOWN = "fa-chevron-down"
 }
 
 export interface WebfontIconComponentProps {

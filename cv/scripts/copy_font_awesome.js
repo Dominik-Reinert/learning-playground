@@ -5,11 +5,11 @@ const path = require("path");
 
 (function copyFontAwesome() {
   const sourcePath = path.resolve(
-    `${BaseUrls.getGitRoot()}/cv/node_modules/@fortawesome/fontawesome-free/css/all.css`
+    "../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
   );
-  const targetPath = path.resolve(
-    `${BaseUrls.getGitRoot()}/cv/public/font-awesome.css`
-  );
+  console.log(`source: ${sourcePath}`);
+
+  const targetPath = path.resolve(`../public/font-awesome.css`);
   console.log(`Copy fontawesome css to ${targetPath}`);
   fs.createReadStream(sourcePath).pipe(fs.createWriteStream(targetPath));
 })();

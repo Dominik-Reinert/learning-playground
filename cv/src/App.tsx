@@ -18,6 +18,7 @@ import { interactiveResumeDe } from "./data/interactive_resume";
 import { SubPageComponent } from "./subpage/subpage_component";
 import { ProfilePageComponent } from "./pages/profile_page";
 import { CvPageComponent } from "./pages/cv_page";
+import { WebfontIconComponent, WebfontIcon } from "./webfont_icon/webfont_icon";
 /** @jsx jsx */
 
 const App = () => {
@@ -38,6 +39,9 @@ const App = () => {
           <div css={imageCenterStyle}>
             <h1 css={nameStyle}>Dominik Reinert</h1>
             <p css={subpageheaderStyle}>{t("interactiveResume")}</p>
+          </div>
+          <div>
+            <WebfontIconComponent webfontIcon={WebfontIcon.CHEVRON_DOWN} />
           </div>
         </div>
         <SubPageComponent
