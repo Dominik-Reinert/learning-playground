@@ -103,6 +103,10 @@ const useSkillsRootStyle = () => {
     flex-direction: column;
     text-align: center;
 
+    .fa-star {
+      margin-left: 4px;
+    }
+
     .technology {
       font-weight: bold;
       font-size: x-large;
@@ -111,10 +115,6 @@ const useSkillsRootStyle = () => {
     .stars {
       margin-top: 8px;
       color: ${theme.mainColors.ligther};
-
-      .fa-star {
-        margin-left: 4px;
-      }
     }
 
     .top-skills {
@@ -131,6 +131,7 @@ const useSkillsListStyle = () => {
     display: flex;
 
     .skill-title {
+      font-size: larger;
       flex: 12 0 0;
       text-align: left;
     }
