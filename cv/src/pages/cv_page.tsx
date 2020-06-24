@@ -64,7 +64,7 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
           (experienceA, experienceB) => experienceA.order - experienceB.order
         )
         .map((experience) => (
-          <Experience {...experience} />
+          <Experience key={experience.headline} {...experience} />
         ))}
       <Header title="Berufserfahrung" />
       {jobExperience
@@ -73,7 +73,7 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
           (experienceA, experienceB) => experienceA.order - experienceB.order
         )
         .map((experience) => (
-          <Experience {...experience} />
+          <Experience key={experience.headline} {...experience} />
         ))}
     </div>
   );
@@ -118,7 +118,7 @@ const useCvPageStyle = () => {
       &-subheader {
         ${headerStyle}
 
-        &:not(:first-child) {
+        &:not(:first-of-type) {
           margin: 8px 8px 16px;
           padding: 72px 0 0 0;
           border-top: 1px solid ${theme.mainColors?.ligther ?? "white"};

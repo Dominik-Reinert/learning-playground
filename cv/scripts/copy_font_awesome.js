@@ -5,7 +5,7 @@ const path = require("path");
 
 (function copyFontAwesome() {
   const sourcePath = path.resolve(
-    "./node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    "./node_modules/@fortawesome/fontawesome-free/css/all.css"
   );
   console.log(`source: ${sourcePath}`);
   fs.access(sourcePath, fs.F_OK, (err) => {

@@ -20,38 +20,52 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
   const skillsRootStyle = useSkillsRootStyle();
   const skillsLayouterStyle = useLayouterStyle();
 
-  const FiveFullStars = (props) => (
+  const FiveFullStars = (props: { keyAddendum: string }) => (
     <React.Fragment>
       {Array(5)
         .fill(0)
-        .map(() => (
-          <WebfontSolidIconComponent webfontIcon={WebfontIcon.STAR} />
+        .map((item, idx) => (
+          <WebfontSolidIconComponent
+            key={`${idx}-star-${props.keyAddendum}`}
+            webfontIcon={WebfontIcon.STAR}
+          />
         ))}
     </React.Fragment>
+  );
+
+  const SkillTitle = (props) => (
+    <div className="skill-title">{props.children}</div>
+  );
+  const Technology = (props) => (
+    <span className="technology">{props.children}</span>
   );
 
   return (
     <div className="skills-root" css={skillsRootStyle}>
       <div className="ts-root">
-        <div className="ts-title">Typescript</div>
-        <div className="ts-stars">
-          <FiveFullStars />
+        <SkillTitle>
+          <Technology>Typescript</Technology>
+        </SkillTitle>
+        <div className="stars">
+          <FiveFullStars keyAddendum="typescript" />
         </div>
       </div>
       <div className="layouter" css={skillsLayouterStyle}>
         <div className="oop-root">
-          <div className="oop-title">OOP</div>
-          <div className="oop-stars">
-            <FiveFullStars />
+          <SkillTitle>
+            <Technology>OOP</Technology>
+          </SkillTitle>
+          <div className="stars">
+            <FiveFullStars keyAddendum="oop" />
           </div>
         </div>
         <div className="react-root">
-          <div className="react-title">
+          <SkillTitle>
             <BrandIconComponent brandIcon={BrandIcon.REACT} />
-            <span>React</span>
-          </div>
-          <div className="react-stars">
-            <FiveFullStars />
+            <Technology>React</Technology>
+          </SkillTitle>
+          <div className="stars">
+            <FiveFullStars keyAddendum="react" />
           </div>
         </div>
       </div>
@@ -60,12 +74,20 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
 };
 
 const useSkillsRootStyle = () => {
+  const theme = usePageBaseTheme();
   return css`
     label: skills-root;
 
     display: flex;
     flex-direction: column;
     text-align: center;
+
+    .technology {
+      font-weight: bold;
+      font-size: x-large;
+
+      color: ${theme.mainColors.ligther};
+    }
   `;
 };
 
