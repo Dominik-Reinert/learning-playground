@@ -20,6 +20,8 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
   const skillsRootStyle = useSkillsRootStyle();
   const skillsLayouterStyle = useLayouterStyle();
 
+  const Stars = (props) => <div className="stars">{props.children}</div>;
+
   const FiveFullStars = (props: { keyAddendum: string }) => (
     <React.Fragment>
       {Array(5)
@@ -40,34 +42,24 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
     <span className="technology">{props.children}</span>
   );
 
+  const TopTechnology = (props: { name: string; icon?: BrandIcon }) => (
+    <div className={`${props.name.toLowerCase()}-root`}>
+      <SkillTitle>
+        {props.icon && <BrandIconComponent brandIcon={props.icon} />}
+        <Technology>{props.name}</Technology>
+      </SkillTitle>
+      <Stars>
+        <FiveFullStars keyAddendum={`${props.name.toLowerCase()}`} />
+      </Stars>
+    </div>
+  );
+
   return (
     <div className="skills-root" css={skillsRootStyle}>
-      <div className="ts-root">
-        <SkillTitle>
-          <Technology>Typescript</Technology>
-        </SkillTitle>
-        <div className="stars">
-          <FiveFullStars keyAddendum="typescript" />
-        </div>
-      </div>
+      <TopTechnology name="Typescript" />
       <div className="layouter" css={skillsLayouterStyle}>
-        <div className="oop-root">
-          <SkillTitle>
-            <Technology>OOP</Technology>
-          </SkillTitle>
-          <div className="stars">
-            <FiveFullStars keyAddendum="oop" />
-          </div>
-        </div>
-        <div className="react-root">
-          <SkillTitle>
-            <BrandIconComponent brandIcon={BrandIcon.REACT} />
-            <Technology>React</Technology>
-          </SkillTitle>
-          <div className="stars">
-            <FiveFullStars keyAddendum="react" />
-          </div>
-        </div>
+        <TopTechnology name="OOP" />
+        <TopTechnology name="React" icon={BrandIcon.REACT} />
       </div>
     </div>
   );
@@ -85,8 +77,15 @@ const useSkillsRootStyle = () => {
     .technology {
       font-weight: bold;
       font-size: x-large;
+    }
 
+    .stars {
+      margin-top: 8px;
       color: ${theme.mainColors.ligther};
+
+      .fa-star {
+        margin-left: 4px;
+      }
     }
   `;
 };
