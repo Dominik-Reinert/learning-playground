@@ -7,6 +7,7 @@ import { useHeaderStyle } from "../shared_styles/shared_styles";
 import {
   WebfontIcon,
   WebfontSolidIconComponent,
+  WebfontRegularIconComponent,
 } from "../webfont_icon/webfont_icon";
 import { BrandIconComponent, BrandIcon } from "../webfont_icon/brand_icon";
 /** @jsx jsx */
@@ -18,6 +19,7 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
 >> = (props: React.PropsWithChildren<SkillsPageComponentProps>) => {
   const { t, i18n } = useTranslation();
   const skillsRootStyle = useSkillsRootStyle();
+  const skillsListStyle = useSkillsListStyle();
   const skillsLayouterStyle = useLayouterStyle();
 
   const Stars = (props) => <div className="stars">{props.children}</div>;
@@ -54,12 +56,39 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
     </div>
   );
 
+  const Skill = (props: { name: string; stars: number }) => (
+    <div className="skill" css={skillsListStyle}>
+      <SkillTitle>{props.name}</SkillTitle>
+      {Array(props.stars)
+        .fill(0)
+        .map((item, idx) => (
+          <WebfontSolidIconComponent
+            key={`${idx}-star-${props.name}`}
+            webfontIcon={WebfontIcon.STAR}
+          />
+        ))}
+      {Array(5 - props.stars)
+        .fill(0)
+        .map((item, idx) => (
+          <WebfontRegularIconComponent
+            key={`${idx}-star-${props.name}`}
+            webfontIcon={WebfontIcon.STAR}
+          />
+        ))}
+    </div>
+  );
+
   return (
     <div className="skills-root" css={skillsRootStyle}>
-      <TopTechnology name="Typescript" />
-      <div className="layouter" css={skillsLayouterStyle}>
-        <TopTechnology name="OOP" />
-        <TopTechnology name="React" icon={BrandIcon.REACT} />
+      <div className="top-skills">
+        <TopTechnology name="Typescript" />
+        <div className="layouter" css={skillsLayouterStyle}>
+          <TopTechnology name="OOP" />
+          <TopTechnology name="React" icon={BrandIcon.REACT} />
+        </div>
+      </div>
+      <div className="skills-list">
+        <Skill name="Skill a" stars={3} />
       </div>
     </div>
   );
@@ -86,6 +115,24 @@ const useSkillsRootStyle = () => {
       .fa-star {
         margin-left: 4px;
       }
+    }
+
+    .top-skills {
+      margin-bottom: 40px;
+    }
+  `;
+};
+
+const useSkillsListStyle = () => {
+  const theme = usePageBaseTheme();
+  return css`
+    label: skills-list;
+
+    display: flex;
+
+    .skill-title {
+      flex: 12 0 0;
+      text-align: left;
     }
   `;
 };
