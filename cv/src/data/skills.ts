@@ -21,3 +21,18 @@ export const softSkillsEn="Softskills"
 
 export const hardSkillsDe="Technisch"
 export const hardSkillsEn="Hardskills"
+
+export const languagesDe="Sprachen"
+export const languagesEn="Languages"
+
+export const toolsDe="Werkzeuge"
+export const toolsEn="Tools"
+
+export const germanDe="Deutsch"
+export const germanEn="German"
+
+export const englishDe="Englisch"
+export const englishEn="English"
+
+export const frenchDe="Französisch"
+export const frenchEn="French"

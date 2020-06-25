@@ -84,16 +84,30 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
       </div>
       <div className="skills-list" css={skillsListStyle}>
         <div className="hard-skills">
-          <div className="header">{t('hardSkills')}</div>
+          <div className="header">{t("hardSkills")}</div>
           <Skill name="CSS" stars={4} />
           <Skill name="Java" stars={3} />
           <Skill name="Git" stars={3} />
         </div>
         <div className="soft-skills">
-          <div className="header">{t('softSkills')}</div>
+          <div className="header">{t("softSkills")}</div>
           <Skill name={t("agileProcesses")} stars={4} />
           <Skill name={t("communication")} stars={4} />
           <Skill name={t("timeManagement")} stars={3} />
+        </div>
+      </div>
+      <div className="skills-list" css={skillsListStyle}>
+        <div className="language-skills">
+          <div className="header">{t("languages")}</div>
+          <Skill name={t("german")} stars={5} />
+          <Skill name={t("english")} stars={5} />
+          <Skill name={t("french")} stars={1} />
+        </div>
+        <div className="tools-skills">
+          <div className="header">{t("tools")}</div>
+          <Skill name={"helllo"} stars={4} />
+          <Skill name={"tools"} stars={4} />
+          <Skill name={"page"} stars={3} />
         </div>
       </div>
     </div>
@@ -167,24 +181,22 @@ const useSkillsListStyle = () => {
       margin: 8px;
     }
 
-    .hard-skills {
+    > [class*="-skills"] {
       width: 50%;
-      margin-right: 4px;
-    }
 
-    .soft-skills {
-      width: 50%;
-      margin-left: 4px;
+      &:first-of-type {
+        margin-right: 8px;
+      }
+
+      &:last-of-type {
+        margin-left: 8px;
+      }
     }
 
     @media only screen and (max-width: 1000px) {
       flex-direction: column;
 
-      .hard-skills {
-        width: 100%;
-      }
-
-      .soft-skills {
+      > [class*="-skills"] {
         width: 100%;
       }
     }
