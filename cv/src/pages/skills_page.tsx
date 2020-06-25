@@ -57,7 +57,7 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
   );
 
   const Skill = (props: { name: string; stars: number }) => (
-    <div className="skill" css={skillsListStyle}>
+    <div className="skill">
       <SkillTitle>{props.name}</SkillTitle>
       {Array(props.stars)
         .fill(0)
@@ -87,8 +87,19 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
           <TopTechnology name="React" icon={BrandIcon.REACT} />
         </div>
       </div>
-      <div className="skills-list">
-        <Skill name="Skill a" stars={3} />
+      <div className="skills-list" css={skillsListStyle}>
+        <div className="hard-skills">
+          <div className="header">Hardskills</div>
+          <Skill name="Css" stars={4} />
+          <Skill name="Java" stars={3} />
+          <Skill name="Git" stars={3} />
+        </div>
+        <div className="soft-skills">
+          <div className="header">Softskills</div>
+          <Skill name="Agile processes" stars={4} />
+          <Skill name="Communication" stars={4} />
+          <Skill name="Time management" stars={3} />
+        </div>
       </div>
     </div>
   );
@@ -120,6 +131,14 @@ const useSkillsRootStyle = () => {
     .top-skills {
       margin-bottom: 40px;
     }
+
+    @media only screen and (max-width: 1000px) {
+      .top-skills {
+        .skill-title {
+          margin-top: 24px;
+        }
+      }
+    }
   `;
 };
 
@@ -130,10 +149,49 @@ const useSkillsListStyle = () => {
 
     display: flex;
 
-    .skill-title {
-      font-size: larger;
-      flex: 12 0 0;
-      text-align: left;
+    .header {
+      font-weight: bold;
+      font-size: x-large;
+      margin: 8px 0;
+    }
+
+    .skill {
+      display: flex;
+
+      .skill-title {
+        font-size: larger;
+        flex: 12 0 0;
+        text-align: left;
+      }
+
+      i {
+        margin: auto;
+        color: ${theme.mainColors.ligther};
+      }
+
+      margin: 8px;
+    }
+
+    .hard-skills {
+      width: 50%;
+      margin-right: 4px;
+    }
+
+    .soft-skills {
+      width: 50%;
+      margin-left: 4px;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      flex-direction: column;
+
+      .hard-skills {
+        width: 100%;
+      }
+
+      .soft-skills {
+        width: 100%;
+      }
     }
   `;
 };
