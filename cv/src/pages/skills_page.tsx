@@ -85,9 +85,9 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
       <div className="skills-list" css={skillsListStyle}>
         <div className="hard-skills">
           <div className="header">{t("hardSkills")}</div>
-          <Skill name="CSS" stars={4} />
+          <Skill name="CSS (+ LESS)" stars={4} />
+          <Skill name="JQuery" stars={4} />
           <Skill name="Java" stars={3} />
-          <Skill name="Git" stars={3} />
         </div>
         <div className="soft-skills">
           <div className="header">{t("softSkills")}</div>
@@ -105,9 +105,9 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
         </div>
         <div className="tools-skills">
           <div className="header">{t("tools")}</div>
-          <Skill name={"helllo"} stars={4} />
-          <Skill name={"tools"} stars={4} />
-          <Skill name={"page"} stars={3} />
+          <Skill name="Git" stars={4} />
+          <Skill name="Chrome" stars={4} />
+          <Skill name="Placeholder" stars={3} />
         </div>
       </div>
     </div>
