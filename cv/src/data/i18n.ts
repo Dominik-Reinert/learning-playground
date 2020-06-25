@@ -39,7 +39,24 @@ import {
   cvQuoteDe,
   cvQuoteAuthorDe,
 } from "./cv_quote";
-import { skillsHeadlineEn, skillsHeadlineDe, skillsQuoteDe, skillsQuoteAuthorDe, skillsQuoteEn, skillsQuoteAuthorEn } from "./skills";
+import {
+  skillsHeadlineEn,
+  skillsHeadlineDe,
+  skillsQuoteDe,
+  skillsQuoteAuthorDe,
+  skillsQuoteEn,
+  skillsQuoteAuthorEn,
+  agileProcessesEn,
+  agileProcessesDe,
+  communicationDe,
+  timeManagementDe,
+  communicationEn,
+  timeManagementEn,
+  softSkillsEn,
+  hardSkillsEn,
+  softSkillsDe,
+  hardSkillsDe,
+} from "./skills";
 
 i18n
   .use(LanguageDetector)
@@ -71,6 +88,11 @@ i18n
           skillsHeadline: skillsHeadlineEn,
           skillsQuote: skillsQuoteEn,
           skillsQuoteAuthor: skillsQuoteAuthorEn,
+          agileProcesses: agileProcessesEn,
+          communication: communicationEn,
+          timeManagement: timeManagementEn,
+          softSkills: softSkillsEn,
+          hardSkills: hardSkillsEn,
         },
       },
       de: {
@@ -98,6 +120,11 @@ i18n
           skillsHeadline: skillsHeadlineDe,
           skillsQuote: skillsQuoteDe,
           skillsQuoteAuthor: skillsQuoteAuthorDe,
+          agileProcesses: agileProcessesDe,
+          communication: communicationDe,
+          timeManagement: timeManagementDe,
+          softSkills: softSkillsDe,
+          hardSkills: hardSkillsDe,
         },
       },
     },
