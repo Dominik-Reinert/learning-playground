@@ -28,11 +28,11 @@ export const languagesEn="Languages"
 export const toolsDe="Werkzeuge"
 export const toolsEn="Tools"
 
-export const germanDe="Deutsch"
-export const germanEn="German"
+export const germanDe="Deutsch (Muttersprache)"
+export const germanEn="German (Mother tongue)"
 
-export const englishDe="Englisch"
-export const englishEn="English"
+export const englishDe="Englisch (Verhandlungssicher)"
+export const englishEn="English (Business fluent)"
 
-export const frenchDe="Französisch"
-export const frenchEn="French"
+export const frenchDe="Französisch (Grundlagen)"
+export const frenchEn="French (Basics)"
