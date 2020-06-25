@@ -24,17 +24,34 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
 
   const Stars = (props) => <div className="stars">{props.children}</div>;
 
-  const FiveFullStars = (props: { keyAddendum: string }) => (
-    <React.Fragment>
-      {Array(5)
+  const Skill = (props: {
+    stars: number;
+    name?: string;
+    keyAddendum?: string;
+  }) => (
+    <div className="skill">
+      {props.name && <SkillTitle>{props.name}</SkillTitle>}
+      {Array(props.stars)
         .fill(0)
         .map((item, idx) => (
           <WebfontSolidIconComponent
-            key={`${idx}-star-${props.keyAddendum}`}
+            key={`${idx}-star-${props.name}-${props.keyAddendum}`}
             webfontIcon={WebfontIcon.STAR}
           />
         ))}
-    </React.Fragment>
+      {Array(5 - props.stars)
+        .fill(0)
+        .map((item, idx) => (
+          <WebfontRegularIconComponent
+            key={`${idx}-star-${props.name}`}
+            webfontIcon={WebfontIcon.STAR}
+          />
+        ))}
+    </div>
+  );
+
+  const FiveFullStars = (props: { keyAddendum: string }) => (
+    <Skill stars={5} {...props} />
   );
 
   const SkillTitle = (props) => (
@@ -53,28 +70,6 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
       <Stars>
         <FiveFullStars keyAddendum={`${props.name.toLowerCase()}`} />
       </Stars>
-    </div>
-  );
-
-  const Skill = (props: { name: string; stars: number }) => (
-    <div className="skill">
-      <SkillTitle>{props.name}</SkillTitle>
-      {Array(props.stars)
-        .fill(0)
-        .map((item, idx) => (
-          <WebfontSolidIconComponent
-            key={`${idx}-star-${props.name}`}
-            webfontIcon={WebfontIcon.STAR}
-          />
-        ))}
-      {Array(5 - props.stars)
-        .fill(0)
-        .map((item, idx) => (
-          <WebfontRegularIconComponent
-            key={`${idx}-star-${props.name}`}
-            webfontIcon={WebfontIcon.STAR}
-          />
-        ))}
     </div>
   );
 
