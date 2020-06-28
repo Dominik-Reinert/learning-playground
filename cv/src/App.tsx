@@ -18,8 +18,12 @@ import { interactiveResumeDe } from "./data/interactive_resume";
 import { SubPageComponent } from "./subpage/subpage_component";
 import { ProfilePageComponent } from "./pages/profile_page";
 import { CvPageComponent } from "./pages/cv_page";
-import { WebfontSolidIconComponent, WebfontIcon } from "./webfont_icon/webfont_icon";
+import {
+  WebfontSolidIconComponent,
+  WebfontIcon,
+} from "./webfont_icon/webfont_icon";
 import { SkillsPageComponent } from "./pages/skills_page";
+import { PageFooter } from "./page_footer/page_footer";
 /** @jsx jsx */
 
 const App = () => {
@@ -70,6 +74,8 @@ const App = () => {
         >
           <SkillsPageComponent />
         </SubPageComponent>
+
+        <PageFooter />
 
         {false && (
           <TabsComponent
