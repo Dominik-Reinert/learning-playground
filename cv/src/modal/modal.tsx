@@ -2,6 +2,7 @@ import * as React from "react";
 import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { Callback } from "../manual_typings/generic_types";
+import { useOnClickOutside } from "../hooks/use_on_click_outside";
 
 /** @jsx jsx */
 
@@ -13,6 +14,8 @@ export interface ModalProps {
 export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
   const [open, setOpen] = React.useState(false);
   const modalStyle = useModalStyle(open);
+  const modalRef = React.useRef(undefined);
+  useOnClickOutside(modalRef, () => setOpen(false));
   props.openRef.current = setOpen;
   return (
     <div className="modal" css={modalStyle}>
@@ -51,6 +54,10 @@ const useModalStyle = (open: boolean) => {
 
     width: 100%;
     height: 100%;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 
     .modal-content {
       background-color: ${theme.background};
