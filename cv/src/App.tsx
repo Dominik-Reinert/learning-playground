@@ -24,7 +24,12 @@ import {
 } from "./webfont_icon/webfont_icon";
 import { SkillsPageComponent } from "./pages/skills_page";
 import { PageFooter } from "./page_footer/page_footer";
+import { Modal } from "./modal/modal";
+import { Callback } from "./manual_typings/generic_types";
 /** @jsx jsx */
+
+export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
+export let modalContent: React.MutableRefObject<React.ReactElement>;
 
 const App = () => {
   const [theme] = useThemeState();
@@ -35,10 +40,13 @@ const App = () => {
   const scrollDownCTAStyle = useScrollDownCTAStyle();
   const nameStyle = useNameStyle();
   const subpageheaderStyle = useSubpageHeaderStyle();
+  openModalCallback = React.useRef<Callback<boolean>>(undefined);
+  modalContent = React.useRef<React.ReactElement>(undefined);
 
   const { t, i18n } = useTranslation();
   return (
     <PageBase theme={theme}>
+      <Modal openRef={openModalCallback} contentRef={modalContent} />
       <div css={backgroundStyle}>
         <div css={imageCenterRootStyle}>
           <BackgroundImageComponent backgroundImage="bg-img.jpg" />

@@ -1,11 +1,13 @@
 import * as React from "react";
 import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
+import { useModal } from "../modal/use_modal";
 
 /** @jsx jsx */
 
 export const PageFooter = (props) => {
   const pageFooterStyle = usePageFooterStyle();
+  const [openImpressum] = useModal({ content: <div>hello, modal!</div> });
   return (
     <div className="page-footer" css={pageFooterStyle}>
       <div className="github">
@@ -13,7 +15,14 @@ export const PageFooter = (props) => {
           Go to project github page
         </a>
       </div>
-      <div className="impressum">Impressum</div>
+      <div
+        className="impressum"
+        onClick={() => {
+          openImpressum();
+        }}
+      >
+        Impressum
+      </div>
       <div className="copyright">&copy; 2020</div>
     </div>
   );
