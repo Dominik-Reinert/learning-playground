@@ -3,6 +3,7 @@ import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { Callback } from "../manual_typings/generic_types";
 import { useOnClickOutside } from "../hooks/use_on_click_outside";
+import { useDomEventCancellation } from "../hooks/use_dom_event_cancellation";
 
 /** @jsx jsx */
 
@@ -15,11 +16,16 @@ export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
   const [open, setOpen] = React.useState(false);
   const modalStyle = useModalStyle(open);
   const modalRef = React.useRef(undefined);
-  useOnClickOutside(modalRef, () => setOpen(false));
+  useDomEventCancellation(modalRef, ["mousewheel"]);
+
+  const contentWrapperRef = React.useRef(undefined);
+  useOnClickOutside(contentWrapperRef, () => setOpen(false));
   props.openRef.current = setOpen;
   return (
-    <div className="modal" css={modalStyle}>
-      <div className="modal-content">{props.contentRef.current}</div>
+    <div ref={modalRef} className="modal" css={modalStyle}>
+      <div ref={contentWrapperRef} className="modal-content">
+        {props.contentRef.current}
+      </div>
     </div>
   );
 };
@@ -46,9 +52,11 @@ const useModalStyle = (open: boolean) => {
   return css`
     label: modal;
 
-    display: ${open ? "flex" : "none"};
+    display: flex;
 
-    position: absolute;
+    visibility: ${open ? "visible" : "hidden"};
+
+    position: fixed;
     z-index: 1;
     background-color: ${rgbaValue};
 

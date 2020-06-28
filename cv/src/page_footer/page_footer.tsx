@@ -15,12 +15,7 @@ export const PageFooter = (props) => {
           Go to project github page
         </a>
       </div>
-      <div
-        className="impressum"
-        onClick={() => {
-          openImpressum();
-        }}
-      >
+      <div className="impressum" onClick={() => openImpressum()}>
         Impressum
       </div>
       <div className="copyright">&copy; 2020</div>
@@ -49,6 +44,10 @@ const usePageFooterStyle = () => {
 
     a {
       color: ${theme.mainColors.ligthest};
+    }
+
+    .impressum {
+      cursor: pointer;
     }
   `;
 };
