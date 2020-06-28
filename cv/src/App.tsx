@@ -26,6 +26,7 @@ import { SkillsPageComponent } from "./pages/skills_page";
 import { PageFooter } from "./page_footer/page_footer";
 import { Modal } from "./modal/modal";
 import { Callback } from "./manual_typings/generic_types";
+import { ArrowCta } from "./arrow_cta/arrow_cta";
 /** @jsx jsx */
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
@@ -37,7 +38,6 @@ const App = () => {
   const backgroundStyle = useBackgroundStyle();
   const imageCenterRootStyle = useImageCenterRootStyle();
   const imageCenterStyle = useImageCenterStyle();
-  const scrollDownCTAStyle = useScrollDownCTAStyle();
   const nameStyle = useNameStyle();
   const subpageheaderStyle = useSubpageHeaderStyle();
   openModalCallback = React.useRef<Callback<boolean>>(undefined);
@@ -54,9 +54,7 @@ const App = () => {
             <h1 css={nameStyle}>Dominik Reinert</h1>
             <p css={subpageheaderStyle}>{t("interactiveResume")}</p>
           </div>
-          <div css={scrollDownCTAStyle}>
-            <WebfontSolidIconComponent webfontIcon={WebfontIcon.CHEVRON_DOWN} />
-          </div>
+          <ArrowCta />
         </div>
         <SubPageComponent
           headline={t("profile")}
@@ -136,18 +134,6 @@ const useImageCenterStyle = () => {
   `;
 };
 
-const useScrollDownCTAStyle = () => {
-  return css`
-    label: scroll-down-cta;
-
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    background-color: blue;
-    bottom: 50px;
-    right: 50px;
-  `;
-};
 
 const useNameStyle = () => {
   const theme = usePageBaseTheme();

@@ -44,7 +44,7 @@ const useSubPageStyle = (colorBackground?: boolean) => {
       : theme.background};
 
     min-height: 80vh;
-    width: 100vw;
+    width: 100%;
 
     .spacer {
       flex: 12 0 0;
