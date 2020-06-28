@@ -71,8 +71,13 @@ const useModalStyle = (open: boolean) => {
     .modal-content {
       background-color: ${theme.background};
 
-      width: 200px;
-      height: 300px;
+      min-width: 200px;
+      min-height: 200px;
+      width: fit-content;
+      height: fit-content;
+
+      border-radius: 8px;
+
       margin: auto;
     }
   `;

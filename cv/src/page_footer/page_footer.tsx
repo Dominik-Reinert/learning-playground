@@ -2,12 +2,13 @@ import * as React from "react";
 import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { useModal } from "../modal/use_modal";
+import { useImpressumModal } from "../impressum/use_impressum_modal";
 
 /** @jsx jsx */
 
 export const PageFooter = (props) => {
   const pageFooterStyle = usePageFooterStyle();
-  const [openImpressum] = useModal({ content: <div>hello, modal!</div> });
+  const [openImpressum] = useImpressumModal();
   return (
     <div className="page-footer" css={pageFooterStyle}>
       <div className="github">
