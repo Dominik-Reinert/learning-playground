@@ -4,6 +4,7 @@ import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { Callback } from "../manual_typings/generic_types";
 import { useOnClickOutside } from "../hooks/use_on_click_outside";
 import { useDomEventCancellation } from "../hooks/use_dom_event_cancellation";
+import { useDisableScroll } from "../hooks/use_disable_scroll";
 
 /** @jsx jsx */
 
@@ -15,14 +16,14 @@ export interface ModalProps {
 export const Modal = (props: React.PropsWithChildren<ModalProps>) => {
   const [open, setOpen] = React.useState(false);
   const modalStyle = useModalStyle(open);
-  const modalRef = React.useRef(undefined);
-  useDomEventCancellation(modalRef, ["mousewheel"]);
+  const [disableScroll, enableScroll] = useDisableScroll();
+  React.useEffect(() => (open ? disableScroll() : enableScroll()), [open]);
 
   const contentWrapperRef = React.useRef(undefined);
   useOnClickOutside(contentWrapperRef, () => setOpen(false));
   props.openRef.current = setOpen;
   return (
-    <div ref={modalRef} className="modal" css={modalStyle}>
+    <div className="modal" css={modalStyle}>
       <div ref={contentWrapperRef} className="modal-content">
         {props.contentRef.current}
       </div>
