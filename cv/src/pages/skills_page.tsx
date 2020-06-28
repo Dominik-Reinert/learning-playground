@@ -157,6 +157,7 @@ const useSkillsListStyle = () => {
     label: skills-list;
 
     display: flex;
+    margin-bottom: 40px;
 
     .header {
       font-weight: bold;
@@ -198,6 +199,7 @@ const useSkillsListStyle = () => {
 
       > [class*="-skills"] {
         width: 100%;
+        margin-bottom: 40px;
       }
     }
   `;
