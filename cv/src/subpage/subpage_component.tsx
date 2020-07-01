@@ -20,7 +20,7 @@ export const SubPageComponent: React.FunctionComponent<React.PropsWithChildren<
       <div className="content">
         <div className="header">
           <h1>{props.headline}</h1>
-          <p className="quote">{props.quote}</p>
+          <p className="quote">"{props.quote}"</p>
           {props.quoteAuthor && (
             <p className="quote-author">{props.quoteAuthor}</p>
           )}
@@ -68,6 +68,10 @@ const useSubPageStyle = (colorBackground?: boolean) => {
         p {
           font-size: x-large;
           color: ${theme.mainColors?.darker ?? "blue"};
+
+          &.quote {
+            font-style: italic;
+          }
 
           &.quote-author {
             text-align: right;

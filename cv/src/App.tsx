@@ -27,6 +27,7 @@ import { PageFooter } from "./page_footer/page_footer";
 import { Modal } from "./modal/modal";
 import { Callback } from "./manual_typings/generic_types";
 import { ArrowCta } from "./arrow_cta/arrow_cta";
+import { Anchor } from "./anchor/anchor";
 /** @jsx jsx */
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
@@ -56,6 +57,8 @@ const App = () => {
           </div>
           <ArrowCta />
         </div>
+
+        <Anchor />
         <SubPageComponent headline={t("profile")} quote={t("profileQuote")}>
           <ProfilePageComponent />
         </SubPageComponent>
