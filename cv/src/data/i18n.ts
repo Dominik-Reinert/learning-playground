@@ -66,6 +66,8 @@ import {
   germanDe,
   englishDe,
   frenchDe,
+  functionalProgramingEn,
+  functionalProgramingDe,
 } from "./skills";
 
 i18n
@@ -108,6 +110,7 @@ i18n
           german: germanEn,
           english: englishEn,
           french: frenchEn,
+          functionalPrograming: functionalProgramingEn,
         },
       },
       de: {
@@ -145,6 +148,7 @@ i18n
           german: germanDe,
           english: englishDe,
           french: frenchDe,
+          functionalPrograming: functionalProgramingDe,
         },
       },
     },

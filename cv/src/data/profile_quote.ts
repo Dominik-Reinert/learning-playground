@@ -1,5 +1,5 @@
-export const profileQuoteEn ="Something very deep";
-export const profileQuoteDe ="Etwas sehr tiefgründiges";
+export const profileQuoteEn ="Bottleneck hunter | Software development enthusiast | Dog whisperer";
+export const profileQuoteDe ="Prozessengpassjäger | Begeisterter Softwareentwickler | Hundeflüsterer";
 
 export const profileQuoteAuthorEn ="- My author";
 export const profileQuoteAuthorDe ="- Mein Autor";

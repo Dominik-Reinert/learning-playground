@@ -78,8 +78,8 @@ export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildre
       <div className="top-skills">
         <TopTechnology name="Typescript" />
         <div className="layouter" css={skillsLayouterStyle}>
-          <TopTechnology name="OOP" />
-          <TopTechnology name="React" icon={BrandIcon.REACT} />
+          <TopTechnology name={t("functionalPrograming")} />
+          <TopTechnology name="React" />
         </div>
       </div>
       <div className="skills-list" css={skillsListStyle}>

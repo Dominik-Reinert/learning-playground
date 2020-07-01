@@ -56,11 +56,7 @@ const App = () => {
           </div>
           <ArrowCta />
         </div>
-        <SubPageComponent
-          headline={t("profile")}
-          quote={t("profileQuote")}
-          quoteAuthor={t("profileQuoteAuthor")}
-        >
+        <SubPageComponent headline={t("profile")} quote={t("profileQuote")}>
           <ProfilePageComponent />
         </SubPageComponent>
 
@@ -133,7 +129,6 @@ const useImageCenterStyle = () => {
     position: absolute;
   `;
 };
-
 
 const useNameStyle = () => {
   const theme = usePageBaseTheme();
