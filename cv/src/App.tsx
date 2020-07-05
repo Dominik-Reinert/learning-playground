@@ -63,7 +63,7 @@ const App = () => {
       <BackgroundComponent>
         <LandingPageComponent />
 
-        <Anchor items={[cvAnchor, profileAnchor, skillsAnchor]} />
+        <Anchor items={[profileAnchor, cvAnchor, skillsAnchor]} />
         <SubPageComponent
           headline={t("profile")}
           quote={t("profileQuote")}

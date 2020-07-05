@@ -18,9 +18,15 @@ export const Anchor = (props: React.PropsWithChildren<AnchorProps>) => {
   return (
     <div css={style}>
       {props.items.map((item) => (
-        <a key={`item-${item.title}`} href={`#${item.anchor}`} className="item">
-          {item.title}
-        </a>
+        <span className="item">
+          <a
+            key={`item-${item.title}`}
+            href={`#${item.anchor}`}
+            className="item-anchor"
+          >
+            {item.title}
+          </a>
+        </span>
       ))}
     </div>
   );
@@ -36,7 +42,7 @@ const useAnchorStyle = () => {
 
     height: 0;
 
-    left: calc(85% - 100px);
+    left: calc(85% - 80px);
     top: 15%;
 
     width: 100px;
@@ -46,10 +52,16 @@ const useAnchorStyle = () => {
 
       display: flex;
       align-items: center;
+      justify-content: center;
       text-align: center;
 
-      color: ${theme.mainColors.ligthest};
       background-color: ${theme.overlayBackground};
+      
+      &-anchor {
+        text-decoration: none;
+        outline: none;
+        color: ${theme.mainColors.ligthest};
+      }
     }
   `;
 };
