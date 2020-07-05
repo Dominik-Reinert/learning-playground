@@ -28,6 +28,8 @@ import { Modal } from "./modal/modal";
 import { Callback } from "./manual_typings/generic_types";
 import { ArrowCta } from "./arrow_cta/arrow_cta";
 import { Anchor } from "./anchor/anchor";
+import { BackgroundComponent } from "./background/background";
+import { LandingPageComponent } from "./landing_page/landing_page";
 /** @jsx jsx */
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
@@ -36,11 +38,6 @@ export let modalContent: React.MutableRefObject<React.ReactElement>;
 const App = () => {
   const [theme] = useThemeState();
   const [selectedTab, setSelectedTab] = useTabState(Tabs.CV);
-  const backgroundStyle = useBackgroundStyle();
-  const imageCenterRootStyle = useImageCenterRootStyle();
-  const imageCenterStyle = useImageCenterStyle();
-  const nameStyle = useNameStyle();
-  const subpageheaderStyle = useSubpageHeaderStyle();
   openModalCallback = React.useRef<Callback<boolean>>(undefined);
   modalContent = React.useRef<React.ReactElement>(undefined);
 
@@ -48,15 +45,8 @@ const App = () => {
   return (
     <PageBase theme={theme}>
       <Modal openRef={openModalCallback} contentRef={modalContent} />
-      <div css={backgroundStyle}>
-        <div css={imageCenterRootStyle}>
-          <BackgroundImageComponent backgroundImage="bg-img.jpg" />
-          <div css={imageCenterStyle}>
-            <h1 css={nameStyle}>Dominik Reinert</h1>
-            <p css={subpageheaderStyle}>{t("interactiveResume")}</p>
-          </div>
-          <ArrowCta />
-        </div>
+      <BackgroundComponent>
+        <LandingPageComponent />
 
         <Anchor />
         <SubPageComponent headline={t("profile")} quote={t("profileQuote")}>
@@ -97,71 +87,11 @@ const App = () => {
             </TabComponent>
           </TabsComponent>
         )}
-      </div>
+      </BackgroundComponent>
     </PageBase>
   );
 };
 
-const useBackgroundStyle = () => {
-  const theme = usePageBaseTheme();
-  return css`
-    label: background;
 
-    height: 100%;
-    background-color: ${theme.background};
-  `;
-};
-
-const useImageCenterRootStyle = () => {
-  return css`
-    label: image-center-root-style;
-
-    position: relative;
-  `;
-};
-
-const useImageCenterStyle = () => {
-  return css`
-    label: image-center-style;
-
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    position: absolute;
-  `;
-};
-
-const useNameStyle = () => {
-  const theme = usePageBaseTheme();
-  return css`
-    label: name-style;
-
-    margin: 8px;
-    padding-bottom: 8px;
-
-    text-align: center;
-    font-size: xxx-large;
-
-    color: ${theme.mainColors?.ligther ?? "white"};
-
-    border-bottom: 1px solid ${theme.mainColors?.ligther ?? "white"};
-  `;
-};
-
-const useSubpageHeaderStyle = () => {
-  const theme = usePageBaseTheme();
-  return css`
-    label: subpage-header-style;
-
-    margin: 8px;
-
-    text-align: center;
-    font-size: x-large;
-
-    color: ${theme.mainColors?.ligther ?? "white"};
-  `;
-};
 
 export default App;

@@ -44,7 +44,7 @@ const useScrollDownCTAStyle = () => {
     }
 
     cursor: pointer;
-    color: ${theme.background};
+    color: ${theme.mainColors.ligther};
     position: absolute;
     font-size: 100px;
     height: 100px;
