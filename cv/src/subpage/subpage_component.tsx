@@ -8,6 +8,7 @@ interface SubPageComponentProps {
   quote: string;
   quoteAuthor?: string;
   colorBackground?: boolean;
+  anchorId?: string;
 }
 
 export const SubPageComponent: React.FunctionComponent<React.PropsWithChildren<
@@ -15,20 +16,23 @@ export const SubPageComponent: React.FunctionComponent<React.PropsWithChildren<
 >> = (props: React.PropsWithChildren<SubPageComponentProps>) => {
   const subPageStyle = useSubPageStyle(props.colorBackground);
   return (
-    <div css={subPageStyle}>
-      <div className="spacer" />
-      <div className="content">
-        <div className="header">
-          <h1>{props.headline}</h1>
-          <p className="quote">"{props.quote}"</p>
-          {props.quoteAuthor && (
-            <p className="quote-author">{props.quoteAuthor}</p>
-          )}
+    <React.Fragment>
+      <span id={props.anchorId} />
+      <div css={subPageStyle}>
+        <div className="spacer" />
+        <div className="content">
+          <div className="header">
+            <h1>{props.headline}</h1>
+            <p className="quote">"{props.quote}"</p>
+            {props.quoteAuthor && (
+              <p className="quote-author">{props.quoteAuthor}</p>
+            )}
+          </div>
+          <div className="body">{props.children}</div>
         </div>
-        <div className="body">{props.children}</div>
+        <div className="spacer" />
       </div>
-      <div className="spacer" />
-    </div>
+    </React.Fragment>
   );
 };
 

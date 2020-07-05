@@ -7,6 +7,7 @@ export interface PageBaseTheme {
     ligthest: string;
   };
   background: string;
+  overlayBackground: string;
 }
 
 export const coralTheme: PageBaseTheme = {
@@ -15,9 +16,10 @@ export const coralTheme: PageBaseTheme = {
     darker: "#DA621E",
     normal: "#F26D21",
     ligther: "#F58B4C",
-    ligthest: "#FFF1B2"
+    ligthest: "#FFF1B2",
   },
-  background: "#FFFCF3"
+  background: "#FFFCF3",
+  overlayBackground: "#28373c",
 };
 
 export const indigoTheme: PageBaseTheme = {
@@ -26,7 +28,8 @@ export const indigoTheme: PageBaseTheme = {
     darker: "#0C374D",
     normal: "#0D3D56",
     ligther: "#3C6478",
-    ligthest: "#A2CADE"
+    ligthest: "#A2CADE",
   },
-  background: "#F0F6F9"
+  background: "#F0F6F9",
+  overlayBackground: "#28373c",
 };

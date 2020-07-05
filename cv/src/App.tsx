@@ -27,7 +27,7 @@ import { PageFooter } from "./page_footer/page_footer";
 import { Modal } from "./modal/modal";
 import { Callback } from "./manual_typings/generic_types";
 import { ArrowCta } from "./arrow_cta/arrow_cta";
-import { Anchor } from "./anchor/anchor";
+import { Anchor, AnchorItem } from "./anchor/anchor";
 import { BackgroundComponent } from "./background/background";
 import { LandingPageComponent } from "./landing_page/landing_page";
 /** @jsx jsx */
@@ -42,14 +42,33 @@ const App = () => {
   modalContent = React.useRef<React.ReactElement>(undefined);
 
   const { t, i18n } = useTranslation();
+  const cvAnchor: AnchorItem = {
+    anchor: "cv",
+    selected: true,
+    title: "CV",
+  };
+  const profileAnchor: AnchorItem = {
+    anchor: "profile",
+    selected: false,
+    title: "Profile",
+  };
+  const skillsAnchor: AnchorItem = {
+    anchor: "skills",
+    selected: false,
+    title: "Skills",
+  };
   return (
     <PageBase theme={theme}>
       <Modal openRef={openModalCallback} contentRef={modalContent} />
       <BackgroundComponent>
         <LandingPageComponent />
 
-        <Anchor />
-        <SubPageComponent headline={t("profile")} quote={t("profileQuote")}>
+        <Anchor items={[cvAnchor, profileAnchor, skillsAnchor]} />
+        <SubPageComponent
+          headline={t("profile")}
+          quote={t("profileQuote")}
+          anchorId={profileAnchor.anchor}
+        >
           <ProfilePageComponent />
         </SubPageComponent>
 
@@ -58,6 +77,7 @@ const App = () => {
           quote={t("cvQuote")}
           quoteAuthor={t("cvQuoteAuthor")}
           colorBackground={true}
+          anchorId={cvAnchor.anchor}
         >
           <CvPageComponent />
         </SubPageComponent>
@@ -66,6 +86,7 @@ const App = () => {
           headline={t("skillsHeadline")}
           quote={t("skillsQuote")}
           quoteAuthor={t("skillsQuoteAuthor")}
+          anchorId={skillsAnchor.anchor}
         >
           <SkillsPageComponent />
         </SubPageComponent>
@@ -91,7 +112,5 @@ const App = () => {
     </PageBase>
   );
 };
-
-
 
 export default App;

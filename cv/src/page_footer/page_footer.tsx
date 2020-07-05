@@ -34,7 +34,7 @@ const usePageFooterStyle = () => {
     justify-content: space-evenly;
 
     color: ${theme.mainColors.ligthest};
-    background-color: #28373c;
+    background-color: ${theme.overlayBackground};
 
     padding: 20px 0;
 
