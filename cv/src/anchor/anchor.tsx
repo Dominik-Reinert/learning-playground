@@ -22,7 +22,7 @@ export const Anchor = (props: React.PropsWithChildren<AnchorProps>) => {
           <a
             key={`item-${item.title}`}
             href={`#${item.anchor}`}
-            className="item-anchor"
+            className={`item-anchor ${item.selected ? "selected" : ""}`}
           >
             {item.title}
           </a>
@@ -56,11 +56,25 @@ const useAnchorStyle = () => {
       text-align: center;
 
       background-color: ${theme.overlayBackground};
-      
+
+      &:first-of-type {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      &:last-of-type {
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
       &-anchor {
         text-decoration: none;
         outline: none;
         color: ${theme.mainColors.ligthest};
+
+        &.selected {
+          color: ${theme.mainColors.normal};
+        }
       }
     }
   `;

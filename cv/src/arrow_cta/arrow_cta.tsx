@@ -49,7 +49,7 @@ const useScrollDownCTAStyle = () => {
     font-size: 100px;
     height: 100px;
     width: 100px;
-    right: 15%;
+    right: calc(15% - 28px);
     animation: jump 3s infinite;
   `;
 };

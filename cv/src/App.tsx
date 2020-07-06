@@ -34,6 +34,7 @@ import { LandingPageComponent } from "./landing_page/landing_page";
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
+export let anchor: React.MutableRefObject<React.ReactElement>
 
 const App = () => {
   const [theme] = useThemeState();
