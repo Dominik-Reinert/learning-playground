@@ -34,12 +34,22 @@ import { LandingPageComponent } from "./landing_page/landing_page";
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
-export let anchor: React.MutableRefObject<React.ReactElement>
+export let anchor: React.MutableRefObject<React.ReactElement>;
 
 const App = () => {
   const [theme] = useThemeState();
   openModalCallback = React.useRef<Callback<boolean>>(undefined);
   modalContent = React.useRef<React.ReactElement>(undefined);
+  const anchorScroll = React.useRef<HTMLDivElement>(undefined);
+  const handleScroll = React.useCallback(() => {
+    
+  }, []);
+  React.useEffect(() => {
+    if (anchorScroll.current) {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, [anchorScroll.current]);
 
   const { t } = useTranslation();
   const cvAnchor: AnchorItem = {
@@ -58,43 +68,44 @@ const App = () => {
     title: "Skills",
   };
   return (
-    <PageBase theme={theme}>
-      <Modal openRef={openModalCallback} contentRef={modalContent} />
-      <BackgroundComponent>
-        <LandingPageComponent />
+    <div className="anchor-scroll" ref={anchorScroll}>
+      <PageBase theme={theme}>
+        <Modal openRef={openModalCallback} contentRef={modalContent} />
+        <BackgroundComponent>
+          <LandingPageComponent />
 
-        <Anchor items={[profileAnchor, cvAnchor, skillsAnchor]} />
-        <SubPageComponent
-          headline={t("profile")}
-          quote={t("profileQuote")}
-          anchorId={profileAnchor.anchor}
-        >
-          <ProfilePageComponent />
-        </SubPageComponent>
+          <Anchor items={[profileAnchor, cvAnchor, skillsAnchor]} />
+          <SubPageComponent
+            headline={t("profile")}
+            quote={t("profileQuote")}
+            anchorId={profileAnchor.anchor}
+          >
+            <ProfilePageComponent />
+          </SubPageComponent>
 
-        <SubPageComponent
-          headline={t("cvHeadline")}
-          quote={t("cvQuote")}
-          quoteAuthor={t("cvQuoteAuthor")}
-          colorBackground={true}
-          anchorId={cvAnchor.anchor}
-        >
-          <CvPageComponent />
-        </SubPageComponent>
+          <SubPageComponent
+            headline={t("cvHeadline")}
+            quote={t("cvQuote")}
+            quoteAuthor={t("cvQuoteAuthor")}
+            colorBackground={true}
+            anchorId={cvAnchor.anchor}
+          >
+            <CvPageComponent />
+          </SubPageComponent>
 
-        <SubPageComponent
-          headline={t("skillsHeadline")}
-          quote={t("skillsQuote")}
-          quoteAuthor={t("skillsQuoteAuthor")}
-          anchorId={skillsAnchor.anchor}
-        >
-          <SkillsPageComponent />
-        </SubPageComponent>
+          <SubPageComponent
+            headline={t("skillsHeadline")}
+            quote={t("skillsQuote")}
+            quoteAuthor={t("skillsQuoteAuthor")}
+            anchorId={skillsAnchor.anchor}
+          >
+            <SkillsPageComponent />
+          </SubPageComponent>
 
-        <PageFooter />
-
-      </BackgroundComponent>
-    </PageBase>
+          <PageFooter />
+        </BackgroundComponent>
+      </PageBase>
+    </div>
   );
 };
 
