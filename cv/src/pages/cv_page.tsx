@@ -147,6 +147,7 @@ const useCvPageStyle = () => {
       &-location {
         margin: 8px 8px 16px;
         color: ${theme.mainColors.ligther};
+        white-space: nowrap;
 
         &-website {
           margin-left: 8px;
