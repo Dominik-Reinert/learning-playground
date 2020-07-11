@@ -53,15 +53,15 @@ const App = () => {
   const [selectedAnchor, setSelectedAnchor] = React.useState<string>(undefined);
   const profileAnchor: AnchorItem = {
     anchor: "profile",
-    title: "Profile",
+    title: t("profile"),
   };
   const cvAnchor: AnchorItem = {
     anchor: "cv",
-    title: "CV",
+    title: t("cvHeadline"),
   };
   const skillsAnchor: AnchorItem = {
     anchor: "skills",
-    title: "Skills",
+    title: t("skillsHeadline"),
   };
   const handleBecomeBiggestElement = React.useCallback(
     (anchor) => {
