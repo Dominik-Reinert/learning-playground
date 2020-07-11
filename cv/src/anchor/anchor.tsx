@@ -22,7 +22,9 @@ export const Anchor = (props: React.PropsWithChildren<AnchorProps>) => {
           <a
             key={`item-${item.title}`}
             href={`#${item.anchor}`}
-            className={`item-anchor ${item.anchor === props.selectedItem ? "selected" : ""}`}
+            className={`item-anchor ${
+              item.anchor === props.selectedItem ? "selected" : ""
+            }`}
           >
             {item.title}
           </a>
@@ -75,6 +77,10 @@ const useAnchorStyle = () => {
         &.selected {
           color: ${theme.mainColors.normal};
         }
+      }
+
+      @media only screen and (max-width: 1000px) {
+        visibility: hidden;
       }
     }
   `;
