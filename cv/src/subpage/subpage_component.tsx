@@ -1,6 +1,7 @@
 import { css, jsx } from "@emotion/core";
 import * as React from "react";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
+import { Callback } from "../manual_typings/generic_types";
 /** @jsx jsx */
 
 interface SubPageComponentProps {
@@ -8,17 +9,46 @@ interface SubPageComponentProps {
   quote: string;
   quoteAuthor?: string;
   colorBackground?: boolean;
-  anchorId?: string;
+
+  anchorId: string;
+  onBecomeBiggestElement: Callback<string>;
 }
 
 export const SubPageComponent: React.FunctionComponent<React.PropsWithChildren<
   SubPageComponentProps
 >> = (props: React.PropsWithChildren<SubPageComponentProps>) => {
   const subPageStyle = useSubPageStyle(props.colorBackground);
+  const heightRefElement = React.useRef<HTMLDivElement>(undefined);
+  const handleScroll = React.useCallback(() => {
+    /* credits to https://bit.ly/3eopcu5 */
+    const elementHeight: number = heightRefElement.current.offsetHeight;
+    const {
+      top: elementTop,
+      bottom: elementBottom,
+    } = heightRefElement.current.getBoundingClientRect();
+    const windowHeight: number = window.innerHeight;
+    const pxInViewport = Math.max(
+      0,
+      elementTop > 0
+        ? Math.min(elementHeight, windowHeight - elementTop)
+        : elementBottom < windowHeight
+        ? elementBottom
+        : windowHeight
+    );
+    if (pxInViewport > windowHeight / 2) {
+      props.onBecomeBiggestElement(props.anchorId);
+    }
+  }, []);
+  React.useEffect(() => {
+    if (heightRefElement.current) {
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, [heightRefElement.current]);
   return (
     <React.Fragment>
       <span id={props.anchorId} />
-      <div css={subPageStyle}>
+      <div css={subPageStyle} ref={heightRefElement}>
         <div className="spacer" />
         <div className="content">
           <div className="header">

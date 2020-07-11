@@ -6,11 +6,11 @@ import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 export interface AnchorItem {
   title: string;
   anchor: string;
-  selected: boolean;
 }
 
 export interface AnchorProps {
   items: AnchorItem[];
+  selectedItem: string;
 }
 
 export const Anchor = (props: React.PropsWithChildren<AnchorProps>) => {
@@ -22,7 +22,7 @@ export const Anchor = (props: React.PropsWithChildren<AnchorProps>) => {
           <a
             key={`item-${item.title}`}
             href={`#${item.anchor}`}
-            className={`item-anchor ${item.selected ? "selected" : ""}`}
+            className={`item-anchor ${item.anchor === props.selectedItem ? "selected" : ""}`}
           >
             {item.title}
           </a>

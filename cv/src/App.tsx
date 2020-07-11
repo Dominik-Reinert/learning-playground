@@ -41,9 +41,7 @@ const App = () => {
   openModalCallback = React.useRef<Callback<boolean>>(undefined);
   modalContent = React.useRef<React.ReactElement>(undefined);
   const anchorScroll = React.useRef<HTMLDivElement>(undefined);
-  const handleScroll = React.useCallback(() => {
-    
-  }, []);
+  const handleScroll = React.useCallback(() => {}, []);
   React.useEffect(() => {
     if (anchorScroll.current) {
       window.addEventListener("scroll", handleScroll);
@@ -52,21 +50,25 @@ const App = () => {
   }, [anchorScroll.current]);
 
   const { t } = useTranslation();
-  const cvAnchor: AnchorItem = {
-    anchor: "cv",
-    selected: true,
-    title: "CV",
-  };
+  const [selectedAnchor, setSelectedAnchor] = React.useState<string>(undefined);
   const profileAnchor: AnchorItem = {
     anchor: "profile",
-    selected: false,
     title: "Profile",
+  };
+  const cvAnchor: AnchorItem = {
+    anchor: "cv",
+    title: "CV",
   };
   const skillsAnchor: AnchorItem = {
     anchor: "skills",
-    selected: false,
     title: "Skills",
   };
+  const handleBecomeBiggestElement = React.useCallback(
+    (anchor) => {
+      anchor !== selectedAnchor && setSelectedAnchor(anchor);
+    },
+    [selectedAnchor]
+  );
   return (
     <div className="anchor-scroll" ref={anchorScroll}>
       <PageBase theme={theme}>
@@ -74,11 +76,15 @@ const App = () => {
         <BackgroundComponent>
           <LandingPageComponent />
 
-          <Anchor items={[profileAnchor, cvAnchor, skillsAnchor]} />
+          <Anchor
+            items={[profileAnchor, cvAnchor, skillsAnchor]}
+            selectedItem={selectedAnchor}
+          />
           <SubPageComponent
             headline={t("profile")}
             quote={t("profileQuote")}
             anchorId={profileAnchor.anchor}
+            onBecomeBiggestElement={handleBecomeBiggestElement}
           >
             <ProfilePageComponent />
           </SubPageComponent>
@@ -89,6 +95,7 @@ const App = () => {
             quoteAuthor={t("cvQuoteAuthor")}
             colorBackground={true}
             anchorId={cvAnchor.anchor}
+            onBecomeBiggestElement={handleBecomeBiggestElement}
           >
             <CvPageComponent />
           </SubPageComponent>
@@ -98,6 +105,7 @@ const App = () => {
             quote={t("skillsQuote")}
             quoteAuthor={t("skillsQuoteAuthor")}
             anchorId={skillsAnchor.anchor}
+            onBecomeBiggestElement={handleBecomeBiggestElement}
           >
             <SkillsPageComponent />
           </SubPageComponent>
