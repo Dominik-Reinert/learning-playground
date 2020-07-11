@@ -38,11 +38,10 @@ export let anchor: React.MutableRefObject<React.ReactElement>
 
 const App = () => {
   const [theme] = useThemeState();
-  const [selectedTab, setSelectedTab] = useTabState(Tabs.CV);
   openModalCallback = React.useRef<Callback<boolean>>(undefined);
   modalContent = React.useRef<React.ReactElement>(undefined);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const cvAnchor: AnchorItem = {
     anchor: "cv",
     selected: true,
@@ -94,21 +93,6 @@ const App = () => {
 
         <PageFooter />
 
-        {false && (
-          <TabsComponent
-            selectedTabLabel={selectedTab}
-            onSelectTab={setSelectedTab}
-          >
-            <TabComponent label={Tabs.CV}>
-              <TabSelector active={selectedTab === Tabs.CV}>
-                <TabCvSelector />
-              </TabSelector>
-              <TabContent>
-                <TabCvContent />
-              </TabContent>
-            </TabComponent>
-          </TabsComponent>
-        )}
       </BackgroundComponent>
     </PageBase>
   );
