@@ -50,5 +50,13 @@ const usePageFooterStyle = () => {
     .impressum {
       cursor: pointer;
     }
+
+    .github {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      min-width: 180px;
+    }
   `;
 };
