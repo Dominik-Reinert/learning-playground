@@ -172,6 +172,10 @@ const useSkillsListStyle = () => {
         font-size: larger;
         flex: 12 0 0;
         text-align: left;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       i {
