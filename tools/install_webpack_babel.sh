@@ -2,6 +2,8 @@
 
 echo "add babel using yarn";
 yarn add @babel/core babel-loader @babel/preset-react @babel/preset-typescript @babel/preset-env @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread --save-dev
+yarn add @babel/plugin-transform-react-jsx --save
+yarn add babel-plugin-jsx-pragmatic --save
 
 echo "create the .babelrc file in the root folder"
 if [[ ! -e ../cv/.bablerc ]]; then
@@ -16,9 +18,32 @@ cat > ../cv/.bablerc << EndOfMessage
   ],
   "plugins": [
     "@babel/proposal-class-properties",
-    "@babel/proposal-object-rest-spread"
+    "@babel/proposal-object-rest-spread",
+    [
+      "babel-plugin-jsx-pragmatic",
+      {
+        "export": "jsx",
+        "module": "@emotion/core",
+        "import": "___EmotionJSX"
+      }
+    ],
+    [
+      "@babel/plugin-transform-react-jsx",
+      { "pragma": "___EmotionJSX", "pragmaFrag": "React.Fragment" }
+    ],
+    [
+      "emotion",
+      {
+        "autoLabel": true,
+        "labelFormat": "[local]",
+        "useBuiltIns": false,
+        "throwIfNamespace": true,
+        "sourceMap": true
+      }
+    ]
   ]
 }
+
 EndOfMessage
 
 echo "add webpack using yarn"
