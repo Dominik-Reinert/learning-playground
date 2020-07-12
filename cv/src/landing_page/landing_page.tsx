@@ -1,9 +1,8 @@
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import * as React from "react";
-import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-import { ArrowCta } from "../arrow_cta/arrow_cta";
 import { useTranslation } from "react-i18next";
-/** @jsx jsx */
+import { ArrowCta } from "../arrow_cta/arrow_cta";
+import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 
 interface LandingPageProps {}
 

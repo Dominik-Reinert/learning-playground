@@ -1,8 +1,7 @@
-import { useModal } from "../modal/use_modal";
+import { css } from "@emotion/core";
 import * as React from "react";
-import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-/** @jsx jsx */
+import { useModal } from "../modal/use_modal";
 
 export const useImpressumModal = () => {
   const impressumStyle = useImpressumModalStyle();

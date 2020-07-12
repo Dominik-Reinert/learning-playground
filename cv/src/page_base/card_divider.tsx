@@ -1,15 +1,16 @@
+import { css } from "@emotion/core";
 import * as React from "react";
 import { ImageComponent } from "../image/image_component";
-import { css, jsx } from "@emotion/core";
 import { TabsComponentProps } from "../tabs/tabs_component";
-/** @jsx jsx */
 
 interface CardDividerProps {
   backgroundImage: string;
   children: React.FunctionComponentElement<TabsComponentProps>;
 }
 
-export const CardDividerComponent: React.FunctionComponent<CardDividerProps> = props => {
+export const CardDividerComponent: React.FunctionComponent<CardDividerProps> = (
+  props
+) => {
   const cardDividerStyle = useCardDividerCss();
   const backgroundImageStyle = useBackgroundImageCss();
   const cardContentStyle = useCardContentCss();

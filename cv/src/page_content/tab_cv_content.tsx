@@ -1,8 +1,7 @@
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import * as React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { CardComponent } from "../card/card_component";
-/** @jsx jsx */
 
 export const TabCvContent: React.FunctionComponent<{}> = () => {
   const cvContentStyle = useCvContentStyle();

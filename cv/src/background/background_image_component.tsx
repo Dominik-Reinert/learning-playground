@@ -1,6 +1,5 @@
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import * as React from "react";
-/** @jsx jsx */
 
 interface BackgroundImageComponentProps {
   backgroundImage: string;

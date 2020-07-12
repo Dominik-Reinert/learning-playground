@@ -11,7 +11,7 @@ export const CompanyCareerComponent: React.FunctionComponent<CompanyCareerProps>
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div>vertical slider with one marker per position child</div>
-      {React.Children.forEach(props.children, child => {
+      {React.Children.forEach(props.children, (child) => {
         <div>{child}</div>;
       })}
     </div>

@@ -1,13 +1,8 @@
+import { css } from "@emotion/core";
 import * as React from "react";
-import {
-  TabComponent,
-  TabComponentProps,
-  TabContentProps
-} from "./tab_component";
 import { Tabs } from "../hooks/use_tab_state";
 import { Callback } from "../manual_typings/generic_types";
-import { css, jsx } from "@emotion/core";
-/** @jsx jsx */
+import { TabComponentProps, TabContentProps } from "./tab_component";
 
 type TabsChild = React.FunctionComponentElement<TabComponentProps>;
 type TabsContent = React.FunctionComponentElement<TabContentProps>;
@@ -39,7 +34,7 @@ export const TabsComponent: React.FunctionComponent<TabsComponentProps> = (
       selectionLabels.push([
         child.props.label,
         child.props.children[selectorIdx],
-        handleTabSelection(child.props.label)
+        handleTabSelection(child.props.label),
       ]);
       if (child.props.label === props.selectedTabLabel) {
         selectedItemIdx = idx;
@@ -56,7 +51,7 @@ export const TabsComponent: React.FunctionComponent<TabsComponentProps> = (
     selectionLabels.push([
       element.props.label,
       element.props.children[selectorIdx],
-      handleTabSelection(element.props.label)
+      handleTabSelection(element.props.label),
     ]);
     content = props.children.props.children[contentIdx];
   }

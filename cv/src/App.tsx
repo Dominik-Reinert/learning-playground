@@ -1,36 +1,19 @@
-import { css, jsx } from "@emotion/core";
 import * as React from "react";
-import { Trans, useTranslation } from "react-i18next";
-import "./App.css";
-import { BackgroundImageComponent } from "./background/background_image_component";
-import { CardComponent } from "./card/card_component";
-import "./data/i18n";
-import { usePageBaseTheme } from "./hooks/use_page_base_theme";
-import { Tabs, useTabState } from "./hooks/use_tab_state";
-import { useThemeState } from "./hooks/use_theme_state";
-import { PageBase } from "./page_base/page_base";
-import { TabCvContent } from "./page_content/tab_cv_content";
-import { TabCvSelector } from "./page_content/tab_cv_selector";
-import { TabsComponent } from "./tabs/tabs_component";
-import { TabComponent, TabContent } from "./tabs/tab_component";
-import { TabSelector } from "./tabs/tab_selector";
-import { interactiveResumeDe } from "./data/interactive_resume";
-import { SubPageComponent } from "./subpage/subpage_component";
-import { ProfilePageComponent } from "./pages/profile_page";
-import { CvPageComponent } from "./pages/cv_page";
-import {
-  WebfontSolidIconComponent,
-  WebfontIcon,
-} from "./webfont_icon/webfont_icon";
-import { SkillsPageComponent } from "./pages/skills_page";
-import { PageFooter } from "./page_footer/page_footer";
-import { Modal } from "./modal/modal";
-import { Callback } from "./manual_typings/generic_types";
-import { ArrowCta } from "./arrow_cta/arrow_cta";
+import { useTranslation } from "react-i18next";
 import { Anchor, AnchorItem } from "./anchor/anchor";
+import "./App.css";
 import { BackgroundComponent } from "./background/background";
+import "./data/i18n";
+import { useThemeState } from "./hooks/use_theme_state";
 import { LandingPageComponent } from "./landing_page/landing_page";
-/** @jsx jsx */
+import { Callback } from "./manual_typings/generic_types";
+import { Modal } from "./modal/modal";
+import { CvPageComponent } from "./pages/cv_page";
+import { ProfilePageComponent } from "./pages/profile_page";
+import { SkillsPageComponent } from "./pages/skills_page";
+import { PageBase } from "./page_base/page_base";
+import { PageFooter } from "./page_footer/page_footer";
+import { SubPageComponent } from "./subpage/subpage_component";
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;

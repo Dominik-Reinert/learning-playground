@@ -1,12 +1,9 @@
+import { css } from "@emotion/core";
 import * as React from "react";
-import { css, jsx } from "@emotion/core";
+import { useDisableScroll } from "../hooks/use_disable_scroll";
+import { useOnClickOutside } from "../hooks/use_on_click_outside";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { Callback } from "../manual_typings/generic_types";
-import { useOnClickOutside } from "../hooks/use_on_click_outside";
-import { useDomEventCancellation } from "../hooks/use_dom_event_cancellation";
-import { useDisableScroll } from "../hooks/use_disable_scroll";
-
-/** @jsx jsx */
 
 export interface ModalProps {
   openRef: React.MutableRefObject<Callback<boolean>>;

@@ -1,8 +1,7 @@
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import * as React from "react";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { Callback } from "../manual_typings/generic_types";
-/** @jsx jsx */
 
 interface SubPageComponentProps {
   headline: string;

@@ -1,10 +1,9 @@
+import { css } from "@emotion/core";
 import * as React from "react";
-import { css, jsx } from "@emotion/core";
+import { useTranslation } from "react-i18next";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { ImageComponent } from "../image/image_component";
-import { useTranslation } from "react-i18next";
 import { useHeaderStyle } from "../shared_styles/shared_styles";
-/** @jsx jsx */
 
 interface ProfilePageComponentProps {}
 

@@ -1,8 +1,11 @@
-import * as React from 'react'
-import { ImageComponent } from '../image/image_component'
-import { css, jsx } from '@emotion/core'
-/** @jsx jsx */
+import { css } from "@emotion/core";
+import * as React from "react";
+import { ImageComponent } from "../image/image_component";
 
 export const TabCvSelector = () => {
-    return <div><ImageComponent src='logo192.png' cssStyle={css``} /></div>
-}
+  return (
+    <div>
+      <ImageComponent src="logo192.png" cssStyle={css``} />
+    </div>
+  );
+};

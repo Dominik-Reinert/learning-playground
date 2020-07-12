@@ -1,17 +1,15 @@
+import { css } from "@emotion/core";
 import * as React from "react";
-import { Callback } from "../manual_typings/generic_types";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-import { css, jsx } from "@emotion/core";
+import { Callback } from "../manual_typings/generic_types";
 import {
-  WebfontIcon,
-  WebfontIconComponentProps,
-  WebfontSolidIconComponent
-} from "../webfont_icon/webfont_icon";
-import {
+  BrandIconComponent,
   BrandIconComponentProps,
-  BrandIconComponent
 } from "../webfont_icon/brand_icon";
-/** @jsx jsx */
+import {
+  WebfontIconComponentProps,
+  WebfontSolidIconComponent,
+} from "../webfont_icon/webfont_icon";
 
 export interface ButtonComponentProps {
   label: string;

@@ -1,7 +1,6 @@
+import { css } from "@emotion/core";
 import * as React from "react";
-import { css, jsx } from "@emotion/core";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-/** @jsx jsx */
 
 export interface TabSelectorProps {
   active: boolean;

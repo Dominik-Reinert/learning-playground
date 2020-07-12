@@ -1,8 +1,7 @@
-import { Callback } from "../manual_typings/generic_types";
+import { css } from "@emotion/core";
 import * as React from "react";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-import { css, jsx } from "@emotion/core";
-/** @jsx jsx */
+import { Callback } from "../manual_typings/generic_types";
 
 interface TextAreaComponentProps {
   value: string;
@@ -12,7 +11,7 @@ interface TextAreaComponentProps {
 
 export const TextAreaComponent = (props: TextAreaComponentProps) => {
   const handleInputChange = React.useCallback(
-    event => props.onChange?.((event.target as HTMLSpanElement).innerText),
+    (event) => props.onChange?.((event.target as HTMLSpanElement).innerText),
     [props]
   );
   const textAreaCss = useTextAreaCss();

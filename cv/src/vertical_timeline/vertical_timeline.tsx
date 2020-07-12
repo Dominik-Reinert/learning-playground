@@ -1,7 +1,7 @@
 import * as React from "react";
-import { CompanyComponentProps } from "../company/company_component";
-import { CardComponent } from "../card/card_component";
 import { useTranslation } from "react-i18next";
+import { CardComponent } from "../card/card_component";
+import { CompanyComponentProps } from "../company/company_component";
 
 interface VerticalTimelineProps {
   children: React.FunctionComponentElement<CompanyComponentProps>;
@@ -14,7 +14,7 @@ export const VerticalTimelineComponent: React.FunctionComponent<VerticalTimeline
   return (
     <CardComponent
       headerProps={{
-        title: t("timeline")
+        title: t("timeline"),
       }}
     >
       {props.children}

@@ -1,74 +1,74 @@
 import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next } from "react-i18next";
-import { bigFiveEn, bigFiveDe } from "./big_five";
-import { welcomeEn, welcomeDe, welcomeMsgEn, welcomeMsgDe } from "./welcome";
-import { timelineEn, timelineDe } from "./timeline";
-import { interactiveResumeEn, interactiveResumeDe } from "./interactive_resume";
-import { profileEn, profileDe } from "./profile";
 import {
-  profileQuoteAuthorEn,
-  profileQuoteEn,
-  profileQuoteDe,
-  profileQuoteAuthorDe,
-} from "./profile_quote";
-import {
-  aboutMeHeadlineEn,
-  aboutMeHeadlineDe,
-  aboutMeEn,
   aboutMeDe,
+  aboutMeEn,
+  aboutMeHeadlineDe,
+  aboutMeHeadlineEn,
 } from "./about_me";
+import { bigFiveDe, bigFiveEn } from "./big_five";
+import { cvHeadlineDe, cvHeadlineEn } from "./cv";
 import {
-  detailsHeadlineDe,
-  nameDe,
-  detailsHeadlineEn,
-  nameHeadlineDe,
-  ageDe,
-  locationDe,
-  ageEn,
-  locationHeadlineEn,
-  locationHeadlineDe,
-  ageHeadlineEn,
-  ageHeadlineDe,
-  locationEn,
-} from "./profile_data";
-import { cvHeadlineEn, cvHeadlineDe } from "./cv";
-import {
-  cvQuoteEn,
+  cvQuoteAuthorDe,
   cvQuoteAuthorEn,
   cvQuoteDe,
-  cvQuoteAuthorDe,
+  cvQuoteEn,
 } from "./cv_quote";
+import { interactiveResumeDe, interactiveResumeEn } from "./interactive_resume";
+import { profileDe, profileEn } from "./profile";
 import {
-  skillsHeadlineEn,
-  skillsHeadlineDe,
-  skillsQuoteDe,
-  skillsQuoteAuthorDe,
-  skillsQuoteEn,
-  skillsQuoteAuthorEn,
-  agileProcessesEn,
+  ageDe,
+  ageEn,
+  ageHeadlineDe,
+  ageHeadlineEn,
+  detailsHeadlineDe,
+  detailsHeadlineEn,
+  locationDe,
+  locationEn,
+  locationHeadlineDe,
+  locationHeadlineEn,
+  nameDe,
+  nameHeadlineDe,
+} from "./profile_data";
+import {
+  profileQuoteAuthorDe,
+  profileQuoteAuthorEn,
+  profileQuoteDe,
+  profileQuoteEn,
+} from "./profile_quote";
+import {
   agileProcessesDe,
+  agileProcessesEn,
   communicationDe,
-  timeManagementDe,
   communicationEn,
-  timeManagementEn,
-  softSkillsEn,
-  hardSkillsEn,
-  softSkillsDe,
-  hardSkillsDe,
-  languagesEn,
-  toolsEn,
-  germanEn,
-  englishEn,
-  frenchEn,
-  languagesDe,
-  toolsDe,
-  germanDe,
   englishDe,
+  englishEn,
   frenchDe,
-  functionalProgramingEn,
+  frenchEn,
   functionalProgramingDe,
+  functionalProgramingEn,
+  germanDe,
+  germanEn,
+  hardSkillsDe,
+  hardSkillsEn,
+  languagesDe,
+  languagesEn,
+  skillsHeadlineDe,
+  skillsHeadlineEn,
+  skillsQuoteAuthorDe,
+  skillsQuoteAuthorEn,
+  skillsQuoteDe,
+  skillsQuoteEn,
+  softSkillsDe,
+  softSkillsEn,
+  timeManagementDe,
+  timeManagementEn,
+  toolsDe,
+  toolsEn,
 } from "./skills";
+import { timelineDe, timelineEn } from "./timeline";
+import { welcomeDe, welcomeEn, welcomeMsgDe, welcomeMsgEn } from "./welcome";
 
 i18n
   .use(LanguageDetector)

@@ -1,12 +1,10 @@
+import { css } from "@emotion/core";
 import * as React from "react";
-import { css, jsx } from "@emotion/core";
-import {
-  WebfontSolidIconComponent,
-  WebfontIcon,
-} from "../webfont_icon/webfont_icon";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-
-/** @jsx jsx */
+import {
+  WebfontIcon,
+  WebfontSolidIconComponent,
+} from "../webfont_icon/webfont_icon";
 
 export const ArrowCta = () => {
   const scrollDownCTAStyle = useScrollDownCTAStyle();

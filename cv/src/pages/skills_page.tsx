@@ -1,16 +1,13 @@
+import { css } from "@emotion/core";
 import * as React from "react";
-import { css, jsx } from "@emotion/core";
-import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-import { ImageComponent } from "../image/image_component";
 import { useTranslation } from "react-i18next";
-import { useHeaderStyle } from "../shared_styles/shared_styles";
+import { usePageBaseTheme } from "../hooks/use_page_base_theme";
+import { BrandIcon, BrandIconComponent } from "../webfont_icon/brand_icon";
 import {
   WebfontIcon,
-  WebfontSolidIconComponent,
   WebfontRegularIconComponent,
+  WebfontSolidIconComponent,
 } from "../webfont_icon/webfont_icon";
-import { BrandIconComponent, BrandIcon } from "../webfont_icon/brand_icon";
-/** @jsx jsx */
 
 interface SkillsPageComponentProps {}
 
