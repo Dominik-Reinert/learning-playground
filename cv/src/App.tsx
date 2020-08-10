@@ -8,6 +8,7 @@ import { useThemeState } from "./hooks/use_theme_state";
 import { LandingPageComponent } from "./landing_page/landing_page";
 import { Callback } from "./manual_typings/generic_types";
 import { Modal } from "./modal/modal";
+import { useModal } from "./modal/use_modal";
 import { CvPageComponent } from "./pages/cv_page";
 import { ProfilePageComponent } from "./pages/profile_page";
 import { SkillsPageComponent } from "./pages/skills_page";
@@ -52,6 +53,16 @@ const App = () => {
     },
     [selectedAnchor]
   );
+
+  const [users, setUsers] = React.useState(undefined);
+  const [openUsers, closeUsers] = useModal({
+    content: <div>hello {users}</div>,
+  });
+  fetch("/api/users/all")
+    .then((u) => u.body.getReader({ mode: "byob" }))
+    .then((u) => setUsers(u));
+  React.useEffect(() => openUsers(), [users]);
+
   return (
     <div className="anchor-scroll" ref={anchorScroll}>
       <PageBase theme={theme}>
