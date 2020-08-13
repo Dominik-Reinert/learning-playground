@@ -5,13 +5,13 @@ import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { useHeaderStyle } from "../shared_styles/shared_styles";
 import { CvExperience } from "./cv_experience";
 
-interface CvPageComponentProps {}
+interface ExperienceSubPageComponentProps {}
 
-export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
-  CvPageComponentProps
->> = (props: React.PropsWithChildren<CvPageComponentProps>) => {
+export const CvExperienceSubPageComponent: React.FunctionComponent<React.PropsWithChildren<
+  ExperienceSubPageComponentProps
+>> = (props: React.PropsWithChildren<ExperienceSubPageComponentProps>) => {
   const Header = ({ title }: { title: string }) => (
-    <div className="cv-subheader">{title}</div>
+    <div className="experience-subheader">{title}</div>
   );
 
   const Experience = (
@@ -25,21 +25,21 @@ export const CvPageComponent: React.FunctionComponent<React.PropsWithChildren<
     }: CvExperience,
     index: number
   ) => (
-    <div key={`experience-${index}-${institute}`} className="cv-entry">
-      <div className="cv-left">
-        <b className="cv-institute">{institute}</b>
-        <div className="cv-date">
+    <div key={`experience-${index}-${institute}`} className="experience-entry">
+      <div className="experience-left">
+        <b className="experience-institute">{institute}</b>
+        <div className="experience-date">
           <span>{date.start}</span>-<span>{date.end}</span>
         </div>
       </div>
-      <div className="cv-right">
-        <b className="cv-headline">{headline}</b>
-        {text && <div className="cv-text">{text}</div>}
-        <div className="cv-location">
+      <div className="experience-right">
+        <b className="experience-headline">{headline}</b>
+        {text && <div className="experience-text">{text}</div>}
+        <div className="experience-location">
           {location}
           {locationWebsite && (
             <a
-              className="cv-location-website"
+              className="experience-location-website"
               href={locationWebsite}
               target="_blank"
             >
@@ -81,10 +81,10 @@ const useCvPageStyle = () => {
   const theme = usePageBaseTheme();
   const headerStyle = useHeaderStyle();
   return css`
-    label: cv-page;
+    label: experience-page;
 
     @media only screen and (max-width: 1000px) {
-      .cv {
+      .experience {
         &-entry {
           flex-direction: column;
         }
@@ -96,7 +96,7 @@ const useCvPageStyle = () => {
       }
     }
 
-    .cv {
+    .experience {
       &-entry {
         margin-bottom: 80px;
 

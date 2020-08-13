@@ -7,7 +7,7 @@ import { useHeaderStyle } from "../shared_styles/shared_styles";
 
 interface ProfilePageComponentProps {}
 
-export const ProfilePageComponent: React.FunctionComponent<React.PropsWithChildren<
+export const CvProfileSubpageComponent: React.FunctionComponent<React.PropsWithChildren<
   ProfilePageComponentProps
 >> = (props: React.PropsWithChildren<ProfilePageComponentProps>) => {
   const style = useProfilePageComponentStyle();

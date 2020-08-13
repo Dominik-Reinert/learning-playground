@@ -6,7 +6,7 @@ import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 
 interface LandingPageProps {}
 
-export const LandingPageComponent: React.FunctionComponent<React.PropsWithChildren<
+export const CvLandingPageComponent: React.FunctionComponent<React.PropsWithChildren<
   LandingPageProps
 >> = (props: React.PropsWithChildren<LandingPageProps>) => {
   const { t, i18n } = useTranslation();

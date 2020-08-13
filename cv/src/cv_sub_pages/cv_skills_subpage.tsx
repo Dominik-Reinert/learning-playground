@@ -11,7 +11,7 @@ import {
 
 interface SkillsPageComponentProps {}
 
-export const SkillsPageComponent: React.FunctionComponent<React.PropsWithChildren<
+export const CvSkillsSubPageComponent: React.FunctionComponent<React.PropsWithChildren<
   SkillsPageComponentProps
 >> = (props: React.PropsWithChildren<SkillsPageComponentProps>) => {
   const { t, i18n } = useTranslation();
