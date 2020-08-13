@@ -6,8 +6,10 @@ export interface UseModalProps {
 }
 
 export const useModal = (props: UseModalProps) => {
-  modalContent.current = props.content;
-  const openModal = () => openModalCallback.current(true);
+  const openModal = React.useCallback(() => {
+    modalContent.current = props.content;
+    openModalCallback.current(true);
+  }, [props.content]);
   const closeModal = () => openModalCallback.current(false);
   return [openModal, closeModal];
 };
