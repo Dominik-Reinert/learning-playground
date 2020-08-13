@@ -20,6 +20,12 @@ export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
 export let anchor: React.MutableRefObject<React.ReactElement>;
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
 const App = () => {
   const [theme] = useThemeState();
   openModalCallback = React.useRef<Callback<boolean>>(undefined);
@@ -54,13 +60,20 @@ const App = () => {
     [selectedAnchor]
   );
 
-  const [users, setUsers] = React.useState(undefined);
+  const [users, setUsers] = React.useState<User[]>(undefined);
   const [openUsers, closeUsers] = useModal({
-    content: <div>hello {users}</div>,
+    content: (
+      <div>
+        hello
+        {users?.map((u) => (
+          <div>name: {u.name}</div>
+        ))}
+      </div>
+    ),
   });
   fetch("http://localhost:3001/api/users/all")
-    .then((u) => u.body.getReader({ mode: "byob" }))
-    .then((u) => setUsers(u));
+    .then((u) => u.json())
+    .then((u) => setUsers(u.users));
   React.useEffect(() => openUsers(), [users]);
 
   return (
