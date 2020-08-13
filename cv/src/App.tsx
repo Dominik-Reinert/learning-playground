@@ -8,12 +8,12 @@ import { useThemeState } from "./hooks/use_theme_state";
 import { LandingPageComponent } from "./landing_page/landing_page";
 import { Callback } from "./manual_typings/generic_types";
 import { Modal } from "./modal/modal";
-import { CvPageComponent } from "./pages/cv_page";
-import { ProfilePageComponent } from "./pages/profile_page";
-import { SkillsPageComponent } from "./pages/skills_page";
 import { PageBase } from "./page_base/page_base";
 import { PageFooter } from "./page_footer/page_footer";
 import { SubPageComponent } from "./subpage/subpage_component";
+import { CvPageComponent } from "./sub_pages/cv_page";
+import { ProfilePageComponent } from "./sub_pages/profile_page";
+import { SkillsPageComponent } from "./sub_pages/skills_page";
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
