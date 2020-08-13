@@ -58,7 +58,7 @@ const App = () => {
   const [openUsers, closeUsers] = useModal({
     content: <div>hello {users}</div>,
   });
-  fetch("/api/users/all")
+  fetch("http://localhost:3001/api/users/all")
     .then((u) => u.body.getReader({ mode: "byob" }))
     .then((u) => setUsers(u));
   React.useEffect(() => openUsers(), [users]);
