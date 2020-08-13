@@ -8,7 +8,6 @@ import { useThemeState } from "./hooks/use_theme_state";
 import { LandingPageComponent } from "./landing_page/landing_page";
 import { Callback } from "./manual_typings/generic_types";
 import { Modal } from "./modal/modal";
-import { useModal } from "./modal/use_modal";
 import { CvPageComponent } from "./pages/cv_page";
 import { ProfilePageComponent } from "./pages/profile_page";
 import { SkillsPageComponent } from "./pages/skills_page";
@@ -19,12 +18,6 @@ import { SubPageComponent } from "./subpage/subpage_component";
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
 export let anchor: React.MutableRefObject<React.ReactElement>;
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
 
 const App = () => {
   const [theme] = useThemeState();
@@ -59,23 +52,6 @@ const App = () => {
     },
     [selectedAnchor]
   );
-
-  const [users, setUsers] = React.useState<User[]>(undefined);
-  const [openUsers, closeUsers] = useModal({
-    content: (
-      <div>
-        hello
-        {users?.map((u) => (
-          <div>name: {u.name}</div>
-        ))}
-      </div>
-    ),
-  });
-  fetch("http://localhost:3001/api/users/all")
-    .then((u) => u.json())
-    .then((u) => setUsers(u.users));
-  React.useEffect(() => openUsers(), [users]);
-
   return (
     <div className="anchor-scroll" ref={anchorScroll}>
       <PageBase theme={theme}>
