@@ -8,7 +8,6 @@ const newsletterDao = new NewsLetterSubscriptionDao();
 
 router.post("/subscribe", async (req: Request, res: Response) => {
   const { email } = req.body;
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
   if (!email) {
     return res.status(BAD_REQUEST).json({
       error: paramMissingError,

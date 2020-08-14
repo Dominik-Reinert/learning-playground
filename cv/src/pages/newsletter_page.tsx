@@ -8,16 +8,19 @@ export const NewsletterPageComponent = () => {
   const inputRef = React.useRef<HTMLInputElement>(undefined);
   const handleSubmit = React.useCallback(() => {
     if (inputRef.current.validity.valid) {
-      const response = fetch("http://localhost:3001/newsletter/subscribe");
+      const response = fetch("http://localhost:3001/api/newsletter/subscribe", {
+        method: "POST",
+        body: JSON.stringify({ email: inputRef.current.value }),
+      });
       response.then(() => alert("success"));
     }
   }, [inputRef.current]);
 
-  let users = [];
+  let [users, setUsers] = React.useState<any[]>([]);
   React.useEffect(() => {
-    fetch("http://localhost:3001/users/all")
+    fetch("http://localhost:3001/api/users/all")
       .then((res) => res.json())
-      .then((res) => (users = res.users));
+      .then((res) => setUsers(res.users));
   }, []);
 
   return (
@@ -35,9 +38,9 @@ export const NewsletterPageComponent = () => {
       </div>
 
       <div>
-        Users:{" "}
+        Users:
         {users.map((u) => (
-          <span>{u}</span>
+          <span>{u.name}</span>
         ))}
       </div>
     </div>
