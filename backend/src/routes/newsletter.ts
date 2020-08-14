@@ -11,6 +11,7 @@ router.post("/subscribe", async (req: Request, res: Response) => {
   if (!email) {
     return res.status(BAD_REQUEST).json({
       error: paramMissingError,
+      input: req.body,
     });
   }
   await newsletterDao.subscribe(email);

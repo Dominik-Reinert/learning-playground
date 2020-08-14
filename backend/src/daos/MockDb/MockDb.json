@@ -10,13 +10,9 @@
       "email": "gordan.freeman@halflife.com",
       "id": 906524522143
     },
-    {
-      "name": "John Smith",
-      "email": "jsmith@yahoo.com",
-      "id": 357437875835
-    }
+    { "name": "John Smith", "email": "jsmith@yahoo.com", "id": 357437875835 }
   ],
   "newsletter_subscriptions": [
-    
+    { "email": "asdf@me.com", "id": 0.6505914594267475 }
   ]
 }

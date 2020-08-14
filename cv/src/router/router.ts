@@ -1,6 +1,7 @@
 export enum RouteURL {
+  CV = "/cv",
+  NEWSLETTER = "/subscribe",
   HOME = "/",
-  NEWSLETTER = "/subscribe"
 }
 
 class Router {}

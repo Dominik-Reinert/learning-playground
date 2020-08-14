@@ -10,6 +10,9 @@ export const NewsletterPageComponent = () => {
     if (inputRef.current.validity.valid) {
       const response = fetch("http://localhost:3001/api/newsletter/subscribe", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ email: inputRef.current.value }),
       });
       response.then(() => alert("success"));

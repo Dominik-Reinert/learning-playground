@@ -9,6 +9,7 @@ import { CvPageComponent } from "./pages/cv_page";
 import { NewsletterPageComponent } from "./pages/newsletter_page";
 import { PageBase } from "./page_base/page_base";
 import { RouteURL } from "./router/router";
+import { HomePageComponent } from "./pages/home_page";
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
@@ -29,8 +30,11 @@ const App = () => {
             <Route path={`${RouteURL.NEWSLETTER}`}>
               <NewsletterPageComponent />
             </Route>
-            <Route path={`${RouteURL.HOME}`}>
+            <Route path={`${RouteURL.CV}`}>
               <CvPageComponent />
+            </Route>
+            <Route path={`${RouteURL.HOME}`}>
+              <HomePageComponent />
             </Route>
           </Switch>
         </Router>
