@@ -5,6 +5,7 @@ export enum WebfontIcon {
   CAMERA = "fa-camera",
   CHEVRON_DOWN = "fa-chevron-down",
   STAR = "fa-star",
+  ENVELOPE = "fa-envelope",
 }
 
 export interface WebfontIconComponentProps {

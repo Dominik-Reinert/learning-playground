@@ -6,6 +6,7 @@ import { useThemeState } from "./hooks/use_theme_state";
 import { Callback } from "./manual_typings/generic_types";
 import { Modal } from "./modal/modal";
 import { CvPageComponent } from "./pages/cv_page";
+import { NewsletterPageComponent } from "./pages/newsletter_page";
 import { PageBase } from "./page_base/page_base";
 import { RouteURL } from "./router/router";
 
@@ -25,6 +26,9 @@ const App = () => {
         <Modal openRef={openModalCallback} contentRef={modalContent} />
         <Router>
           <Switch>
+            <Route path={`${RouteURL.NEWSLETTER}`}>
+              <NewsletterPageComponent />
+            </Route>
             <Route path={`${RouteURL.HOME}`}>
               <CvPageComponent />
             </Route>

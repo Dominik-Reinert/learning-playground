@@ -14,7 +14,6 @@ const userDao = new UserDao();
 
 router.get("/all", async (req: Request, res: Response) => {
   const users = await userDao.getAll();
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
   return res.status(OK).json({ users });
 });
 

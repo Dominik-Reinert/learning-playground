@@ -1,5 +1,6 @@
 import logger from "@shared/Logger";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
 import helmet from "helmet";
@@ -18,6 +19,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:8080" }));
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === "development") {
@@ -35,7 +37,6 @@ app.use("/api", BaseRouter);
 // Print API errors
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   logger.error(err.message, err);
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
   return res.status(BAD_REQUEST).json({
     error: err.message,
   });

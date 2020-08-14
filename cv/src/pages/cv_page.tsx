@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Anchor, AnchorItem } from "../anchor/anchor";
-import { anchorScroll } from "../App";
 import { BackgroundComponent } from "../background/background";
 import { CvExperienceSubPageComponent } from "../cv_sub_pages/cv_experience_subpage";
 import { CvLandingPageComponent } from "../cv_sub_pages/cv_landing_subpage";
@@ -11,15 +10,6 @@ import { PageFooter } from "../page_footer/page_footer";
 import { SubPageComponent } from "../subpage/subpage_component";
 
 export const CvPageComponent = () => {
-  const handleScroll = React.useCallback(() => {}, []);
-  React.useEffect(() => {
-    console.info(`Adding scroll listener`);
-    if (anchorScroll.current) {
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, [anchorScroll.current]);
-
   const { t } = useTranslation();
   const [selectedAnchor, setSelectedAnchor] = React.useState<string>(undefined);
   const profileAnchor: AnchorItem = {
