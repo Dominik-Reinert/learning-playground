@@ -7,6 +7,7 @@ import { Callback } from "./manual_typings/generic_types";
 import { Modal } from "./modal/modal";
 import { CvPageComponent } from "./pages/cv_page";
 import { PageBase } from "./page_base/page_base";
+import { RouteURL } from "./router/router";
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
@@ -24,7 +25,7 @@ const App = () => {
         <Modal openRef={openModalCallback} contentRef={modalContent} />
         <Router>
           <Switch>
-            <Route path="/">
+            <Route path={`${RouteURL.HOME}`}>
               <CvPageComponent />
             </Route>
           </Switch>
