@@ -1,7 +1,7 @@
 import NewsLetterSubscriptionDao from "@daos/newsletter/newsletter_subscription_dao";
 import { paramMissingError } from "@shared/constants";
 import { Request, Response, Router } from "express";
-import { BAD_REQUEST, CREATED } from "http-status-codes";
+import { BAD_REQUEST, CREATED, OK } from "http-status-codes";
 
 const router = Router();
 const newsletterDao = new NewsLetterSubscriptionDao();
@@ -16,6 +16,11 @@ router.post("/subscribe", async (req: Request, res: Response) => {
   }
   await newsletterDao.subscribe(email);
   return res.status(CREATED).end();
+});
+
+router.get("/all", async (req: Request, res: Response) => {
+  const subscriptions = await newsletterDao.getAll();
+  return res.status(OK).json({ subscriptions });
 });
 
 export default router;

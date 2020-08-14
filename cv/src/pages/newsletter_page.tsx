@@ -19,11 +19,11 @@ export const NewsletterPageComponent = () => {
     }
   }, [inputRef.current]);
 
-  let [users, setUsers] = React.useState<any[]>([]);
+  let [subscriptions, setSubscriptions] = React.useState<any[]>([]);
   React.useEffect(() => {
-    fetch("http://localhost:3001/api/users/all")
+    fetch("http://localhost:3001/api/newsletter/all")
       .then((res) => res.json())
-      .then((res) => setUsers(res.users));
+      .then((res) => setSubscriptions(res.users));
   }, []);
 
   return (
@@ -42,7 +42,7 @@ export const NewsletterPageComponent = () => {
 
       <div>
         Users:
-        {users.map((u) => (
+        {subscriptions.map((u) => (
           <span>{u.name}</span>
         ))}
       </div>

@@ -4,7 +4,7 @@ export interface INewsletterSubscription {
 }
 
 class NewsletterSubscription implements INewsletterSubscription {
-  constructor(public email: string, public id: number = -1) {}
+  constructor(public email: string, public id: number) {}
 }
 
 export default NewsletterSubscription;

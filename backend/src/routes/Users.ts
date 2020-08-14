@@ -1,4 +1,4 @@
-import UserDao from "@daos/User/UserDao.mock";
+import UserDao from "@daos/User/UserDao";
 import { paramMissingError } from "@shared/constants";
 import { Request, Response, Router } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
