@@ -10,43 +10,14 @@ const logCallback = (err, stdout, stderr) => {
 
 function startDb() {
   console.log("Starting database");
-  const databaseDirPath = path.resolve("./database");
+  const databaseDirPath = path.resolve("");
   const databaseConfigName = "mongod.conf";
-  const databaseConfigPath = path.resolve(
-    databaseDirPath.concat(`/${databaseConfigName}`)
-  );
+  const databaseConfigPath = path.resolve(`./database/${databaseConfigName}`);
 
-  console.log("Check if database dir exists");
-  if (fs.existsSync(databaseDirPath)) {
-    console.log("database dir gets created");
-    fs.mkdirSync(databaseDirPath);
-  }
+  const command = `cd ${databaseDirPath}; mongod --config ${databaseConfigPath}; cd -`;
+  console.log(`Executing: '${command}'`);
 
-  console.log("Check if database config exists");
-  if (fs.existsSync(databaseConfigPath)) {
-    console.log("database config gets created");
-    fs.writeFileSync(
-      databaseConfigName,
-      `
-systemLog:
-    destination: file
-    path: "./log/mongod.log"
-    logAppend: true
- storage:
-    journal:
-       enabled: true
- processManagement:
-    fork: true
- net:
-    bindIp: 127.0.0.1
-    port: 27017
- setParameter:
-    enableLocalhostAuthBypass: true
-    `
-    );
-  }
-
-  exec(`cd ${databaseDirPath}; mongod --config ${databaseConfigPath}`);
+  exec(command);
 }
 
 function startBackend() {

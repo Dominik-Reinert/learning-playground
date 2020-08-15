@@ -1,4 +1,4 @@
-import { InsertOneWriteOpResult, MongoClient, Cursor } from "mongodb";
+import { InsertOneWriteOpResult, MongoClient } from "mongodb";
 
 export interface MongoDaoData {}
 
@@ -8,7 +8,7 @@ export abstract class AbstractMongoDao<D = MongoDaoData> {
   protected abstract collectionName: string;
 
   protected async insertOne(
-    data: MongoDaoData
+    data: D
   ): Promise<InsertOneWriteOpResult<any>> {
     const db = await MongoClient.connect(this.mongoDbUrl);
     const dbObject = db.db(this.mongoDbName);
@@ -19,12 +19,11 @@ export abstract class AbstractMongoDao<D = MongoDaoData> {
     return result;
   }
 
-  protected async findAll(): Promise<Cursor<any>> {
+  protected async findAll(): Promise<D[]> {
     const db = await MongoClient.connect(this.mongoDbUrl);
     const dbObject = db.db(this.mongoDbName);
-    const result = await dbObject
-      .collection(this.collectionName)
-      .find();
+    const resultCursor = await dbObject.collection(this.collectionName).find();
+    const result = await resultCursor.toArray();
     await db.close();
     return result;
   }

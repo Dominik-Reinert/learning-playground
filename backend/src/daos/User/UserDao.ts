@@ -24,9 +24,7 @@ class UserDao extends AbstractMongoDao<IUser> implements IUserDao {
    *
    */
   public async getAll(): Promise<IUser[]> {
-    const result = (await super.findAll())
-      .map((doc) => new User(doc))
-      .toArray();
+    const result = (await super.findAll()).map((doc) => new User(doc));
     console.info(`getting all users with result : ${result}`);
     return result;
   }

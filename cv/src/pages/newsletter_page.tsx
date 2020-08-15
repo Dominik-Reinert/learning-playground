@@ -5,17 +5,21 @@ import {
 } from "../webfont_icon/webfont_icon";
 
 export const NewsletterPageComponent = () => {
+  const [subscribed, setSubscribed] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement>(undefined);
   const handleSubmit = React.useCallback(() => {
     if (inputRef.current.validity.valid) {
-      const response = fetch("http://localhost:3001/api/newsletter/subscribe", {
+      fetch("http://localhost:3001/api/newsletter/subscribe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: inputRef.current.value }),
+      }).then((response) => {
+        if (response.ok) {
+          setSubscribed(true);
+        }
       });
-      response.then(() => alert("success"));
     }
   }, [inputRef.current]);
 
@@ -23,8 +27,8 @@ export const NewsletterPageComponent = () => {
   React.useEffect(() => {
     fetch("http://localhost:3001/api/newsletter/all")
       .then((res) => res.json())
-      .then((res) => setSubscriptions(res.users));
-  }, []);
+      .then((res) => setSubscriptions(res.subscriptions));
+  }, [subscribed]);
 
   return (
     <div>
@@ -40,10 +44,17 @@ export const NewsletterPageComponent = () => {
         </button>
       </div>
 
+      {subscribed && (
+        <div>
+          Successfully described to newsletter! Please check your email for the
+          activation link!
+        </div>
+      )}
+
       <div>
-        Users:
+        Subscriptions:
         {subscriptions.map((u) => (
-          <span>{u.name}</span>
+          <div key={u._id}>{u.email}</div>
         ))}
       </div>
     </div>
