@@ -1,5 +1,8 @@
 import { AbstractMongoDao } from "@daos/MockDb/abstract_mongo_dao";
-import NewsletterSubscription, { INewsletterSubscription } from "@entities/newsletter_subscription";
+import NewsletterSubscription, {
+  INewsletterSubscription,
+} from "@entities/newsletter_subscription";
+import nodemailer from "nodemailer";
 
 export interface INewsletterSubscriptionDao {
   subscribe: (email: string) => Promise<void>;
@@ -12,6 +15,17 @@ class NewsLetterSubscriptionDao
 
   public async subscribe(email: string): Promise<void> {
     const result = await super.insertOne(new NewsletterSubscription(email));
+    if (result.insertedId) {
+      const transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true,
+      });
+      const emailResult = await transporter.sendMail({
+        to: "dominik.reinert.merzig@googlemail.com",
+      });
+      console.info(`Sent mail with result: ${JSON.stringify(emailResult)}`);
+    }
     console.info(`added user with result : ${result}`);
   }
 
