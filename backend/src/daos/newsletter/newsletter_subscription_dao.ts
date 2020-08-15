@@ -1,7 +1,5 @@
 import { AbstractMongoDao } from "@daos/MockDb/abstract_mongo_dao";
-import NewsletterSubscription, {
-  INewsletterSubscription,
-} from "@entities/newsletter_subscription";
+import NewsletterSubscription, { INewsletterSubscription } from "@entities/newsletter_subscription";
 import nodemailer from "nodemailer";
 
 export interface INewsletterSubscriptionDao {
@@ -20,6 +18,10 @@ class NewsLetterSubscriptionDao
         host: "smtp.gmail.com",
         port: 465,
         secure: true,
+        auth: {
+          user: "domis.remote.newsletter@gmail.com",
+          pass: "newsletter2020",
+        },
       });
       const emailResult = await transporter.sendMail({
         to: "dominik.reinert.merzig@googlemail.com",
