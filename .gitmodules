@@ -1,0 +1,3 @@
+[submodule "backend/creds"]
+	path = backend/creds
+	url = https://github.com/Dominik-Reinert/creds
