@@ -1,4 +1,4 @@
-import { InsertOneWriteOpResult, MongoClient } from "mongodb";
+import { InsertOneWriteOpResult, MongoClient, ObjectId } from "mongodb";
 
 export interface MongoDaoData {}
 
@@ -7,9 +7,7 @@ export abstract class AbstractMongoDao<D = MongoDaoData> {
   private readonly mongoDbName: string = "mongodb";
   protected abstract collectionName: string;
 
-  protected async insertOne(
-    data: D
-  ): Promise<InsertOneWriteOpResult<any>> {
+  protected async insertOne(data: D): Promise<InsertOneWriteOpResult<any>> {
     const db = await MongoClient.connect(this.mongoDbUrl);
     const dbObject = db.db(this.mongoDbName);
     const result = await dbObject
@@ -26,5 +24,25 @@ export abstract class AbstractMongoDao<D = MongoDaoData> {
     const result = await resultCursor.toArray();
     await db.close();
     return result;
+  }
+
+  protected async find(id: string): Promise<D> {
+    const db = await MongoClient.connect(this.mongoDbUrl);
+    const dbObject = db.db(this.mongoDbName);
+    const resultCursor = await dbObject
+      .collection(this.collectionName)
+      .find(new ObjectId(id));
+    const result = await resultCursor.toArray();
+    await db.close();
+    return result[0];
+  }
+
+  protected async updateOne(id: string, toUpdate: D): Promise<void> {
+    const db = await MongoClient.connect(this.mongoDbUrl);
+    const dbObject = db.db(this.mongoDbName);
+    const resultCursor = await dbObject
+      .collection(this.collectionName)
+      .updateOne(new ObjectId(id), toUpdate);
+    await db.close();
   }
 }

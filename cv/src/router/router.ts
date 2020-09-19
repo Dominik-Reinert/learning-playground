@@ -1,6 +1,7 @@
 export enum RouteURL {
   CV = "/cv",
   NEWSLETTER = "/subscribe",
+  NEWSLETTER_VERIFY = "/verify/:id",
   HOME = "/",
 }
 

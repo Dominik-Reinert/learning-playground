@@ -4,7 +4,7 @@ import {
   WebfontRegularIconComponent,
 } from "../webfont_icon/webfont_icon";
 
-export const NewsletterPageComponent = () => {
+export const NewsletterPageComponent  = () => {
   const [subscribed, setSubscribed] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement>(undefined);
   const handleSubmit = React.useCallback(() => {

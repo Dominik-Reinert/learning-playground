@@ -5,6 +5,7 @@ import NewsletterSubscription, {
 import { readFileSync } from "fs";
 import nodemailer from "nodemailer";
 import { pathToFileURL } from "url";
+import { getNewsletterEmailLayout } from "./newsletter_email_layout";
 
 export interface INewsletterSubscriptionDao {
   subscribe: (email: string) => Promise<void>;
@@ -29,10 +30,23 @@ class NewsLetterSubscriptionDao
       });
       const emailResult = await transporter.sendMail({
         to: "dominik.reinert.merzig@googlemail.com",
+        html: getNewsletterEmailLayout(
+          `http://localhost:8080/verify/${result.insertedId}`
+        ),
       });
       console.info(`Sent mail with result: ${JSON.stringify(emailResult)}`);
     }
     console.info(`added user with result : ${result}`);
+  }
+
+  public async verify(id: string): Promise<void> {
+    const toVerify: INewsletterSubscription = await super.find(id);
+    if (toVerify.verified) {
+      console.info("was already verfied!");
+    } else {
+      toVerify.verified = true;
+      super.updateOne(id, toVerify);
+    }
   }
 
   public async getAll(): Promise<INewsletterSubscription[]> {

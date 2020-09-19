@@ -6,10 +6,11 @@ import { useThemeState } from "./hooks/use_theme_state";
 import { Callback } from "./manual_typings/generic_types";
 import { Modal } from "./modal/modal";
 import { CvPageComponent } from "./pages/cv_page";
+import { HomePageComponent } from "./pages/home_page";
 import { NewsletterPageComponent } from "./pages/newsletter_page";
+import { NewsletterVerificationPageComponent } from "./pages/newsletter_verfication_page";
 import { PageBase } from "./page_base/page_base";
 import { RouteURL } from "./router/router";
-import { HomePageComponent } from "./pages/home_page";
 
 export let openModalCallback: React.MutableRefObject<Callback<boolean>>;
 export let modalContent: React.MutableRefObject<React.ReactElement>;
@@ -27,6 +28,9 @@ const App = () => {
         <Modal openRef={openModalCallback} contentRef={modalContent} />
         <Router>
           <Switch>
+            <Route path={`${RouteURL.NEWSLETTER_VERIFY}`}>
+              <NewsletterVerificationPageComponent />
+            </Route>
             <Route path={`${RouteURL.NEWSLETTER}`}>
               <NewsletterPageComponent />
             </Route>
