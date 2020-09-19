@@ -2,6 +2,7 @@
 const path = require("path");
 const fs = require("fs");
 const { exec } = require("child_process");
+const { frontendPath, backendPath } = require("./common_path");
 
 const logCallback = (err, stdout, stderr) => {
   console.error(stderr);
@@ -22,13 +23,11 @@ function startDb() {
 
 function startBackend() {
   console.info("Starting backend server");
-  const backendPath = path.resolve("./backend");
   exec(`cd ${backendPath}; npm run-script start:dev; cd -`, logCallback);
 }
 
 function startFrontend() {
   console.info("Starting frontend server");
-  const frontendPath = path.resolve("./cv");
   exec(`cd ${frontendPath}; yarn start; cd -`, logCallback);
 }
 
