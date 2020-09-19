@@ -1,6 +1,10 @@
 import { AbstractMongoDao } from "@daos/MockDb/abstract_mongo_dao";
-import NewsletterSubscription, { INewsletterSubscription } from "@entities/newsletter_subscription";
+import NewsletterSubscription, {
+  INewsletterSubscription,
+} from "@entities/newsletter_subscription";
+import { readFileSync } from "fs";
 import nodemailer from "nodemailer";
+import { pathToFileURL } from "url";
 
 export interface INewsletterSubscriptionDao {
   subscribe: (email: string) => Promise<void>;
@@ -14,14 +18,14 @@ class NewsLetterSubscriptionDao
   public async subscribe(email: string): Promise<void> {
     const result = await super.insertOne(new NewsletterSubscription(email));
     if (result.insertedId) {
+      const auth = JSON.parse(
+        readFileSync(pathToFileURL("creds/newsletter.creds.json"), "utf-8")
+      );
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
         secure: true,
-        auth: {
-          user: "domis.remote.newsletter@gmail.com",
-          pass: "newsletter2020",
-        },
+        auth,
       });
       const emailResult = await transporter.sendMail({
         to: "dominik.reinert.merzig@googlemail.com",
