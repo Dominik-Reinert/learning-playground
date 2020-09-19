@@ -1,5 +1,5 @@
 import NewsLetterSubscriptionDao from "@daos/newsletter/newsletter_subscription_dao";
-import { paramMissingError } from "@shared/constants";
+import { paramMissingError, verificationFailedError } from "@shared/constants";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
@@ -34,10 +34,16 @@ router.post("/verify/:id", async (req: Request, res: Response) => {
   try {
     await newsletterDao.verify(id);
   } catch (e) {
-    console.log("subscription failed!", e);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
+    console.log("verfication failed!", e);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        error: verificationFailedError,
+        body: { error: verificationFailedError },
+      })
+      .end();
   }
-  return res.status(StatusCodes.CREATED).end();
+  return res.status(StatusCodes.OK).end();
 });
 
 router.get("/all", async (req: Request, res: Response) => {
