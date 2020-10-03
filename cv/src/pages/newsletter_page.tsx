@@ -1,10 +1,8 @@
+import { css } from "@emotion/core";
 import * as React from "react";
 import { BackButtonComponent } from "../back_button/back_button_component";
+import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { RouteURL } from "../router/router";
-import {
-  WebfontIcon,
-  WebfontRegularIconComponent,
-} from "../webfont_icon/webfont_icon";
 import { Newsletter } from "./newsletter";
 
 export const NewsletterPageComponent = () => {
@@ -33,19 +31,22 @@ export const NewsletterPageComponent = () => {
       .then((res) => setSubscriptions(res.subscriptions));
   }, [subscribed]);
 
+  const subscribeStyle = useSubscribeStyle();
   return (
-    <div>
+    <div css={subscribeStyle}>
       <BackButtonComponent backLink={RouteURL.HOME} />
-      <div>Awesome Newsletter!</div>
-      <div>Stay informed</div>
-      <div>
-        <WebfontRegularIconComponent webfontIcon={WebfontIcon.ENVELOPE} />
-        <input ref={inputRef} type="email" required={true} />
-      </div>
-      <div>
-        <button type="submit" onClick={handleSubmit}>
-          Subscribe :)
-        </button>
+
+      <div className="subscribe-form">
+        <div className="headline">Subscribe</div>
+        <div className="subline">Sign up</div>
+        <div className="submit-group">
+          <div className="input-wrapper">
+            <input ref={inputRef} type="email" required={true} />
+          </div>
+          <div className="submit" onClick={handleSubmit}>
+            Subscribe
+          </div>
+        </div>
       </div>
 
       {subscribed && (
@@ -63,4 +64,64 @@ export const NewsletterPageComponent = () => {
       </div>
     </div>
   );
+};
+
+const useSubscribeStyle = () => {
+  const theme = usePageBaseTheme();
+  return css`
+    label: subscribe-form;
+
+    .subscribe-form {
+      display: flex;
+      flex-direction: column;
+
+      min-height: 180px;
+
+      padding: 8px;
+
+      width: 50%;
+      margin: auto;
+
+      color: ${theme.mainColors.ligthest};
+      background-color: ${theme.mainColors.darker};
+
+      > * {
+        margin: auto;
+      }
+
+      .headline {
+        text-transform: uppercase;
+
+        font-size: x-large
+      }
+
+      .submit-group {
+        display: flex;
+
+        .input-wrapper {
+          background-color: white;
+
+          padding: 2px;
+          margin-right: 8px;
+
+          input {
+            border: none;
+            font-size: 14px;
+            padding: 6px;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+
+        .submit {
+          cursor: pointer;
+          color: ${theme.mainColors.darker};
+          background-color: ${theme.mainColors.ligthest};
+          padding: 6px;
+        }
+      }
+    }
+  `;
 };
