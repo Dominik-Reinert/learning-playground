@@ -4,6 +4,7 @@ export enum WebfontIcon {
   ACCESSABILITY = "fa-accessible-icon",
   CAMERA = "fa-camera",
   CHEVRON_DOWN = "fa-chevron-down",
+  LONG_ARROW_ALT_LEFT = "fa-long-arrow-alt-left",
   STAR = "fa-star",
   ENVELOPE = "fa-envelope",
 }

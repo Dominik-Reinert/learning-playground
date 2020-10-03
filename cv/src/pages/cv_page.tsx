@@ -2,11 +2,13 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { Anchor, AnchorItem } from "../anchor/anchor";
 import { BackgroundComponent } from "../background/background";
+import { BackButtonComponent } from "../back_button/back_button_component";
 import { CvExperienceSubPageComponent } from "../cv_sub_pages/cv_experience_subpage";
 import { CvLandingPageComponent } from "../cv_sub_pages/cv_landing_subpage";
 import { CvProfileSubpageComponent } from "../cv_sub_pages/cv_profile_subpage";
 import { CvSkillsSubPageComponent } from "../cv_sub_pages/cv_skills_subpage";
 import { PageFooter } from "../page_footer/page_footer";
+import { RouteURL } from "../router/router";
 import { SubPageComponent } from "../subpage/subpage_component";
 
 export const CvPageComponent = () => {
@@ -32,6 +34,7 @@ export const CvPageComponent = () => {
   );
   return (
     <BackgroundComponent>
+      <BackButtonComponent backLink={RouteURL.HOME} />
       <CvLandingPageComponent />
 
       <Anchor

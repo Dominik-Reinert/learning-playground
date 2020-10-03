@@ -1,10 +1,13 @@
 import * as React from "react";
+import { BackButtonComponent } from "../back_button/back_button_component";
+import { RouteURL } from "../router/router";
 import {
   WebfontIcon,
   WebfontRegularIconComponent,
 } from "../webfont_icon/webfont_icon";
+import { Newsletter } from "./newsletter";
 
-export const NewsletterPageComponent  = () => {
+export const NewsletterPageComponent = () => {
   const [subscribed, setSubscribed] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement>(undefined);
   const handleSubmit = React.useCallback(() => {
@@ -23,7 +26,7 @@ export const NewsletterPageComponent  = () => {
     }
   }, [inputRef.current]);
 
-  let [subscriptions, setSubscriptions] = React.useState<any[]>([]);
+  let [subscriptions, setSubscriptions] = React.useState<Newsletter[]>([]);
   React.useEffect(() => {
     fetch("http://localhost:3001/api/newsletter/all")
       .then((res) => res.json())
@@ -32,6 +35,7 @@ export const NewsletterPageComponent  = () => {
 
   return (
     <div>
+      <BackButtonComponent backLink={RouteURL.HOME} />
       <div>Awesome Newsletter!</div>
       <div>Stay informed</div>
       <div>
