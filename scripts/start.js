@@ -4,10 +4,12 @@ const fs = require("fs");
 const { exec } = require("child_process");
 const { frontendPath, backendPath } = require("./common_path");
 
-const logCallback = (err, stdout, stderr) => {
-  console.error(stderr);
-  console.log(stdout);
-};
+function execAndLog(command) {
+  const com = exec(command);
+  com.stderr.on("data", function (data) {
+    console.error(data.toString());
+  });
+}
 
 function startDb() {
   console.log("Starting database");
@@ -18,32 +20,34 @@ function startDb() {
   const command = `cd ${databaseDirPath}; mongod --config ${databaseConfigPath}; cd -`;
   console.log(`Executing: '${command}'`);
 
-  exec(command);
+  execAndLog(command);
 }
 
 function startBackend() {
   console.info("Starting backend server");
-  exec(`cd ${backendPath}; npm run-script start:dev; cd -`, logCallback);
+  execAndLog(`cd ${backendPath}; npm run-script start:dev; cd -`);
 }
 
 function startFrontend() {
   console.info("Starting frontend server");
-  exec(`cd ${frontendPath}; yarn start; cd -`, logCallback);
+  execAndLog(`cd ${frontendPath}; yarn start; cd -`);
 }
 
 (function start() {
-  const [execEnv, scriptPath, serverType] = process.argv;
-  startDb();
-  console.info(`Given server type to start: ${serverType}`);
-  switch (serverType) {
-    case "backend":
-      startBackend();
-      break;
-    case "frontend":
-      startFrontend();
-      break;
-    default:
-      startBackend();
-      startFrontend();
+  const [execEnv, scriptPath, stringArgs] = process.argv;
+  const arrayArgs = stringArgs ? stringArgs.split(" ") : [];
+
+  console.info(`start script called with args: [${arrayArgs}]`);
+
+  if (!arrayArgs.includes("--no-db")) {
+    startDb();
+  }
+  if (arrayArgs.includes("backend")) {
+    startBackend();
+  } else if (arrayArgs.includes("frontend")) {
+    startFrontend();
+  } else {
+    startBackend();
+    startFrontend();
   }
 })();

@@ -47,8 +47,13 @@ router.post("/verify/:id", async (req: Request, res: Response) => {
 });
 
 router.get("/all", async (req: Request, res: Response) => {
-  const subscriptions = await newsletterDao.getAll();
-  return res.status(StatusCodes.OK).json({ subscriptions });
+  try {
+    const subscriptions = await newsletterDao.getAll();
+    return res.status(StatusCodes.OK).json({ subscriptions });
+  } catch (e) {
+    console.error(e);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).end()
+  }
 });
 
 export default router;
