@@ -31,7 +31,7 @@ export abstract class AbstractMongoDao<D = MongoDaoData> {
     const dbObject = db.db(this.mongoDbName);
     const resultCursor = await dbObject
       .collection(this.collectionName)
-      .find(new ObjectId(id));
+      .find({ _id: new ObjectId(id) });
     const result = await resultCursor.toArray();
     await db.close();
     return result[0];
@@ -42,7 +42,7 @@ export abstract class AbstractMongoDao<D = MongoDaoData> {
     const dbObject = db.db(this.mongoDbName);
     const resultCursor = await dbObject
       .collection(this.collectionName)
-      .updateOne(new ObjectId(id), toUpdate);
+      .updateOne({ _id: new ObjectId(id) }, toUpdate);
     await db.close();
   }
 }

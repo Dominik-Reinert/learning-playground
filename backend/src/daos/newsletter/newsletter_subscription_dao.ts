@@ -40,12 +40,16 @@ class NewsLetterSubscriptionDao
   }
 
   public async verify(id: string): Promise<void> {
-    const toVerify: INewsletterSubscription = await super.find(id);
-    if (toVerify.verified) {
-      console.info("was already verfied!");
-    } else {
-      toVerify.verified = true;
-      super.updateOne(id, toVerify);
+    try {
+      const toVerify: INewsletterSubscription = await super.find(id);
+      if (toVerify.verified) {
+        console.info("was already verfied!");
+      } else {
+        toVerify.verified = true;
+        super.updateOne(id, toVerify);
+      }
+    } catch (e) {
+      console.error(e);
     }
   }
 
