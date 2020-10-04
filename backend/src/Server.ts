@@ -20,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:8080" }));
-app.use(cors({ origin: "http://localhost:8081" }));
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === "development") {

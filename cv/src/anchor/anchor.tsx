@@ -17,9 +17,8 @@ export const Anchor = (props: React.PropsWithChildren<AnchorProps>) => {
   return (
     <div css={style}>
       {props.items.map((item) => (
-        <span className="item">
+        <span key={`item-${item.title}`} className="item">
           <a
-            key={`item-${item.title}`}
             href={`#${item.anchor}`}
             className={`item-anchor ${
               item.anchor === props.selectedItem ? "selected" : ""

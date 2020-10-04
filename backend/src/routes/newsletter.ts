@@ -1,5 +1,10 @@
 import NewsLetterSubscriptionDao from "@daos/newsletter/newsletter_subscription_dao";
-import { paramMissingError, verificationFailedError } from "@shared/constants";
+import {
+  alreadyVerifiedError,
+  notFoundError,
+  paramMissingError,
+  verificationFailedError,
+} from "@shared/constants";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
@@ -32,7 +37,25 @@ router.post("/verify/:id", async (req: Request, res: Response) => {
     });
   }
   try {
-    await newsletterDao.verify(id);
+    const verficationResult = await newsletterDao.verify(id);
+
+    if (verficationResult.alreadyVerified) {
+      res
+        .status(StatusCodes.CONFLICT)
+        .json({
+          error: alreadyVerifiedError,
+          body: { error: alreadyVerifiedError },
+        })
+        .end();
+    } else if (verficationResult.notFound) {
+      res
+        .status(StatusCodes.NOT_FOUND)
+        .json({
+          error: notFoundError,
+          body: { error: notFoundError },
+        })
+        .end();
+    }
   } catch (e) {
     console.log("verfication failed!", e);
     return res
@@ -52,7 +75,7 @@ router.get("/all", async (req: Request, res: Response) => {
     return res.status(StatusCodes.OK).json({ subscriptions });
   } catch (e) {
     console.error(e);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).end()
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).end();
   }
 });
 

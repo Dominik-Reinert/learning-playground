@@ -7,6 +7,11 @@ import nodemailer from "nodemailer";
 import { pathToFileURL } from "url";
 import { getNewsletterEmailLayout } from "./newsletter_email_layout";
 
+export interface VerificationResult {
+  notFound?: boolean;
+  alreadyVerified?: boolean;
+}
+
 export interface INewsletterSubscriptionDao {
   subscribe: (email: string) => Promise<void>;
 }
@@ -39,17 +44,22 @@ class NewsLetterSubscriptionDao
     console.info(`added user with result : ${result}`);
   }
 
-  public async verify(id: string): Promise<void> {
+  public async verify(id: string): Promise<VerificationResult> {
     try {
       const toVerify: INewsletterSubscription = await super.find(id);
+      if (toVerify === undefined) {
+        return { notFound: true };
+      }
       if (toVerify.verified) {
-        console.info("was already verfied!");
+        return { alreadyVerified: true };
       } else {
         toVerify.verified = true;
         super.updateOne(id, toVerify);
+        return {};
       }
     } catch (e) {
       console.error(e);
+      return {};
     }
   }
 

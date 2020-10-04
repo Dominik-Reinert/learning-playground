@@ -2,6 +2,7 @@ import { css } from "@emotion/core";
 import * as React from "react";
 import { BackButtonComponent } from "../back_button/back_button_component";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
+import { PageFooter } from "../page_footer/page_footer";
 import { RouteURL } from "../router/router";
 import { Newsletter } from "./newsletter";
 
@@ -62,6 +63,7 @@ export const NewsletterPageComponent = () => {
           <div key={u._id}>{u.email}</div>
         ))}
       </div>
+      <PageFooter />
     </div>
   );
 };
@@ -92,7 +94,7 @@ const useSubscribeStyle = () => {
       .headline {
         text-transform: uppercase;
 
-        font-size: x-large
+        font-size: x-large;
       }
 
       .submit-group {
