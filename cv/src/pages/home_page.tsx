@@ -1,20 +1,31 @@
 import { css } from "@emotion/core";
-import { Link } from "react-router-dom";
+import { AlternatingCardsComponent } from "../alternating_cards/alternating_cards_component";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
+import { PageFooter } from "../page_footer/page_footer";
 import { RouteURL } from "../router/router";
 
 export const HomePageComponent = () => {
   const homepageStyle = useHomepageStyle();
   return (
     <div css={homepageStyle}>
-      <div className="links">
-        <div className="link-wrapper">
-          <Link to={`${RouteURL.CV}`}>Curriculum vitae</Link>
-        </div>
-        <div className="link-wrapper">
-          <Link to={`${RouteURL.NEWSLETTER}`}>Newsletter</Link>
-        </div>
-      </div>
+      <AlternatingCardsComponent
+        cards={[
+          {
+            link: RouteURL.NEWSLETTER,
+            linkLabel: "Newsletter",
+            picture: "public/20200226_183837-01.jpeg",
+            text:
+              "Check out my awesome newsletter with info on reomte work across europe!",
+          },
+          {
+            link: RouteURL.CV,
+            linkLabel: "Curriculum vitae",
+            picture: "public/tab-cv-bg.jpg",
+            text: "Check out my my curriculum vitae to get to know me better!",
+          },
+        ]}
+      />
+      <PageFooter />
     </div>
   );
 };
@@ -39,6 +50,7 @@ const useHomepageStyle = () => {
       background-color: ${theme.mainColors.ligthest};
       padding: 6px;
       margin: 18px;
+      text-align: center;
 
       a {
         text-decoration: none;

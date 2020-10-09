@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Theme } from "../page_base/page_base_theme_provider";
 import { Callback, Provider } from "../manual_typings/generic_types";
+import { Theme } from "../page_base/page_base_theme_provider";
 
 type ThemeState = [Theme, Callback<void>];
 

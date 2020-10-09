@@ -23,6 +23,7 @@ export const NewsletterVerificationPageComponent = () => {
     <div>
       <BackButtonComponent backLink={RouteURL.HOME} />
       <div>Subscribed with id {id}</div>
+      {loading && `Loading...`}
       {errorMsg && <div>Error {errorMsg}</div>}
       <PageFooter />
     </div>
