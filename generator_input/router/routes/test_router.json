@@ -1,0 +1,11 @@
+{
+  "name": "test",
+  "endpoints": [
+    {
+      "eName": "getInfo",
+      "method": "get",
+      "param": "id",
+      "body": ["name", "description"]
+    }
+  ]
+}

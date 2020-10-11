@@ -1,0 +1,31 @@
+import { Request, Response, Router } from "express";
+import { StatusCodes } from "http-status-codes";
+
+const {{name}}Router = new Router();
+
+{{#each endpoints}}
+
+{{#if param}}
+export interface {{../name}}{{uppercase eName}}RequestParams {
+  {{param}}: string;
+}
+{{/if}}
+
+{{#if body}}
+export interface {{../name}}{{uppercase eName}}RequestBody {
+  {{#each body}}
+  {{this}}: string;
+  {{/each}}
+}
+{{/if}}
+
+export interface {{../name}}{{uppercase eName}}Request {
+  {{#if param}}params: {{name}}{{uppercase param}}RequestParams; {{/if}}
+  {{#if body}}body: {{name}}{{uppercase eName}}RequestBody; {{/if}}
+}
+
+{{name}}Router.{{method}}("/{{eName}}{{#if param}}/:{{param}}{{/if}}",
+async (req: {{../name}}{{uppercase eName}}Request, res: Response) => {
+  {{#if param}}const param: {{name}}{{uppercase param}}RequestParams = req.params.{{param}};{{/if}}
+});
+{{/each}}
