@@ -1,0 +1,21 @@
+{{#addFunctionAndInterfaceNames name endpoint}}
+
+{{#with endpoint.handler.request}}
+{{#if class}}export class {{class}} {
+    public {{function}}(
+        param: {{interfaceName}}RequestParams, 
+        body: {{interfaceName}}RequestParams
+    ): {{interfaceName}}Response {
+        return undefined;
+    }
+{{else}}
+export function {{function}}(
+    param: {{interfaceName}}RequestParams, 
+    body: {{interfaceName}}RequestParams
+): {{interfaceName}}HandlerResponse {
+    return undefined;
+}
+}{{/if}}
+{{/with}}
+
+{{/addFunctionAndInterfaceNames}}

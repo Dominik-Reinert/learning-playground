@@ -1,31 +1,59 @@
-import { Request, Response, Router } from "express";
+import { Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 
 const {{name}}Router = new Router();
 
-{{#each endpoints}}
+{{#each endpoints as |endpoint|}}
+{{#addFunctionAndInterfaceNames ../name endpoint}}
+
+import { {{#if handler.validation.class}}{{handler.validation.class}}{{else}}{{handler.validation.function}}{{/if}} } from '{{handler.validation.path}}';
+import { {{#if handler.request.class}}{{handler.request.class}}{{else}}{{handler.request.function}}{{/if}} } from '{{handler.request.path}}';
 
 {{#if param}}
-export interface {{../name}}{{uppercase eName}}RequestParams {
+export type {{interfaceName}}RequestParams {
   {{param}}: string;
 }
 {{/if}}
 
 {{#if body}}
-export interface {{../name}}{{uppercase eName}}RequestBody {
+export interface {{interfaceName}}RequestBody {
   {{#each body}}
-  {{this}}: string;
+  {{this.name}}: {{this.type}};
   {{/each}}
 }
 {{/if}}
 
-export interface {{../name}}{{uppercase eName}}Request {
-  {{#if param}}params: {{name}}{{uppercase param}}RequestParams; {{/if}}
-  {{#if body}}body: {{name}}{{uppercase eName}}RequestBody; {{/if}}
+export interface {{interfaceName}}HandlerResponse {
+  statusCode: StatusCodes;
+  {{#each response}}
+  {{this.name}}: {{this.type}};
+  {{/each}}
 }
 
-{{name}}Router.{{method}}("/{{eName}}{{#if param}}/:{{param}}{{/if}}",
-async (req: {{../name}}{{uppercase eName}}Request, res: Response) => {
-  {{#if param}}const param: {{name}}{{uppercase param}}RequestParams = req.params.{{param}};{{/if}}
+export interface {{interfaceName}}Request {
+  {{#if param}}params: {{interfaceName}}RequestParams; {{/if}}
+  {{#if body}}body: {{interfaceName}}RequestBody; {{/if}}
+}
+
+{{name}}Router.{{method}}("/{{eName}}{{#if param}}/:{{param}}{{/if}}", 
+  async (
+    req: {{interfaceName}}Request, 
+    res: Response
+  ) => {
+    {{#if param}}const param: string = req.params.{{param}};{{/if}}
+    {{#if body}}const body: {{interfaceName}}RequestBody = req.body;{{/if}}
+    {{#if handler.validation.class}}
+    {{handler.validation.class}}.{{handler.validation.function}}(param, body);
+    {{else}}
+    {{handler.validation.function}}.{{handler.validation.function}}(param, body);
+    {{/if}}
+    {{#if handler.request.class}}
+    return {{handler.request.class}}.{{handler.request.function}}(param, body);
+    {{else}}
+    return {{handler.request.function}}.{{handler.request.function}}(param, body);
+    {{/if}}
 });
+
+
+{{/addFunctionAndInterfaceNames}}
 {{/each}}

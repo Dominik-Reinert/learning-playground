@@ -5,7 +5,26 @@
       "eName": "getInfo",
       "method": "get",
       "param": "id",
-      "body": ["name", "description"]
+      "body": [
+        { "name": "name", "type": "string" },
+        { "name": "description", "type": "string" }
+      ],
+      "response": [
+        { "name": "success", "type": "boolean" },
+        { "name": "id", "type": "string" }
+      ],
+      "handler": {
+        "validation": {
+          "path": "./get_info_validator.ts",
+          "function": "validate",
+          "class": "GetInfoValidator"
+        },
+        "request": {
+          "path": "./get_info_handler.ts",
+          "function": "getInfo",
+          "class": "GetInfoHandler"
+        }
+      }
     }
   ]
 }

@@ -1,0 +1,21 @@
+{{#addFunctionAndInterfaceNames name endpoint}}
+
+{{#with endpoint.handler.validator}}
+{{#if class}}export class {{class}} {
+    public {{function}}(
+        param: {{interfaceName}}RequestParams, 
+        body: {{interfaceName}}RequestParams
+    ): void {
+        return undefined;
+    }
+{{else}}
+export function {{function}}(
+    param: {{interfaceName}}RequestParams, 
+    body: {{interfaceName}}RequestParams
+): void {
+    return undefined;
+}
+}{{/if}}
+{{/with}}
+
+{{/addFunctionAndInterfaceNames}}
