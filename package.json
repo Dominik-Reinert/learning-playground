@@ -16,6 +16,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
+    "setup": "./scripts/setup.js",
     "start": "./scripts/start.js",
     "share:deps": "./scripts/share_deps.js",
     "generate:routes": "./scripts/generate_routes.js"

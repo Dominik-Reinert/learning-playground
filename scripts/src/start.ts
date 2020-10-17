@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-const path = require("path");
-const fs = require("fs");
-const { exec } = require("child_process");
-const { frontendPath, backendPath } = require("./common_path");
 
-function execAndLog(command) {
+import { exec } from "child_process";
+import * as path from "path";
+import { backendPath, frontendPath } from "./common_path";
+
+export function execAndLog(command: string) {
   const com = exec(command);
-  com.stderr.on("data", function (data) {
+  com.stderr?.on("data", function (data) {
     console.error(data.toString());
   });
 }

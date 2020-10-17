@@ -502,3 +502,5 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/node,vim,git,macos,linux,sublimetext
+
+scripts/dist

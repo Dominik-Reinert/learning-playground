@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-const { readFileSync, writeFileSync } = require("fs");
-const { globalPath, backendPath, frontendPath } = require("./common_path");
+import { readFileSync, writeFileSync } from "fs";
+import { backendPath, frontendPath, globalPath } from "./common_path";
 
-function addPackage(commonPackage, path) {
+function addPackage(commonPackage: any, path: string) {
   console.info(`adding package at path ${path}`);
   const packageJson = JSON.parse(readFileSync(path, "utf8"));
 
@@ -35,19 +35,19 @@ function addPackage(commonPackage, path) {
   });
 }
 
-function addPackageGlobal(commonPackage) {
-    console.info("Adding package update to global");
-    const globalPackageJsonPath = `${globalPath}/package.json`;
-    addPackage(commonPackage, globalPackageJsonPath);
-  }
+function addPackageGlobal(commonPackage: any) {
+  console.info("Adding package update to global");
+  const globalPackageJsonPath = `${globalPath}/package.json`;
+  addPackage(commonPackage, globalPackageJsonPath);
+}
 
-function addPackageBackend(commonPackage) {
+function addPackageBackend(commonPackage: any) {
   console.info("Adding package update to backend");
   const backendPackageJsonPath = `${backendPath}/package.json`;
   addPackage(commonPackage, backendPackageJsonPath);
 }
 
-function addPackageFrontend(commonPackage) {
+function addPackageFrontend(commonPackage: any) {
   console.info("Adding package update to frontend");
   const frontendPackageJsonPath = `${frontendPath}/package.json`;
   addPackage(commonPackage, frontendPackageJsonPath);
@@ -63,7 +63,7 @@ function addPackageFrontend(commonPackage) {
   );
   console.log(`Read common package json`, commonPackageJson);
 
-  addPackageGlobal(commonPackageJson)
+  addPackageGlobal(commonPackageJson);
   addPackageBackend(commonPackageJson);
   addPackageFrontend(commonPackageJson);
 })();

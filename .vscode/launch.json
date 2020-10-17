@@ -4,6 +4,7 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+  
 
     {
       "type": "chrome",
@@ -25,6 +26,13 @@
       "name": "debug backend",
       "program": "${workspaceFolder}/scripts/start.js",
       "args": ["backend --no-db"],
+      "autoAttachChildProcesses": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "debug setup",
+      "program": "${workspaceFolder}/scripts/setup.js",
       "autoAttachChildProcesses": true
     },
     {
