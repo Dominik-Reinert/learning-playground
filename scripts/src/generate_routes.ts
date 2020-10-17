@@ -64,9 +64,13 @@ function generateBackendHandler(route: string) {
       endpoint,
     });
     console.log(`Overwriting current endpoint`);
-    writeFileSync(`${outputPath}/${endpoint.handler.request.path}`, endpointCode, {
-      encoding: "utf-8",
-    });
+    writeFileSync(
+      `${outputPath}/${endpoint.handler.request.path}`,
+      endpointCode,
+      {
+        encoding: "utf-8",
+      }
+    );
   });
 }
 
@@ -83,9 +87,13 @@ function generateBackendValidator(route: string) {
       endpoint,
     });
     console.log(`Overwriting current endpoint`);
-    writeFileSync(`${outputPath}/${endpoint.handler.validation.path}`, endpointCode, {
-      encoding: "utf-8",
-    });
+    writeFileSync(
+      `${outputPath}/${endpoint.handler.validation.path}`,
+      endpointCode,
+      {
+        encoding: "utf-8",
+      }
+    );
   });
 }
 
@@ -94,7 +102,7 @@ function generateBackendValidator(route: string) {
     `${routerGeneratorInputPath}/routes/test_router.json`,
     "utf-8"
   );
-  console.log(`read file content: ${testRoute}`);
+  console.debug(`read file content: ${testRoute}`);
   registerHelpers();
   generateBackendRouter(testRoute);
   generateBackendHandler(testRoute);
