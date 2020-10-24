@@ -5,10 +5,12 @@ import {
   TestGetInfoHandlerResponse,
 } from "./test_router";
 
-export function (
-    param: RequestParams, 
-    body: RequestBody
-): HandlerResponse {
-    return undefined;
+export class GetInfoHandler {
+    public getInfo(
+        param: TestGetInfoRequestParams, 
+        body: TestGetInfoRequestBody
+    ): TestGetInfoHandlerResponse {
+        return undefined;
+    }
 }
-}
+

@@ -5,19 +5,19 @@ import {
   {{endpoint.interfaceName}}HandlerResponse,
 } from "./{{routePath}}";
 
-{{#if handler.request.class}}export class {{handler.request.class}} {
-    public {{function}}(
-        param: {{interfaceName}}RequestParams, 
-        body: {{interfaceName}}RequestBody
-    ): {{interfaceName}}HandlerResponse {
+{{#if endpoint.handler.request.class}}export class {{endpoint.handler.request.class}} {
+    public {{endpoint.handler.request.function}}(
+        param: {{endpoint.interfaceName}}RequestParams, 
+        body: {{endpoint.interfaceName}}RequestBody
+    ): {{endpoint.interfaceName}}HandlerResponse {
         return undefined;
     }
 }
 {{else}}
-export function {{handler.request.function}}(
-    param: {{interfaceName}}RequestParams, 
-    body: {{interfaceName}}RequestBody
-): {{interfaceName}}HandlerResponse {
+export function {{endpoint.handler.request.function}}(
+    param: {{endpoint.interfaceName}}RequestParams, 
+    body: {{endpoint.interfaceName}}RequestBody
+): {{endpoint.interfaceName}}HandlerResponse {
     return undefined;
 }
 }{{/if}}

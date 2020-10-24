@@ -47,7 +47,7 @@ export interface {{endpoint.interfaceName}}Request {
     {{handler.validation.function}}.{{handler.validation.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
     {{/if}}
     {{#if handler.request.class}}
-    return {{handler.request.class}}.{{handler.request.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
+    return new {{handler.request.class}}().{{handler.request.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
     {{else}}
     return {{handler.request.function}}.{{handler.request.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
     {{/if}}

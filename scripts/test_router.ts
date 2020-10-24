@@ -35,7 +35,7 @@ Router.get("/getInfo/:id",
     const params = req.params;
     const body: TestGetInfoRequestBody = req.body;
     new GetInfoValidator().validate((params as TestGetInfoRequestParams), body);
-    return GetInfoHandler.getInfo((params as TestGetInfoRequestParams), body);
+    return new GetInfoHandler().getInfo((params as TestGetInfoRequestParams), body);
 });
 
 

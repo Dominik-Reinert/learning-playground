@@ -12,4 +12,5 @@ export class GetInfoValidator {
     ): void {
         return undefined;
     }
+}
 
