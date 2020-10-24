@@ -12,7 +12,7 @@ import {
 import { RouteEndpoint } from "./route";
 
 function toUpperCase(name: string) {
-  return name[0].concat(name.slice(1));
+  return name[0].toUpperCase().concat(name.slice(1));
 }
 
 function addFunctionAndInterfaceNames(
@@ -22,7 +22,7 @@ function addFunctionAndInterfaceNames(
 ) {
   context.interfaceName = `${toUpperCase(routeName)}${toUpperCase(
     context.eName
-  )}RequestParams`;
+  )}`;
   return options.fn(context);
 }
 

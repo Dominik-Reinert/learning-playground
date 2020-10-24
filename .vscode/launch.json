@@ -17,14 +17,14 @@
       "type": "node",
       "request": "launch",
       "name": "debug start script",
-      "program": "${workspaceFolder}/scripts/start.js",
+      "program": "${workspaceFolder}/scripts/dist/start.js",
       "autoAttachChildProcesses": true
     },
     {
       "type": "node",
       "request": "launch",
       "name": "debug backend",
-      "program": "${workspaceFolder}/scripts/start.js",
+      "program": "${workspaceFolder}/scripts/dist/start.js",
       "args": ["backend --no-db"],
       "autoAttachChildProcesses": true
     },
@@ -32,14 +32,14 @@
       "type": "node",
       "request": "launch",
       "name": "debug setup",
-      "program": "${workspaceFolder}/scripts/setup.js",
+      "program": "${workspaceFolder}/scripts/dist/setup.js",
       "autoAttachChildProcesses": true
     },
     {
       "type": "node",
       "request": "launch",
       "name": "debug handlebars",
-      "program": "${workspaceFolder}/scripts/generate_routes.js",
+      "program": "${workspaceFolder}/scripts/dist/generate_routes.js",
       "autoAttachChildProcesses": true
     }
   ]

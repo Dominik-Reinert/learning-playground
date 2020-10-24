@@ -1,21 +1,26 @@
 {{#addFunctionAndInterfaceNames name endpoint}}
 
-{{#with endpoint.handler.request}}
-{{#if class}}export class {{class}} {
+import {
+  {{interfaceName}}RequestParams,
+  {{interfaceName}}RequestBody,
+  {{interfaceName}}HandlerResponse,
+} from "./backend_test_route";
+
+{{#if handler.request.class}}export class {{handler.request.class}} {
     public {{function}}(
         param: {{interfaceName}}RequestParams, 
-        body: {{interfaceName}}RequestParams
-    ): {{interfaceName}}Response {
+        body: {{interfaceName}}RequestBody
+    ): {{interfaceName}}HandlerResponse {
         return undefined;
     }
+}
 {{else}}
-export function {{function}}(
+export function {{handler.request.function}}(
     param: {{interfaceName}}RequestParams, 
-    body: {{interfaceName}}RequestParams
+    body: {{interfaceName}}RequestBody
 ): {{interfaceName}}HandlerResponse {
     return undefined;
 }
 }{{/if}}
-{{/with}}
 
 {{/addFunctionAndInterfaceNames}}
