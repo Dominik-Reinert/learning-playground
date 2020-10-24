@@ -2,6 +2,7 @@
 
 import { readFileSync, writeFileSync } from "fs";
 import * as Handlebars from "handlebars";
+import { parse } from "path";
 import {
   globalPath,
   routerGeneratorBackendHandlerTemplatePath,
@@ -9,63 +10,107 @@ import {
   routerGeneratorBackendValidationTemplatePath,
   routerGeneratorInputPath,
 } from "./common_path";
-import { RouteEndpoint } from "./route";
+import { Route, RouteEndpoint } from "./route";
 
 function toUpperCase(name: string) {
   return name[0].toUpperCase().concat(name.slice(1));
 }
 
-function addFunctionAndInterfaceNames(
-  routeName: string,
-  context: any,
-  options: any
-) {
-  context.interfaceName = `${toUpperCase(routeName)}${toUpperCase(
-    context.eName
-  )}`;
+function camelCaseToSnakeCase(name: string) {
+  return name.replace(/([a-z])([A-Z])/g, "$1_$2").toLocaleLowerCase();
+}
+
+function addHandlerImportPaths(context: any, options: any): void {
+  const contextNameSnakeCase: string = camelCaseToSnakeCase(context.eName);
+  context.importPathRoute = `${contextNameSnakeCase}`;
+  context.importPathValidation = `${contextNameSnakeCase}_validation`;
+  context.importPathHandler = `${contextNameSnakeCase}_handler`;
   return options.fn(context);
 }
 
 function registerHelpers() {
-  Handlebars.registerHelper("addFunctionAndInterfaceNames", function (
-    routeName: string,
+  Handlebars.registerHelper("addImportPaths", function (
     context: any,
     options: any
   ) {
-    return addFunctionAndInterfaceNames(routeName, context, options);
+    return addHandlerImportPaths(context, options);
   });
+}
+
+function addInterfaceNamesToEndpoints(parsedRoute: Route): Route {
+  return {
+    ...parsedRoute,
+    endpoints: parsedRoute.endpoints.map((endpoint) => {
+      return {
+        ...endpoint,
+        interfaceName: `${toUpperCase(parsedRoute.name)}${toUpperCase(
+          endpoint.eName
+        )}`,
+      };
+    }),
+  };
+}
+
+function addImportPathsToEndpoints(parsedRoute: Route): Route {
+  return {
+    ...parsedRoute,
+    path: `${camelCaseToSnakeCase(parsedRoute.name)}_router`,
+    endpoints: parsedRoute.endpoints.map((endpoint) => {
+      const endpointNameSnakeCase: string = camelCaseToSnakeCase(
+        endpoint.eName
+      );
+      return {
+        ...endpoint,
+        handler: {
+          ...endpoint.handler,
+          path: endpointNameSnakeCase,
+          validation: {
+            ...endpoint.handler.validation,
+            path: `${endpointNameSnakeCase}_validation`,
+          },
+          request: {
+            ...endpoint.handler.request,
+            path: `${endpointNameSnakeCase}_handler`,
+          },
+        },
+      };
+    }),
+  };
 }
 
 const outputPath = `${globalPath}/scripts`;
 
-function generateBackendRouter(route: string) {
+function generateBackendRouter(parsedRoute: Route) {
   const backendRouterTemplate = readFileSync(
     `${routerGeneratorBackendRouterTemplatePath}`,
     "utf-8"
   );
   const compiledBeTemplate = Handlebars.compile(backendRouterTemplate);
-  const endpointCode = compiledBeTemplate(JSON.parse(route));
+  const endpointCode = compiledBeTemplate(parsedRoute);
   console.log(`Overwriting current endpoint`);
-  writeFileSync(`${outputPath}/backend_test_route.ts`, endpointCode, {
-    encoding: "utf-8",
-  });
+  writeFileSync(
+    `${outputPath}/${camelCaseToSnakeCase(parsedRoute.name)}_router.ts`,
+    endpointCode,
+    {
+      encoding: "utf-8",
+    }
+  );
 }
 
-function generateBackendHandler(route: string) {
+function generateBackendHandler(parsedRoute: Route) {
   const backendHandlerTemplate = readFileSync(
     `${routerGeneratorBackendHandlerTemplatePath}`,
     "utf-8"
   );
   const compiledBeTemplate = Handlebars.compile(backendHandlerTemplate);
-  const parsedRoute = JSON.parse(route);
   parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
     const endpointCode = compiledBeTemplate({
-      name: parsedRoute.name,
+      routePath: parsedRoute.path,
       endpoint,
     });
     console.log(`Overwriting current endpoint`);
     writeFileSync(
-      `${outputPath}/${endpoint.handler.request.path}`,
+      `${outputPath}/${camelCaseToSnakeCase(endpoint.eName)}_handler.ts`,
       endpointCode,
       {
         encoding: "utf-8",
@@ -74,21 +119,20 @@ function generateBackendHandler(route: string) {
   });
 }
 
-function generateBackendValidator(route: string) {
+function generateBackendValidator(parsedRoute: Route) {
   const backendValidatorTemplate = readFileSync(
     `${routerGeneratorBackendValidationTemplatePath}`,
     "utf-8"
   );
   const compiledBeTemplate = Handlebars.compile(backendValidatorTemplate);
-  const parsedRoute = JSON.parse(route);
   parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
     const endpointCode = compiledBeTemplate({
-      name: parsedRoute.name,
+      routePath: parsedRoute.path,
       endpoint,
     });
     console.log(`Overwriting current endpoint`);
     writeFileSync(
-      `${outputPath}/${endpoint.handler.validation.path}`,
+      `${outputPath}/${camelCaseToSnakeCase(endpoint.eName)}_validation.ts`,
       endpointCode,
       {
         encoding: "utf-8",
@@ -103,8 +147,10 @@ function generateBackendValidator(route: string) {
     "utf-8"
   );
   console.debug(`read file content: ${testRoute}`);
-  registerHelpers();
-  generateBackendRouter(testRoute);
-  generateBackendHandler(testRoute);
-  generateBackendValidator(testRoute);
+  let parsedRoute: Route = JSON.parse(testRoute);
+  parsedRoute = addInterfaceNamesToEndpoints(parsedRoute);
+  parsedRoute = addImportPathsToEndpoints(parsedRoute);
+  generateBackendRouter(parsedRoute);
+  generateBackendHandler(parsedRoute);
+  generateBackendValidator(parsedRoute);
 })();

@@ -3,15 +3,12 @@ import {
   TestGetInfoRequestParams,
   TestGetInfoRequestBody,
   TestGetInfoHandlerResponse,
-} from "./backend_test_route";
+} from "./test_router";
 
-export class GetInfoHandler {
-    public (
-        param: TestGetInfoRequestParams, 
-        body: TestGetInfoRequestBody
-    ): TestGetInfoHandlerResponse {
-        return undefined;
-    }
+export function (
+    param: RequestParams, 
+    body: RequestBody
+): HandlerResponse {
+    return undefined;
 }
-
-
+}

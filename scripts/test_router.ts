@@ -4,10 +4,10 @@ import { StatusCodes } from "http-status-codes";
 const testRouter = new Router();
 
 
-import { GetInfoValidator } from './get_info_validator.ts';
-import { GetInfoHandler } from './get_info_handler.ts';
+import { GetInfoValidator } from './get_info_validation';
+import { GetInfoHandler } from './get_info_handler';
 
-export type TestGetInfoRequestParams {
+export type TestGetInfoRequestParams = {
   id: string;
 }
 
@@ -32,10 +32,10 @@ Router.get("/getInfo/:id",
     req: TestGetInfoRequest, 
     res: Response
   ) => {
-    const param: string = req.params.id;
+    const params = req.params;
     const body: TestGetInfoRequestBody = req.body;
-    GetInfoValidator.validate(param, body);
-    return GetInfoHandler.getInfo(param, body);
+    new GetInfoValidator().validate((params as TestGetInfoRequestParams), body);
+    return GetInfoHandler.getInfo((params as TestGetInfoRequestParams), body);
 });
 
 

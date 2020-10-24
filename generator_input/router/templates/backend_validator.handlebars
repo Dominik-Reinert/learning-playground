@@ -1,21 +1,22 @@
-{{#addFunctionAndInterfaceNames name endpoint}}
 
-{{#with endpoint.handler.validator}}
-{{#if class}}export class {{class}} {
-    public {{function}}(
-        param: {{interfaceName}}RequestParams, 
-        body: {{interfaceName}}RequestParams
+
+import {
+  {{endpoint.interfaceName}}RequestParams,
+  {{endpoint.interfaceName}}RequestBody
+} from './{{routePath}}'
+
+{{#if endpoint.handler.validation.class}}export class {{endpoint.handler.validation.class}} {
+    public {{endpoint.handler.validation.function}}(
+        param: {{endpoint.interfaceName}}RequestParams, 
+        body: {{endpoint.interfaceName}}RequestBody
     ): void {
         return undefined;
     }
 {{else}}
-export function {{function}}(
-    param: {{interfaceName}}RequestParams, 
-    body: {{interfaceName}}RequestParams
+export function {{endpoint.handler.validation.function}}(
+    param: {{endpoint.interfaceName}}RequestParams, 
+    body: {{endpoint.interfaceName}}RequestBody
 ): void {
     return undefined;
 }
 }{{/if}}
-{{/with}}
-
-{{/addFunctionAndInterfaceNames}}

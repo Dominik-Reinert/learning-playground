@@ -1,5 +1,7 @@
 export interface Route {
   name: string;
+  endpoints: RouteEndpoint[];
+  path?: string;
 }
 
 export interface RouteEndpoint {

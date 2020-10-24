@@ -1,10 +1,9 @@
-{{#addFunctionAndInterfaceNames name endpoint}}
 
 import {
-  {{interfaceName}}RequestParams,
-  {{interfaceName}}RequestBody,
-  {{interfaceName}}HandlerResponse,
-} from "./backend_test_route";
+  {{endpoint.interfaceName}}RequestParams,
+  {{endpoint.interfaceName}}RequestBody,
+  {{endpoint.interfaceName}}HandlerResponse,
+} from "./{{routePath}}";
 
 {{#if handler.request.class}}export class {{handler.request.class}} {
     public {{function}}(
@@ -22,5 +21,3 @@ export function {{handler.request.function}}(
     return undefined;
 }
 }{{/if}}
-
-{{/addFunctionAndInterfaceNames}}

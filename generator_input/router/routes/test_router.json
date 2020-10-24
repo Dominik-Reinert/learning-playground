@@ -15,12 +15,10 @@
       ],
       "handler": {
         "validation": {
-          "path": "./get_info_validator.ts",
           "function": "validate",
           "class": "GetInfoValidator"
         },
         "request": {
-          "path": "./get_info_handler.ts",
           "function": "getInfo",
           "class": "GetInfoHandler"
         }

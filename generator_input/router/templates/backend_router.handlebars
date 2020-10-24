@@ -4,56 +4,54 @@ import { StatusCodes } from "http-status-codes";
 const {{name}}Router = new Router();
 
 {{#each endpoints as |endpoint|}}
-{{#addFunctionAndInterfaceNames ../name endpoint}}
 
-import { {{#if handler.validation.class}}{{handler.validation.class}}{{else}}{{handler.validation.function}}{{/if}} } from '{{handler.validation.path}}';
-import { {{#if handler.request.class}}{{handler.request.class}}{{else}}{{handler.request.function}}{{/if}} } from '{{handler.request.path}}';
+import { {{#if handler.validation.class}}{{handler.validation.class}}{{else}}{{handler.validation.function}}{{/if}} } from './{{handler.validation.path}}';
+import { {{#if handler.request.class}}{{handler.request.class}}{{else}}{{handler.request.function}}{{/if}} } from './{{handler.request.path}}';
 
 {{#if param}}
-export type {{interfaceName}}RequestParams {
+export type {{endpoint.interfaceName}}RequestParams = {
   {{param}}: string;
 }
 {{/if}}
 
 {{#if body}}
-export interface {{interfaceName}}RequestBody {
+export interface {{endpoint.interfaceName}}RequestBody {
   {{#each body}}
   {{this.name}}: {{this.type}};
   {{/each}}
 }
 {{/if}}
 
-export interface {{interfaceName}}HandlerResponse {
+export interface {{endpoint.interfaceName}}HandlerResponse {
   statusCode: StatusCodes;
   {{#each response}}
   {{this.name}}: {{this.type}};
   {{/each}}
 }
 
-export interface {{interfaceName}}Request {
-  {{#if param}}params: {{interfaceName}}RequestParams; {{/if}}
-  {{#if body}}body: {{interfaceName}}RequestBody; {{/if}}
+export interface {{endpoint.interfaceName}}Request {
+  {{#if param}}params: {{endpoint.interfaceName}}RequestParams; {{/if}}
+  {{#if body}}body: {{endpoint.interfaceName}}RequestBody; {{/if}}
 }
 
 {{name}}Router.{{method}}("/{{eName}}{{#if param}}/:{{param}}{{/if}}", 
   async (
-    req: {{interfaceName}}Request, 
+    req: {{endpoint.interfaceName}}Request, 
     res: Response
   ) => {
-    {{#if param}}const param: string = req.params.{{param}};{{/if}}
-    {{#if body}}const body: {{interfaceName}}RequestBody = req.body;{{/if}}
+    {{#if param}}const params = req.params;{{/if}}
+    {{#if body}}const body: {{endpoint.interfaceName}}RequestBody = req.body;{{/if}}
     {{#if handler.validation.class}}
-    {{handler.validation.class}}.{{handler.validation.function}}(param, body);
+    new {{handler.validation.class}}().{{handler.validation.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
     {{else}}
-    {{handler.validation.function}}.{{handler.validation.function}}(param, body);
+    {{handler.validation.function}}.{{handler.validation.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
     {{/if}}
     {{#if handler.request.class}}
-    return {{handler.request.class}}.{{handler.request.function}}(param, body);
+    return {{handler.request.class}}.{{handler.request.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
     {{else}}
-    return {{handler.request.function}}.{{handler.request.function}}(param, body);
+    return {{handler.request.function}}.{{handler.request.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
     {{/if}}
 });
 
 
-{{/addFunctionAndInterfaceNames}}
 {{/each}}
