@@ -6,10 +6,18 @@ export interface {{endpoint.interfaceName}}RequestBody {
 }
 {{/if}}
 
+export interface {{endpoint.interfaceName}}HandlerResponse {
+  {{#each endpoint.response}}
+  {{this.name}}: {{this.type}};
+  {{/each}}
+}
+
 export async function fetch{{endpoint.interfaceName}}(
         {{#if endpoint.param}}{{endpoint.param}}: string{{/if}}, 
-        {{#if endpoint.body}}body: {{endpoint.interfaceName}}RequestBody{{/if}}
-    ) {
+        {{#if endpoint.body}}body: {{endpoint.interfaceName}}RequestBody{{/if}},
+        onSuccess: (response: {{endpoint.interfaceName}}HandlerResponse) => void,
+        onFailed: () => void
+    ): Promise<void> {
     const response = await fetch(`http://localhost:3001/api/{{endpoint.eName}}/{{#if endpoint.param}}${ {{endpoint.param}} }{{/if}}`, {
         method: '{{endpoint.method}}',
         headers: {
@@ -17,5 +25,9 @@ export async function fetch{{endpoint.interfaceName}}(
         },
         {{#if endpoint.body}}body: JSON.stringify(body){{/if}}
     });
-    return response.json();
+    if (response.ok) {
+        onSuccess(await response.json());
+    } else {
+        onFailed();
+    }
 }

@@ -3,10 +3,17 @@ export interface TestGetInfoRequestBody {
   description: string;
 }
 
+export interface TestGetInfoHandlerResponse {
+  success: boolean;
+  id: string;
+}
+
 export async function fetchTestGetInfo(
         id: string, 
-        body: TestGetInfoRequestBody
-    ) {
+        body: TestGetInfoRequestBody,
+        onSuccess: (response: TestGetInfoHandlerResponse) => void,
+        onFailed: () => void
+    ): Promise<void> {
     const response = await fetch(`http://localhost:3001/api/getInfo/${ id }`, {
         method: 'get',
         headers: {
@@ -14,5 +21,9 @@ export async function fetchTestGetInfo(
         },
         body: JSON.stringify(body)
     });
-    return response.json();
+    if (response.ok) {
+        onSuccess(await response.json());
+    } else {
+        onFailed();
+    }
 }

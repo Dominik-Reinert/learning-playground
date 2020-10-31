@@ -17,7 +17,7 @@ export const NewsletterPageComponent = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: inputRef.current.value }),
-      }).then((response) => {
+      }).then((response: Response) => {
         if (response.ok) {
           setSubscribed(true);
         }
