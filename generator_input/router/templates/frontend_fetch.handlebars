@@ -1,11 +1,21 @@
+{{#if endpoint.body}}
+export interface {{endpoint.interfaceName}}RequestBody {
+  {{#each endpoint.body}}
+  {{this.name}}: {{this.type}};
+  {{/each}}
+}
+{{/if}}
 
-export async function fetchGetInfo({{#if param}}{{param}}{{/if}})
-    const response = await fetch('http://localhost:3001/api/{{functionName}}{{#if param}}/:{{param}}{{/if}}', {
-        method: {{requestMethod}},
+export async function fetch{{endpoint.interfaceName}}(
+        {{#if endpoint.param}}{{endpoint.param}}: string{{/if}}, 
+        {{#if endpoint.body}}body: {{endpoint.interfaceName}}RequestBody{{/if}}
+    ) {
+    const response = await fetch(`http://localhost:3001/api/{{endpoint.eName}}/{{#if endpoint.param}}${ {{endpoint.param}} }{{/if}}`, {
+        method: '{{endpoint.method}}',
         headers: {
             "Content-Type": "application/json",
         },
-        {{#if reqBody}}body: JSON.stringify({{body}}){{/if}}
+        {{#if endpoint.body}}body: JSON.stringify(body){{/if}}
     });
     return response.json();
-})
+}

@@ -23,4 +23,7 @@ export const routerGeneratorBackendValidationTemplatePath: string = path.resolve
 export const routerGeneratorBackendHandlerTemplatePath: string = path.resolve(
   `${exports.routerGeneratorTemplatePath}/backend_handler.handlebars`
 );
+export const routerGeneratorFrontendFetcherTemplatePath: string = path.resolve(
+  `${exports.routerGeneratorTemplatePath}/frontend_fetch.handlebars`
+);
 

@@ -2,12 +2,12 @@
 
 import { readFileSync, writeFileSync } from "fs";
 import * as Handlebars from "handlebars";
-import { parse } from "path";
 import {
   globalPath,
   routerGeneratorBackendHandlerTemplatePath,
   routerGeneratorBackendRouterTemplatePath,
   routerGeneratorBackendValidationTemplatePath,
+  routerGeneratorFrontendFetcherTemplatePath,
   routerGeneratorInputPath,
 } from "./common_path";
 import { Route, RouteEndpoint } from "./route";
@@ -130,9 +130,31 @@ function generateBackendValidator(parsedRoute: Route) {
       routePath: parsedRoute.path,
       endpoint,
     });
-    console.log(`Overwriting current endpoint`);
+    console.log(`Overwriting current validation`);
     writeFileSync(
       `${outputPath}/${camelCaseToSnakeCase(endpoint.eName)}_validation.ts`,
+      endpointCode,
+      {
+        encoding: "utf-8",
+      }
+    );
+  });
+}
+
+function generateFrontendfetch(parsedRoute: Route) {
+  const frontendfetchTemplate = readFileSync(
+    `${routerGeneratorFrontendFetcherTemplatePath}`,
+    "utf-8"
+  );
+  const compiledFefetchTemplate = Handlebars.compile(frontendfetchTemplate);
+  parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
+    const endpointCode = compiledFefetchTemplate({
+      routePath: parsedRoute.path,
+      endpoint,
+    });
+    console.log(`Overwriting current fetch`);
+    writeFileSync(
+      `${outputPath}/${camelCaseToSnakeCase(endpoint.eName)}_fetch.ts`,
       endpointCode,
       {
         encoding: "utf-8",
@@ -153,4 +175,5 @@ function generateBackendValidator(parsedRoute: Route) {
   generateBackendRouter(parsedRoute);
   generateBackendHandler(parsedRoute);
   generateBackendValidator(parsedRoute);
+  generateFrontendfetch(parsedRoute);
 })();
