@@ -1,0 +1,11 @@
+
+export async function fetchGetInfo({{#if param}}{{param}}{{/if}})
+    const response = await fetch('http://localhost:3001/api/{{functionName}}{{#if param}}/:{{param}}{{/if}}', {
+        method: {{requestMethod}},
+        headers: {
+            "Content-Type": "application/json",
+        },
+        {{#if reqBody}}body: JSON.stringify({{body}}){{/if}}
+    });
+    return response.json();
+})
