@@ -4,13 +4,14 @@ import {
   TestGetInfoRequestBody,
   TestGetInfoHandlerResponse,
 } from "./test_router";
+import { StatusCodes } from 'http-status-codes';
 
 export class GetInfoHandler {
     public getInfo(
         param: TestGetInfoRequestParams, 
         body: TestGetInfoRequestBody
     ): TestGetInfoHandlerResponse {
-        return undefined;
+        throw new Error('handler not implemented!')
     }
 }
 

@@ -4,13 +4,14 @@ import {
   {{endpoint.interfaceName}}RequestBody,
   {{endpoint.interfaceName}}HandlerResponse,
 } from "./{{routePath}}";
+import { StatusCodes } from 'http-status-codes';
 
 {{#if endpoint.handler.request.class}}export class {{endpoint.handler.request.class}} {
     public {{endpoint.handler.request.function}}(
         param: {{endpoint.interfaceName}}RequestParams, 
         body: {{endpoint.interfaceName}}RequestBody
     ): {{endpoint.interfaceName}}HandlerResponse {
-        return undefined;
+        throw new Error('handler not implemented!')
     }
 }
 {{else}}
@@ -18,6 +19,6 @@ export function {{endpoint.handler.request.function}}(
     param: {{endpoint.interfaceName}}RequestParams, 
     body: {{endpoint.interfaceName}}RequestBody
 ): {{endpoint.interfaceName}}HandlerResponse {
-    return undefined;
+    throw new Error('handler not implemented!')
 }
 }{{/if}}

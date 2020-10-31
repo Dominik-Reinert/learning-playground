@@ -1,5 +1,5 @@
-import { Response, Router } from "express";
-import { StatusCodes } from "http-status-codes";
+import { Response, Router } from 'express';
+import { StatusCodes } from 'http-status-codes';
 
 const testRouter = new Router();
 
@@ -22,6 +22,13 @@ export interface TestGetInfoHandlerResponse {
   id: string;
 }
 
+export interface TestGetInfoValidationResult {
+  statusCode: StatusCodes;
+  jsonResponse?: {
+    error: string;
+  };
+}
+
 export interface TestGetInfoRequest {
   params: TestGetInfoRequestParams; 
   body: TestGetInfoRequestBody; 
@@ -34,8 +41,14 @@ Router.get("/getInfo/:id",
   ) => {
     const params = req.params;
     const body: TestGetInfoRequestBody = req.body;
-    new GetInfoValidator().validate((params as TestGetInfoRequestParams), body);
-    return new GetInfoHandler().getInfo((params as TestGetInfoRequestParams), body);
+    const validationResult = new GetInfoValidator().validate((params as TestGetInfoRequestParams), body);
+    if (validationResult.statusCode !== StatusCodes.OK) {
+      res.status(validationResult.statusCode).json(validationResult.jsonResponse);
+    } else {
+      const { statusCode, ...jsonResponse } = new GetInfoHandler().getInfo((params as TestGetInfoRequestParams), body);
+      res.status(statusCode).json(jsonResponse);
+    }
+    return res;
 });
 
 

@@ -2,15 +2,19 @@
 
 import {
   TestGetInfoRequestParams,
-  TestGetInfoRequestBody
-} from './test_router'
+  TestGetInfoRequestBody,
+  TestGetInfoValidationResult
+} from './test_router';
+import { StatusCodes } from 'http-status-codes';
 
 export class GetInfoValidator {
     public validate(
         param: TestGetInfoRequestParams, 
         body: TestGetInfoRequestBody
-    ): void {
-        return undefined;
-    }
+    ): TestGetInfoValidationResult {
+        return {
+            statusCode: StatusCodes.OK
+        }
+    };
 }
 
