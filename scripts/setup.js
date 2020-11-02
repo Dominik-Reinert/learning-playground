@@ -8,7 +8,7 @@ const fs = require('fs');
     if (fs.existsSync(scriptsDist)){
         fs.readdirSync(scriptsDist).forEach(file => {
             const filePath = `${scriptsDist}/${file}`
-            console.log(`granting permission to: ${filePath}`);
+            console.log(`deleting script: ${filePath}`);
             fs.unlinkSync(filePath)
         })
         fs.rmdirSync(scriptsDist)

@@ -2,9 +2,14 @@ import { execSync, spawnSync } from "child_process";
 
 const path = require("path");
 
+export const globalPath: string = path.resolve("./");
+
 export const backendPath: string = path.resolve("./backend");
 export const frontendPath: string = path.resolve("./cv");
-export const globalPath: string = path.resolve("./");
+
+export const frontendEndpointOutputDir = path.resolve(`${frontendPath}/generated/endpoints`)
+export const backendEndpointOutputDir = path.resolve(`${backendPath}/generated/endpoints`)
+
 export const generatorInputPath: string = path.resolve(
   `${exports.globalPath}/generator_input`
 );
@@ -26,4 +31,5 @@ export const routerGeneratorBackendHandlerTemplatePath: string = path.resolve(
 export const routerGeneratorFrontendFetcherTemplatePath: string = path.resolve(
   `${exports.routerGeneratorTemplatePath}/frontend_fetch.handlebars`
 );
+
 
