@@ -3,7 +3,9 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import * as Handlebars from "handlebars";
 import {
-  backendEndpointOutputDir,
+  backendHandlerOutputDir,
+  backendRouterOutputDir,
+  backendValidatorOutputDir,
   frontendEndpointOutputDir,
   routerGeneratorBackendHandlerTemplatePath,
   routerGeneratorBackendRouterTemplatePath,
@@ -14,7 +16,12 @@ import {
 import { Route, RouteEndpoint } from "./route";
 
 function createGeneratedDirectories(): void {
-  [backendEndpointOutputDir, frontendEndpointOutputDir].forEach((path) => {
+  [
+    backendHandlerOutputDir,
+    backendRouterOutputDir,
+    backendValidatorOutputDir,
+    frontendEndpointOutputDir,
+  ].forEach((path) => {
     if (!existsSync(path)) {
       mkdirSync(path, { recursive: true });
     }
@@ -79,7 +86,7 @@ function generateBackendRouter(parsedRoute: Route) {
   const endpointCode = compiledBeTemplate(parsedRoute);
   console.log(`Overwriting current endpoint`);
   writeFileSync(
-    `${backendEndpointOutputDir}/${camelCaseToSnakeCase(
+    `${backendRouterOutputDir}/${camelCaseToSnakeCase(
       parsedRoute.name
     )}_router.ts`,
     endpointCode,
@@ -96,7 +103,7 @@ function generateBackendHandler(parsedRoute: Route) {
   );
   const compiledBeTemplate = Handlebars.compile(backendHandlerTemplate);
   parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
-    const filePath = `${backendEndpointOutputDir}/${camelCaseToSnakeCase(
+    const filePath = `${backendHandlerOutputDir}/${camelCaseToSnakeCase(
       endpoint.eName
     )}_handler.ts`;
     if (!existsSync(filePath)) {
@@ -121,7 +128,7 @@ function generateBackendValidator(parsedRoute: Route) {
   );
   const compiledBeTemplate = Handlebars.compile(backendValidatorTemplate);
   parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
-    const filePath = `${backendEndpointOutputDir}/${camelCaseToSnakeCase(
+    const filePath = `${backendValidatorOutputDir}/${camelCaseToSnakeCase(
       endpoint.eName
     )}_validation.ts`;
     if (!existsSync(filePath)) {
@@ -168,7 +175,6 @@ function generateFrontendfetch(parsedRoute: Route) {
     `${routerGeneratorInputPath}/routes/test_router.json`,
     "utf-8"
   );
-  console.debug(`read file content: ${testRoute}`);
   let parsedRoute: Route = JSON.parse(testRoute);
   createGeneratedDirectories();
   parsedRoute = addInterfaceNamesToEndpoints(parsedRoute);

@@ -8,7 +8,9 @@ export const backendPath: string = path.resolve("./backend");
 export const frontendPath: string = path.resolve("./cv");
 
 export const frontendEndpointOutputDir = path.resolve(`${frontendPath}/generated/endpoints`)
-export const backendEndpointOutputDir = path.resolve(`${backendPath}/generated/endpoints`)
+export const backendRouterOutputDir = path.resolve(`${backendPath}/generated/router`)
+export const backendValidatorOutputDir = path.resolve(`${backendPath}/generated/validator`)
+export const backendHandlerOutputDir = path.resolve(`${backendPath}/generated/handler`)
 
 export const generatorInputPath: string = path.resolve(
   `${exports.globalPath}/generator_input`
