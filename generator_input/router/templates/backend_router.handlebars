@@ -41,7 +41,7 @@ export interface {{endpoint.interfaceName}}Request {
   {{#if body}}body: {{endpoint.interfaceName}}RequestBody; {{/if}}
 }
 
-{{name}}Router.{{method}}("/{{eName}}{{#if param}}/:{{param}}{{/if}}", 
+{{../name}}Router.{{method}}("/{{eName}}{{#if param}}/:{{param}}{{/if}}", 
   async (
     req: {{endpoint.interfaceName}}Request, 
     res: Response
