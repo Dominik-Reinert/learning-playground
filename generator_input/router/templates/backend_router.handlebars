@@ -5,22 +5,18 @@ const {{name}}Router = new Router();
 
 {{#each endpoints as |endpoint|}}
 
-import { {{#if handler.validation.class}}{{handler.validation.class}}{{else}}{{handler.validation.function}}{{/if}} } from './{{handler.validation.path}}';
-import { {{#if handler.request.class}}{{handler.request.class}}{{else}}{{handler.request.function}}{{/if}} } from './{{handler.request.path}}';
+import { {{#if handler.validation.class}}{{handler.validation.class}}{{else}}{{handler.validation.function}}{{/if}} } from '../validator/{{handler.validation.path}}';
+import { {{#if handler.request.class}}{{handler.request.class}}{{else}}{{handler.request.function}}{{/if}} } from '../handler/{{handler.request.path}}';
 
-{{#if param}}
 export type {{endpoint.interfaceName}}RequestParams = {
-  {{param}}: string;
+  {{#if param}}{{param}}: string;{{/if}}
 }
-{{/if}}
 
-{{#if body}}
 export interface {{endpoint.interfaceName}}RequestBody {
   {{#each body}}
   {{this.name}}: {{this.type}};
   {{/each}}
 }
-{{/if}}
 
 export interface {{endpoint.interfaceName}}HandlerResponse {
   statusCode: StatusCodes;
@@ -46,20 +42,22 @@ export interface {{endpoint.interfaceName}}Request {
     req: {{endpoint.interfaceName}}Request, 
     res: Response
   ) => {
-    {{#if param}}const params = req.params;{{/if}}
-    {{#if body}}const body: {{endpoint.interfaceName}}RequestBody = req.body;{{/if}}
-    {{#if handler.validation.class}}
-    const validationResult = new {{handler.validation.class}}().{{handler.validation.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
-    {{else}}
-    const validationResult = {{handler.validation.function}}.{{handler.validation.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
-    {{/if}}
+    const params: {{endpoint.interfaceName}}RequestParams{{#if param}} = req.params;{{/if}};
+    const body: {{endpoint.interfaceName}}RequestBody{{#if body}} = req.body{{/if}};
+    {{#if handler.validation}}
+      {{#if handler.validation.class}}
+      const validationResult = new {{handler.validation.class}}().{{handler.validation.function}}(params, body);
+      {{else}}
+      const validationResult = {{handler.validation.function}}(params, body);
+      {{/if}}
     if (validationResult.statusCode !== StatusCodes.OK) {
       res.status(validationResult.statusCode).json(validationResult.jsonResponse);
     } else {
+    {{/if}}
     {{#if handler.request.class}}
-      const { statusCode, ...jsonResponse } = new {{handler.request.class}}().{{handler.request.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
+      const { statusCode, ...jsonResponse } = new {{handler.request.class}}().{{handler.request.function}}(params, body);
     {{else}}
-      const { statusCode, ...jsonResponse } = {{handler.request.function}}.{{handler.request.function}}((params as {{endpoint.interfaceName}}RequestParams), body);
+      const { statusCode, ...jsonResponse } = {{handler.request.function}}(params, body);
     {{/if}}
       res.status(statusCode).json(jsonResponse);
     }

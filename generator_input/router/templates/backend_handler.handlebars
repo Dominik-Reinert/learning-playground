@@ -3,7 +3,7 @@ import {
   {{endpoint.interfaceName}}RequestParams,
   {{endpoint.interfaceName}}RequestBody,
   {{endpoint.interfaceName}}HandlerResponse,
-} from "./{{routePath}}";
+} from "{{routePath}}";
 import { StatusCodes } from 'http-status-codes';
 
 {{#if endpoint.handler.request.class}}export class {{endpoint.handler.request.class}} {

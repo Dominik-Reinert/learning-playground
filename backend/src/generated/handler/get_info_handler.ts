@@ -3,7 +3,7 @@ import {
   TestGetInfoRequestParams,
   TestGetInfoRequestBody,
   TestGetInfoHandlerResponse,
-} from "./test_router";
+} from "../router/test_router";
 import { StatusCodes } from 'http-status-codes';
 
 export class GetInfoHandler {

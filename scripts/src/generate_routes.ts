@@ -102,7 +102,7 @@ function generateBackendRouter(parsedRoute: Route) {
   );
 }
 
-function generateBackendHandler(parsedRoute: Route) {
+function generateBackendHandler(parsedRoute: Route, force: boolean) {
   const backendHandlerTemplate = readFileSync(
     `${routerGeneratorBackendHandlerTemplatePath}`,
     "utf-8"
@@ -112,9 +112,9 @@ function generateBackendHandler(parsedRoute: Route) {
     const filePath = `${backendHandlerOutputDir}/${camelCaseToSnakeCase(
       endpoint.eName
     )}_handler.ts`;
-    if (!existsSync(filePath)) {
+    if (!existsSync(filePath) || force) {
       const endpointCode = compiledBeTemplate({
-        routePath: parsedRoute.path,
+        routePath: `../router/${parsedRoute.path}`,
         endpoint,
       });
       console.log(`Overwriting current '${endpoint.eName}' endpoint`);
@@ -127,7 +127,7 @@ function generateBackendHandler(parsedRoute: Route) {
   });
 }
 
-function generateBackendValidator(parsedRoute: Route) {
+function generateBackendValidator(parsedRoute: Route, force: boolean) {
   const backendValidatorTemplate = readFileSync(
     `${routerGeneratorBackendValidationTemplatePath}`,
     "utf-8"
@@ -137,9 +137,9 @@ function generateBackendValidator(parsedRoute: Route) {
     const filePath = `${backendValidatorOutputDir}/${camelCaseToSnakeCase(
       endpoint.eName
     )}_validation.ts`;
-    if (!existsSync(filePath)) {
+    if (!existsSync(filePath) || force) {
       const endpointCode = compiledBeTemplate({
-        routePath: parsedRoute.path,
+        routePath: `../router/${parsedRoute.path}`,
         endpoint,
       });
       console.log(`Overwriting current '${endpoint.eName}' validation`);
@@ -162,7 +162,7 @@ function generateFrontendfetch(parsedRoute: Route) {
     const endpointCode = compiledFefetchTemplate({
       routePath: parsedRoute.path,
       endpoint,
-      routerName: parsedRoute.name
+      routerName: parsedRoute.name,
     });
     console.log(`Overwriting current '${endpoint.eName}' fetch`);
     writeFileSync(
@@ -178,6 +178,11 @@ function generateFrontendfetch(parsedRoute: Route) {
 }
 
 (function start() {
+  
+  const [execEnv, scriptPath, stringArgs] = process.argv;
+  const arrayArgs = stringArgs ? stringArgs.split(" ") : [];
+  const force: boolean = arrayArgs.includes('-f')
+
   const files = readdirSync(`${routerGeneratorInputPath}/routes`);
   files.forEach((file) => {
     const route = readFileSync(
@@ -189,8 +194,8 @@ function generateFrontendfetch(parsedRoute: Route) {
     parsedRoute = addInterfaceNamesToEndpoints(parsedRoute);
     parsedRoute = addImportPathsToEndpoints(parsedRoute);
     generateBackendRouter(parsedRoute);
-    generateBackendHandler(parsedRoute);
-    generateBackendValidator(parsedRoute);
+    generateBackendHandler(parsedRoute, force);
+    generateBackendValidator(parsedRoute, force);
     generateFrontendfetch(parsedRoute);
   });
 })();

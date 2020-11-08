@@ -4,7 +4,7 @@ import {
   NewsletterAllRequestParams,
   NewsletterAllRequestBody,
   NewsletterAllValidationResult
-} from './newsletter_router';
+} from '../router/newsletter_router';
 import { StatusCodes } from 'http-status-codes';
 
 export function (

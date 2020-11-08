@@ -4,7 +4,7 @@ import {
   {{endpoint.interfaceName}}RequestParams,
   {{endpoint.interfaceName}}RequestBody,
   {{endpoint.interfaceName}}ValidationResult
-} from './{{routePath}}';
+} from '{{routePath}}';
 import { StatusCodes } from 'http-status-codes';
 
 {{#if endpoint.handler.validation.class}}export class {{endpoint.handler.validation.class}} {

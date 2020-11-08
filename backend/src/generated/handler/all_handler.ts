@@ -3,7 +3,7 @@ import {
   NewsletterAllRequestParams,
   NewsletterAllRequestBody,
   NewsletterAllHandlerResponse,
-} from "./newsletter_router";
+} from "../router/newsletter_router";
 import { StatusCodes } from 'http-status-codes';
 
 export function getAll(
