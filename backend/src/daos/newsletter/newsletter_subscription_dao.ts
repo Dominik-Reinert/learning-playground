@@ -1,4 +1,4 @@
-import { AbstractMongoDao } from "@daos/MockDb/abstract_mongo_dao";
+import { AbstractDao } from "@daos/abstract_dao";
 import NewsletterSubscription, {
   INewsletterSubscription,
 } from "@entities/newsletter_subscription";
@@ -17,31 +17,36 @@ export interface INewsletterSubscriptionDao {
 }
 
 class NewsLetterSubscriptionDao
-  extends AbstractMongoDao<INewsletterSubscription>
+  extends AbstractDao<INewsletterSubscription>
   implements INewsletterSubscriptionDao {
   protected collectionName: string = "newsletter";
+  protected readonly tableName: string = "newsletter_subscriptions";
 
   public async subscribe(email: string): Promise<void> {
-    const result = await super.insertOne(new NewsletterSubscription(email));
-    if (result.insertedId) {
-      const auth = JSON.parse(
-        readFileSync(pathToFileURL("creds/newsletter.creds.json"), "utf-8")
-      );
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        secure: true,
-        auth,
-      });
-      const emailResult = await transporter.sendMail({
-        to: "dominik.reinert.merzig@googlemail.com",
-        html: getNewsletterEmailLayout(
-          `http://localhost:8080/verify/${result.insertedId}`
-        ),
-      });
-      console.info(`Sent mail with result: ${JSON.stringify(emailResult)}`);
+    const newsletterSubscription = new NewsletterSubscription(email);
+    const insertionResults = await super.insertOne(newsletterSubscription);
+    if (insertionResults?.affectedRows === 1) {
+      const result = await super.findByAnd(newsletterSubscription);
+      if (result?.[0].hashId) {
+        const auth = JSON.parse(
+          readFileSync(pathToFileURL("creds/newsletter.creds.json"), "utf-8")
+        );
+        const transporter = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 465,
+          secure: true,
+          auth,
+        });
+        const emailResult = await transporter.sendMail({
+          to: "dominik.reinert.merzig@googlemail.com",
+          html: getNewsletterEmailLayout(
+            `http://localhost:8080/verify/${result?.[0].hashId}`
+          ),
+        });
+        console.info(`Sent mail with result: ${JSON.stringify(emailResult)}`);
+      }
+      console.info(`added user with result : ${result}`);
     }
-    console.info(`added user with result : ${result}`);
   }
 
   public async verify(id: string): Promise<VerificationResult> {

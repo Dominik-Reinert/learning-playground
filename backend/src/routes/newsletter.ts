@@ -1,4 +1,3 @@
-import NewsLetterSubscriptionDao from "@daos/newsletter/newsletter_subscription_dao";
 import {
   alreadyVerifiedError,
   notFoundError,
@@ -7,9 +6,11 @@ import {
 } from "@shared/constants";
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
+import NewsLetterSubscriptionDao from "@daos/newsletter/newsletter_subscription_dao";
 
 const router = Router();
-const newsletterDao = new NewsLetterSubscriptionDao();
+
+const newsletterDao = new NewsLetterSubscriptionDao()
 
 router.post("/subscribe", async (req: Request, res: Response) => {
   const { email } = req.body;

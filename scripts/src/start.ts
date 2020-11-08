@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import { exec } from "child_process";
-import * as path from "path";
 import { backendPath, frontendPath } from "./common_path";
 
 export function execAndLog(command: string) {
@@ -36,14 +35,18 @@ function startFrontend() {
 
   console.info(`start script called with args: [${arrayArgs}]`);
 
-  if (!arrayArgs.includes("--no-db")) {
+  if (arrayArgs.includes("database")) {
     startDb();
   }
   if (arrayArgs.includes("backend")) {
     startBackend();
-  } else if (arrayArgs.includes("frontend")) {
+  }
+  if (arrayArgs.includes("frontend")) {
     startFrontend();
-  } else {
+  }
+
+  if (arrayArgs.includes("all")) {
+    startDb();
     startBackend();
     startFrontend();
   }
