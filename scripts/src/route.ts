@@ -8,8 +8,8 @@ export interface RouteEndpoint {
   eName: string;
   method: string;
   param: string;
-  body: RouteBodyMap;
-  response: RouteResponseMap;
+  body: RouteBodyMap[];
+  response: RouteResponseMap[];
   handler: RouteHandler;
   interfaceName?: string;
 }

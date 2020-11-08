@@ -13,14 +13,13 @@ import {
   backendRouterOutputDir,
   backendValidatorOutputDir,
   frontendEndpointOutputDir,
-  routerGeneratorBackendHandlerTemplatePath,
   routerGeneratorBackendRouterTemplatePath,
   routerGeneratorBackendValidationTemplatePath,
-  routerGeneratorFrontendFetcherTemplatePath,
   routerGeneratorInputPath,
 } from "./common_path";
 import { Route, RouteEndpoint } from "./route";
 import { backendHandlerTemplate } from "./templates/backend_handler.template";
+import { frontendFetchTemplate } from "./templates/frontend_fetch.template";
 
 function createGeneratedDirectories(): void {
   [
@@ -109,7 +108,10 @@ function generateBackendHandler(parsedRoute: Route, force: boolean) {
       endpoint.eName
     )}_handler.ts`;
     if (!existsSync(filePath) || force) {
-      const endpointCode = backendHandlerTemplate(endpoint, `../router/${parsedRoute.path}`)
+      const endpointCode = backendHandlerTemplate(
+        endpoint,
+        `../router/${parsedRoute.path}`
+      );
       console.log(`Overwriting current '${endpoint.eName}' endpoint`);
       writeFileSync(filePath, endpointCode, {
         encoding: "utf-8",
@@ -146,17 +148,8 @@ function generateBackendValidator(parsedRoute: Route, force: boolean) {
 }
 
 function generateFrontendfetch(parsedRoute: Route) {
-  const frontendfetchTemplate = readFileSync(
-    `${routerGeneratorFrontendFetcherTemplatePath}`,
-    "utf-8"
-  );
-  const compiledFefetchTemplate = Handlebars.compile(frontendfetchTemplate);
   parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
-    const endpointCode = compiledFefetchTemplate({
-      routePath: parsedRoute.path,
-      endpoint,
-      routerName: parsedRoute.name,
-    });
+    const endpointCode = frontendFetchTemplate(endpoint, parsedRoute.name);
     console.log(`Overwriting current '${endpoint.eName}' fetch`);
     writeFileSync(
       `${frontendEndpointOutputDir}/${camelCaseToSnakeCase(
@@ -171,10 +164,9 @@ function generateFrontendfetch(parsedRoute: Route) {
 }
 
 (function start() {
-  
   const [execEnv, scriptPath, stringArgs] = process.argv;
   const arrayArgs = stringArgs ? stringArgs.split(" ") : [];
-  const force: boolean = arrayArgs.includes('-f')
+  const force: boolean = arrayArgs.includes("-f");
 
   const files = readdirSync(`${routerGeneratorInputPath}/routes`);
   files.forEach((file) => {

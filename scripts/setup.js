@@ -5,14 +5,7 @@ const fs = require('fs');
 
 (function start(){
     const scriptsDist = 'scripts/dist' 
-    if (fs.existsSync(scriptsDist)){
-        fs.readdirSync(scriptsDist).forEach(file => {
-            const filePath = `${scriptsDist}/${file}`
-            console.log(`deleting script: ${filePath}`);
-            fs.unlinkSync(filePath)
-        })
-        fs.rmdirSync(scriptsDist)
-    }
+    fs.rmdirSync(scriptsDist, {recursive: true})
     const com = spawn('tsc', ['--build', 'scripts/tsconfig.json']);
     com.stdout.on('data', function(data){
         console.log(data.toString());
