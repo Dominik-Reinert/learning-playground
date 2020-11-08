@@ -34,9 +34,6 @@ export const NewsletterPageComponent = () => {
         console.error(`error fetching newsletters!`);
       }
     );
-    /* fetch("http://localhost:3001/api/newsletter/all")
-      .then((res) => res.json())
-      .then((res) => setSubscriptions(res.subscriptions)); */
   }, [subscribed]);
 
   const subscribeStyle = useSubscribeStyle();
