@@ -13,11 +13,8 @@ export function execAndLog(command: string) {
 
 function startDb() {
   console.log("Starting database");
-  const databaseDirPath = path.resolve("");
-  const databaseConfigName = "mongod.conf";
-  const databaseConfigPath = path.resolve(`./database/${databaseConfigName}`);
 
-  const command = `cd ${databaseDirPath}; mongod --config ${databaseConfigPath}; cd -`;
+  const command = `sudo service mysql start`;
   console.log(`Executing: '${command}'`);
 
   execAndLog(command);
