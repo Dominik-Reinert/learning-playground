@@ -1,6 +1,7 @@
 import { css } from "@emotion/core";
 import * as React from "react";
 import { BackButtonComponent } from "../back_button/back_button_component";
+import { fetchNewsletterAll } from "../generated/endpoints/all_fetch";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { PageFooter } from "../page_footer/page_footer";
 import { RouteURL } from "../router/router";
@@ -27,9 +28,15 @@ export const NewsletterPageComponent = () => {
 
   let [subscriptions, setSubscriptions] = React.useState<Newsletter[]>([]);
   React.useEffect(() => {
-    fetch("http://localhost:3001/api/newsletter/all")
+    fetchNewsletterAll(
+      (response) => setSubscriptions(response.subscriptions),
+      () => {
+        console.error(`error fetching newsletters!`);
+      }
+    );
+    /* fetch("http://localhost:3001/api/newsletter/all")
       .then((res) => res.json())
-      .then((res) => setSubscriptions(res.subscriptions));
+      .then((res) => setSubscriptions(res.subscriptions)); */
   }, [subscribed]);
 
   const subscribeStyle = useSubscribeStyle();

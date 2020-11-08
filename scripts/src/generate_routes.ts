@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from "fs";
 import * as Handlebars from "handlebars";
 import {
   backendHandlerOutputDir,
@@ -111,7 +117,7 @@ function generateBackendHandler(parsedRoute: Route) {
         routePath: parsedRoute.path,
         endpoint,
       });
-      console.log(`Overwriting current endpoint`);
+      console.log(`Overwriting current '${endpoint.eName}' endpoint`);
       writeFileSync(filePath, endpointCode, {
         encoding: "utf-8",
       });
@@ -136,7 +142,7 @@ function generateBackendValidator(parsedRoute: Route) {
         routePath: parsedRoute.path,
         endpoint,
       });
-      console.log(`Overwriting current validation`);
+      console.log(`Overwriting current '${endpoint.eName}' validation`);
       writeFileSync(filePath, endpointCode, {
         encoding: "utf-8",
       });
@@ -156,8 +162,9 @@ function generateFrontendfetch(parsedRoute: Route) {
     const endpointCode = compiledFefetchTemplate({
       routePath: parsedRoute.path,
       endpoint,
+      routerName: parsedRoute.name
     });
-    console.log(`Overwriting current fetch`);
+    console.log(`Overwriting current '${endpoint.eName}' fetch`);
     writeFileSync(
       `${frontendEndpointOutputDir}/${camelCaseToSnakeCase(
         endpoint.eName
@@ -171,16 +178,19 @@ function generateFrontendfetch(parsedRoute: Route) {
 }
 
 (function start() {
-  const testRoute = readFileSync(
-    `${routerGeneratorInputPath}/routes/test_router.json`,
-    "utf-8"
-  );
-  let parsedRoute: Route = JSON.parse(testRoute);
-  createGeneratedDirectories();
-  parsedRoute = addInterfaceNamesToEndpoints(parsedRoute);
-  parsedRoute = addImportPathsToEndpoints(parsedRoute);
-  generateBackendRouter(parsedRoute);
-  generateBackendHandler(parsedRoute);
-  generateBackendValidator(parsedRoute);
-  generateFrontendfetch(parsedRoute);
+  const files = readdirSync(`${routerGeneratorInputPath}/routes`);
+  files.forEach((file) => {
+    const route = readFileSync(
+      `${routerGeneratorInputPath}/routes/${file}`,
+      "utf-8"
+    );
+    let parsedRoute: Route = JSON.parse(route);
+    createGeneratedDirectories();
+    parsedRoute = addInterfaceNamesToEndpoints(parsedRoute);
+    parsedRoute = addImportPathsToEndpoints(parsedRoute);
+    generateBackendRouter(parsedRoute);
+    generateBackendHandler(parsedRoute);
+    generateBackendValidator(parsedRoute);
+    generateFrontendfetch(parsedRoute);
+  });
 })();

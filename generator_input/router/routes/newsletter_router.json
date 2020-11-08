@@ -1,0 +1,15 @@
+{
+  "name": "newsletter",
+  "endpoints": [
+    {
+      "eName": "all",
+      "method": "get",
+      "response": [{ "name": "subscriptions", "type": "any" }],
+      "handler": {
+        "request": {
+          "function": "getAll"
+        }
+      }
+    }
+  ]
+}

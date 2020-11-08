@@ -13,12 +13,12 @@ export interface {{endpoint.interfaceName}}HandlerResponse {
 }
 
 export async function fetch{{endpoint.interfaceName}}(
-        {{#if endpoint.param}}{{endpoint.param}}: string{{/if}}, 
-        {{#if endpoint.body}}body: {{endpoint.interfaceName}}RequestBody{{/if}},
+        {{#if endpoint.param}}{{endpoint.param}}: string, {{/if}}
+        {{#if endpoint.body}}body: {{endpoint.interfaceName}}RequestBody,{{/if}}
         onSuccess: (response: {{endpoint.interfaceName}}HandlerResponse) => void,
         onFailed: () => void
     ): Promise<void> {
-    const response = await fetch(`http://localhost:3001/api/{{endpoint.eName}}/{{#if endpoint.param}}${ {{endpoint.param}} }{{/if}}`, {
+    const response = await fetch(`http://localhost:3001/api/{{routerName}}/{{endpoint.eName}}/{{#if endpoint.param}}${ {{endpoint.param}} }{{/if}}`, {
         method: '{{endpoint.method}}',
         headers: {
             "Content-Type": "application/json",
