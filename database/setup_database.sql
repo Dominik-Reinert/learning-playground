@@ -1,3 +1,5 @@
+USE CV;
+
 CREATE TABLE newsletter_subscription (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     hash_id VARCHAR(32) NOT NULL DEFAULT 0,
@@ -10,3 +12,5 @@ CREATE TRIGGER generate_hash_id
     BEFORE INSERT 
     ON `newsletter_subscriptions` FOR EACH ROW 
     SET NEW.hash_id = MD5(CONCAT(NEW.email, current_timestamp));
+
+exit;
