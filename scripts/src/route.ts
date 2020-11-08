@@ -11,6 +11,7 @@ export interface RouteEndpoint {
   body: RouteBodyMap;
   response: RouteResponseMap;
   handler: RouteHandler;
+  interfaceName?: string;
 }
 
 export interface RouteBodyMap {

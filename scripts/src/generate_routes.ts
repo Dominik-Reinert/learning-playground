@@ -20,6 +20,7 @@ import {
   routerGeneratorInputPath,
 } from "./common_path";
 import { Route, RouteEndpoint } from "./route";
+import { backendHandlerTemplate } from "./templates/backend_handler.template";
 
 function createGeneratedDirectories(): void {
   [
@@ -103,20 +104,12 @@ function generateBackendRouter(parsedRoute: Route) {
 }
 
 function generateBackendHandler(parsedRoute: Route, force: boolean) {
-  const backendHandlerTemplate = readFileSync(
-    `${routerGeneratorBackendHandlerTemplatePath}`,
-    "utf-8"
-  );
-  const compiledBeTemplate = Handlebars.compile(backendHandlerTemplate);
   parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
     const filePath = `${backendHandlerOutputDir}/${camelCaseToSnakeCase(
       endpoint.eName
     )}_handler.ts`;
     if (!existsSync(filePath) || force) {
-      const endpointCode = compiledBeTemplate({
-        routePath: `../router/${parsedRoute.path}`,
-        endpoint,
-      });
+      const endpointCode = backendHandlerTemplate(endpoint, `../router/${parsedRoute.path}`)
       console.log(`Overwriting current '${endpoint.eName}' endpoint`);
       writeFileSync(filePath, endpointCode, {
         encoding: "utf-8",
