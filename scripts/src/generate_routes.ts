@@ -13,12 +13,12 @@ import {
   backendRouterOutputDir,
   backendValidatorOutputDir,
   frontendEndpointOutputDir,
-  routerGeneratorBackendRouterTemplatePath,
   routerGeneratorBackendValidationTemplatePath,
   routerGeneratorInputPath,
 } from "./common_path";
 import { Route, RouteEndpoint } from "./route";
 import { backendHandlerTemplate } from "./templates/backend_handler.template";
+import { backendRouterTemplate } from "./templates/backend_router.template";
 import { frontendFetchTemplate } from "./templates/frontend_fetch.template";
 
 function createGeneratedDirectories(): void {
@@ -84,18 +84,13 @@ function addImportPathsToEndpoints(parsedRoute: Route): Route {
 }
 
 function generateBackendRouter(parsedRoute: Route) {
-  const backendRouterTemplate = readFileSync(
-    `${routerGeneratorBackendRouterTemplatePath}`,
-    "utf-8"
-  );
-  const compiledBeTemplate = Handlebars.compile(backendRouterTemplate);
-  const endpointCode = compiledBeTemplate(parsedRoute);
+  const backendRouter = backendRouterTemplate(parsedRoute);
   console.log(`Overwriting current endpoint`);
   writeFileSync(
     `${backendRouterOutputDir}/${camelCaseToSnakeCase(
       parsedRoute.name
     )}_router.ts`,
-    endpointCode,
+    backendRouter,
     {
       encoding: "utf-8",
     }
