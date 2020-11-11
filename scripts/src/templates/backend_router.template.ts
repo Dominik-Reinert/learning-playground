@@ -12,12 +12,12 @@ import { ${
     e.handler.validation.class
       ? `${e.handler.validation.class}`
       : `${e.handler.validation.function}`
-  } } from '../validation/${e.handler.validation.path};
+  } } from '../validation/${e.handler.validation.path}';
 import { ${
     e.handler.request.class
       ? `${e.handler.request.class}`
       : `${e.handler.request.function}`
-  } } from '../handler/${e.handler.request.path};
+  } } from '../handler/${e.handler.request.path}';
 
 export type ${e.interfaceName}RequestParams = {
     ${e.param ? `${e.param}: string;` : ""}
