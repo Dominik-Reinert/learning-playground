@@ -24,12 +24,12 @@ export type ${e.interfaceName}RequestParams = {
 }
 
 export interface ${e.interfaceName}RequestBody {
-    ${e.body.map((b) => `${b.name}: ${b.type};\n`)}
+    ${e.body?.map((b) => `${b.name}: ${b.type};\n`)}
 }
 
 export interface ${e.interfaceName}HandlerResponse {
     statusCode: StatusCodes;
-    ${e.response.map((r) => `${r.name}: ${r.type};\n`)}
+    ${e.response?.map((r) => `${r.name}: ${r.type};\n`)}
 }
 
 export interface ${e.interfaceName}ValidationResult {
@@ -59,10 +59,10 @@ ${endpoint.name}Router.${e.method}("/${e.eName}${
         ${
           e.handler.validation.class
             ? `
-        const validationResult = new {{handler.validation.class}}().{{handler.validation.function}}(params, body);
+        const validationResult = new ${e.handler.validation.class}().${e.handler.validation.function}(params, body);
         `
             : `
-        const validationResult = {{handler.validation.function}}(params, body);
+        const validationResult = ${e.handler.validation.function}(params, body);
         `
         }
     if (validationResult.statusCode !== StatusCodes.OK) {

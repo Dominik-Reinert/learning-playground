@@ -7,18 +7,17 @@ import {
   readFileSync,
   writeFileSync,
 } from "fs";
-import * as Handlebars from "handlebars";
 import {
   backendHandlerOutputDir,
   backendRouterOutputDir,
   backendValidatorOutputDir,
   frontendEndpointOutputDir,
-  routerGeneratorBackendValidationTemplatePath,
   routerGeneratorInputPath,
 } from "./common_path";
 import { Route, RouteEndpoint } from "./route";
 import { backendHandlerTemplate } from "./templates/backend_handler.template";
 import { backendRouterTemplate } from "./templates/backend_router.template";
+import { backendValidatorTemplate } from "./templates/backend_validator.template";
 import { frontendFetchTemplate } from "./templates/frontend_fetch.template";
 
 function createGeneratedDirectories(): void {
@@ -118,28 +117,23 @@ function generateBackendHandler(parsedRoute: Route, force: boolean) {
 }
 
 function generateBackendValidator(parsedRoute: Route, force: boolean) {
-  const backendValidatorTemplate = readFileSync(
-    `${routerGeneratorBackendValidationTemplatePath}`,
-    "utf-8"
+  const endpointCode = backendValidatorTemplate(
+    `../router/${parsedRoute.path}`,
+    parsedRoute
   );
-  const compiledBeTemplate = Handlebars.compile(backendValidatorTemplate);
-  parsedRoute.endpoints.forEach((endpoint: RouteEndpoint) => {
-    const filePath = `${backendValidatorOutputDir}/${camelCaseToSnakeCase(
-      endpoint.eName
-    )}_validation.ts`;
-    if (!existsSync(filePath) || force) {
-      const endpointCode = compiledBeTemplate({
-        routePath: `../router/${parsedRoute.path}`,
-        endpoint,
-      });
-      console.log(`Overwriting current '${endpoint.eName}' validation`);
-      writeFileSync(filePath, endpointCode, {
-        encoding: "utf-8",
-      });
-    } else {
-      console.log(`validator for ${endpoint.eName} already exists`);
-    }
-  });
+
+  const filePath = `${backendValidatorOutputDir}/${camelCaseToSnakeCase(
+    parsedRoute.name
+  )}_validation.ts`;
+
+  if (!existsSync(filePath) || force) {
+    console.log(`Overwriting current '${parsedRoute.name}' validation`);
+    writeFileSync(filePath, endpointCode, {
+      encoding: "utf-8",
+    });
+  } else {
+    console.log(`validator for ${parsedRoute.name} already exists`);
+  }
 }
 
 function generateFrontendfetch(parsedRoute: Route) {
