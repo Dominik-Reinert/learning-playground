@@ -29,7 +29,7 @@ export interface ${e.interfaceName}RequestBody {
 
 export interface ${e.interfaceName}HandlerResponse {
     statusCode: StatusCodes;
-    ${e.response?.map((r) => `${r.name}: ${r.type};\n`)}
+    ${e.response?.map((r) => `${r.name}: ${r.type};\n\t`)}
 }
 
 export interface ${e.interfaceName}ValidationResult {
@@ -80,7 +80,6 @@ ${endpoint.name}Router.${e.method}("/${e.eName}${
     }
     return res;
 });
-
 `;
 })}
 `;

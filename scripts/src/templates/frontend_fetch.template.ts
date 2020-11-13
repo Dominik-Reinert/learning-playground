@@ -37,14 +37,13 @@ export async function fetch${endpoint.interfaceName} (
 function generateBodyInterface(endpoint: RouteEndpoint): string {
   return `
 export interface ${endpoint.interfaceName}RequestBody {
-    ${endpoint.body?.map(({ name, type }) => `${name}: ${type};\n`) ?? ""}
+    ${endpoint.body?.map(({ name, type }) => `${name}: ${type};\n\t`) ?? ""}
 }`;
 }
 
 function generateResponseInterface(endpoint: RouteEndpoint): string {
   return `
 export interface ${endpoint.interfaceName}HandlerResponse {
-    ${endpoint.response?.map(({ name, type }) => `${name}: ${type};\n`) ?? ""}
-  };
-`;
+    ${endpoint.response?.map(({ name, type }) => `${name}: ${type};\n\t`) ?? ""}
+}`;
 }

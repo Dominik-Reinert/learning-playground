@@ -6,6 +6,7 @@
   "configurations": [
 
 
+
   
 
     {
@@ -40,7 +41,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "debug handlebars",
+      "name": "debug routes",
       "program": "${workspaceFolder}/scripts/dist/generate_routes.js",
       "autoAttachChildProcesses": true
     }
