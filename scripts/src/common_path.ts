@@ -4,6 +4,9 @@ export const globalPath: string = path.resolve("./");
 
 export const backendPath: string = path.resolve("./backend");
 export const frontendPath: string = path.resolve("./cv");
+export const scriptsPath: string = path.resolve("scripts");
+export const scriptsSrcPath: string = path.resolve(`${scriptsPath}/src`);
+export const scriptsDistPath: string = path.resolve(`${scriptsPath}/dist`);
 
 export const frontendEndpointOutputDir = path.resolve(
   `${frontendPath}/src/generated/endpoints`
@@ -25,17 +28,5 @@ export const routerGeneratorInputPath: string = path.resolve(
   `${exports.generatorInputPath}/router`
 );
 export const routerGeneratorTemplatePath: string = path.resolve(
-  `${exports.routerGeneratorInputPath}/templates`
-);
-export const routerGeneratorBackendRouterTemplatePath: string = path.resolve(
-  `${exports.routerGeneratorTemplatePath}/backend_router.handlebars`
-);
-export const routerGeneratorBackendValidationTemplatePath: string = path.resolve(
-  `${exports.routerGeneratorTemplatePath}/backend_validator.handlebars`
-);
-export const routerGeneratorBackendHandlerTemplatePath: string = path.resolve(
-  `${exports.routerGeneratorTemplatePath}/backend_handler.handlebars`
-);
-export const routerGeneratorFrontendFetcherTemplatePath: string = path.resolve(
-  `${exports.routerGeneratorTemplatePath}/frontend_fetch.handlebars`
+  `${scriptsPath}/src/templates`
 );
