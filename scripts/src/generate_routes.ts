@@ -14,7 +14,7 @@ import {
   frontendEndpointOutputDir,
   routerGeneratorInputPath,
 } from "./common_path";
-import { rebuildAllIfNeeded } from "./needs_rebuild";
+import { rebuildAndRestartIfNeeded } from "./needs_rebuild";
 import { Route, RouteEndpoint } from "./route";
 import { backendHandlerTemplate } from "./templates/backend_handler.template";
 import { backendRouterTemplate } from "./templates/backend_router.template";
@@ -157,7 +157,7 @@ function generateFrontendfetch(parsedRoute: Route) {
   const [execEnv, scriptPath, stringArgs] = process.argv;
   const arrayArgs = stringArgs ? stringArgs.split(" ") : [];
   const force: boolean = arrayArgs.includes("-f");
-  rebuildAllIfNeeded(force);
+  rebuildAndRestartIfNeeded(force);
 
   const files = readdirSync(`${routerGeneratorInputPath}/routes`);
   files.forEach((file) => {

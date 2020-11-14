@@ -2,6 +2,7 @@
 
 import { exec } from "child_process";
 import { backendPath, frontendPath } from "./common_path";
+import { rebuildAndRestartIfNeeded } from "./needs_rebuild";
 
 export function execAndLog(command: string) {
   const com = exec(command);
@@ -32,6 +33,8 @@ function startFrontend() {
 (function start() {
   const [execEnv, scriptPath, stringArgs] = process.argv;
   const arrayArgs = stringArgs ? stringArgs.split(" ") : [];
+  const force: boolean = arrayArgs.includes("-f");
+  rebuildAndRestartIfNeeded(force);
 
   console.info(`start script called with args: [${arrayArgs}]`);
 

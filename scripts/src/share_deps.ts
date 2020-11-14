@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { readFileSync, writeFileSync } from "fs";
 import { backendPath, frontendPath, globalPath } from "./common_path";
+import { rebuildAndRestartIfNeeded } from "./needs_rebuild";
 
 function addPackage(commonPackage: any, path: string) {
   console.info(`adding package at path ${path}`);
@@ -54,7 +55,11 @@ function addPackageFrontend(commonPackage: any) {
 }
 
 (function start() {
-  const [execEnv, scriptPath, serverType] = process.argv;
+  const [execEnv, scriptPath, stringArgs] = process.argv;
+  const arrayArgs = stringArgs ? stringArgs.split(" ") : [];
+  const force: boolean = arrayArgs.includes("-f");
+  rebuildAndRestartIfNeeded(force);
+
   console.log(`sharing package.json update`);
 
   console.log(`reading common package.json file`);
