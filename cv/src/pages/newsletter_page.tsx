@@ -5,8 +5,6 @@ import { ButtonComponent } from "../button/button_component";
 import { fetchNewsletterAll } from "../generated/endpoints/all_fetch";
 import { fetchNewsletterSubscribe } from "../generated/endpoints/subscribe_fetch";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
-import { FooterAdjustedPageContent } from "../page_footer/footer_adjusted_page_content";
-import { PageFooter } from "../page_footer/page_footer";
 import { RouteURL } from "../router/router";
 import { Newsletter } from "./newsletter";
 
@@ -49,12 +47,12 @@ export const NewsletterPageComponent = () => {
 
   const subscribeStyle = useSubscribeStyle();
   return (
-    <div css={subscribeStyle}>
-        <BackButtonComponent backLink={RouteURL.HOME} />
-
+    <>
+      <BackButtonComponent backLink={RouteURL.HOME} />
+      <div css={subscribeStyle}>
         <div className="subscribe-form">
           <div className="headline">
-            Subscribe to get access to the latest news on remote working
+            Get the latest news on remote working - now!
           </div>
           <div className="submit-group">
             <div className="input-wrapper">
@@ -101,7 +99,8 @@ export const NewsletterPageComponent = () => {
             <div key={u._id}>{u.email}</div>
           ))}
         </div>
-    </div>
+      </div>
+    </>
   );
 };
 
@@ -119,10 +118,14 @@ const useSubscribeStyle = () => {
 
       padding: 20px;
 
-      width: 50%;
       margin: auto;
       background-color: ${theme.grayscale.background};
       border: 0.5px solid ${theme.grayscale.borderOnBackground};
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
       > * {
       }
