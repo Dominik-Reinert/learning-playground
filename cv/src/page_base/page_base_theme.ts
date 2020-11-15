@@ -31,21 +31,21 @@ export const orangeTheme: PageBaseTheme = {
       weight: "800",
     },
     subHeadline: {
-      size: "18px",
+      size: "20px",
       weight: "500",
     },
     outline: {
-      size: "13px",
+      size: "16px",
       weight: "500",
     },
     normal: {
-      size: "13px",
+      size: "16px",
       weight: "300",
     },
     additionalInfo: {
-      size: '11px',
-      weight: '300'
-    }
+      size: "12px",
+      weight: "300",
+    },
   },
   colors: {
     dark: "#FE5800",

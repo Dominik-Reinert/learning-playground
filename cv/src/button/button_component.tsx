@@ -54,6 +54,7 @@ export const ButtonComponent: React.FunctionComponent<ButtonComponentProps> = (
 
 const useButtonComponentStyle = () => {
   const theme = usePageBaseTheme();
+  const hoverStyle = useButtonHoverStyle(false);
   return css`
     label: button;
     cursor: pointer;
@@ -63,17 +64,35 @@ const useButtonComponentStyle = () => {
     text-align: center;
     text-transform: uppercase;
 
+    ${hoverStyle}
+
     padding: 8px;
   `;
 };
 
 const useSecondaryButtonComponentStyle = () => {
   const theme = usePageBaseTheme();
+  const hoverStyle = useButtonHoverStyle(true);
   return css`
     label: button;
     cursor: pointer;
 
+    ${hoverStyle}
+
     color: ${theme.colors.normal};
     background-color: ${theme.grayscale.background};
+  `;
+};
+
+const useButtonHoverStyle = (secondaryButton: boolean) => {
+  const theme = usePageBaseTheme();
+  return css`
+    label: button-hover;
+
+    &:hover {
+      ${secondaryButton
+        ? `color: ${theme.colors.dark}`
+        : `background-color: ${theme.colors.dark}`}
+    }
   `;
 };

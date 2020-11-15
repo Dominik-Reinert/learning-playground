@@ -137,6 +137,10 @@ const useSkillsRootStyle = () => {
 
     .top-skills {
       margin-bottom: 40px;
+
+      .technology {
+        color: ${theme.colors.normal};
+      }
     }
 
     @media only screen and (max-width: 1000px) {
@@ -158,7 +162,7 @@ const useSkillsListStyle = () => {
     margin-bottom: 40px;
 
     .header {
-      color: ${theme.grayscale.labelOnBackground};
+      color: ${theme.colors.normal};
       font-size: ${theme.fonts.subHeadline.size};
       font-weight: ${theme.fonts.subHeadline.weight};
       margin: 8px 0;
@@ -175,11 +179,16 @@ const useSkillsListStyle = () => {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+
+        color: ${theme.grayscale.labelOnBackground};
+        font-size: ${theme.fonts.normal.size};
+        font-weight: ${theme.fonts.normal.weight};
       }
 
       i {
         margin: auto;
         color: ${theme.grayscale.labelOnBackground};
+        font-size: ${theme.fonts.normal.size};
       }
 
       margin: 8px;
