@@ -71,7 +71,9 @@ const useAnchorStyle = () => {
         text-decoration: none;
         outline: none;
         color: ${theme.grayscale.labelOnColor};
-        
+        font-size: ${theme.fonts.normal.size};
+        font-weight: ${theme.fonts.normal.weight};
+
         &:hover {
           color: ${theme.colors.normal};
         }
