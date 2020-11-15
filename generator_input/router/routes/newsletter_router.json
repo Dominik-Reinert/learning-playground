@@ -10,6 +10,23 @@
           "function": "getAll"
         }
       }
+    },
+    {
+      "eName": "subscribe",
+      "method": "post",
+      "body": [
+        { "name": "name", "type": "string" },
+        { "name": "lastName", "type": "string" },
+        { "name": "email", "type": "string" }
+      ],
+      "handler": {
+        "validation": {
+          "function": "validateSubscription"
+        },
+        "request": {
+          "function": "handleSubscription"
+        }
+      }
     }
   ]
 }

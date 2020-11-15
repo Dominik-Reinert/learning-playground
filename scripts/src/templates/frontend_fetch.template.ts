@@ -13,7 +13,11 @@ ${endpoint.response ? generateResponseInterface(endpoint) : ""}
 export async function fetch${endpoint.interfaceName} (
         ${endpoint.param ? `${endpoint.param}: string,` : ""}
         ${endpoint.body ? `body: ${endpoint.interfaceName}RequestBody,` : ""}
-        onSuccess: (response: ${endpoint.interfaceName}HandlerResponse) => void,
+        onSuccess: (${
+          endpoint.response
+            ? `response: ${endpoint.interfaceName}HandlerResponse`
+            : ""
+        }) => void,
         onFailed: () => void
     ): Promise<void> {
     const response = await fetch(\`http://localhost:3001/api/${routerName}/${
@@ -26,7 +30,7 @@ export async function fetch${endpoint.interfaceName} (
         ${endpoint.body ? `body: JSON.stringify(${endpoint.param})` : ""}
     });
     if (response.ok) {
-        onSuccess(await response.json());
+        onSuccess(${endpoint.response ? `await response.json()` : ""});
     } else {
         onFailed();
     }
@@ -37,13 +41,15 @@ export async function fetch${endpoint.interfaceName} (
 function generateBodyInterface(endpoint: RouteEndpoint): string {
   return `
 export interface ${endpoint.interfaceName}RequestBody {
-    ${endpoint.body?.map(({ name, type }) => `${name}: ${type};\n\t`) ?? ""}
+    ${endpoint.body.map(({ name, type }) => `${name}: ${type};`).join("\n\t")}
 }`;
 }
 
 function generateResponseInterface(endpoint: RouteEndpoint): string {
   return `
 export interface ${endpoint.interfaceName}HandlerResponse {
-    ${endpoint.response?.map(({ name, type }) => `${name}: ${type};\n\t`) ?? ""}
+    ${endpoint.response
+      .map(({ name, type }) => `${name}: ${type};`)
+      .join("\n\t")}
 }`;
 }
