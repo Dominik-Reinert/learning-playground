@@ -116,7 +116,7 @@ const useSubscribeStyle = () => {
 
       min-height: 180px;
 
-      padding: 8px;
+      padding: 20px;
 
       width: 50%;
       margin: auto;
@@ -129,19 +129,20 @@ const useSubscribeStyle = () => {
       .headline {
         color: ${theme.grayscale.labelOnBackground};
         border-bottom: 0.5px solid ${theme.grayscale.borderOnBackground};
+        padding-bottom: 12px;
+        margin-bottom: 12px;
       }
 
       .submit-group {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        min-height: 200px;
+        min-height: 220px;
 
         .input-wrapper {
           background-color: white;
 
-          padding: 2px;
-          margin-right: 8px;
+          padding: 4px;
 
           input {
             border: none;
