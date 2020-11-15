@@ -50,8 +50,8 @@ const useImpressumModalStyle = () => {
     width: 400px;
 
     .title {
-      font-weight: bolder;
       text-align: center;
+      color: ${theme.grayscale.labelOnBackground};
       font-size: ${theme.fonts.subHeadline.size};
       font-weight: ${theme.fonts.subHeadline.weight};
     }

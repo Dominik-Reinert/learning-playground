@@ -125,14 +125,14 @@ const useSkillsRootStyle = () => {
     }
 
     .technology {
-      font-weight: bold;
+      color: ${theme.grayscale.labelOnBackground};
       font-size: ${theme.fonts.subHeadline.size};
       font-weight: ${theme.fonts.subHeadline.weight};
     }
 
     .stars {
       margin-top: 8px;
-      color: ${theme.grayscale.background};
+      color: ${theme.grayscale.labelOnBackground};
     }
 
     .top-skills {
@@ -158,7 +158,7 @@ const useSkillsListStyle = () => {
     margin-bottom: 40px;
 
     .header {
-      font-weight: bold;
+      color: ${theme.grayscale.labelOnBackground};
       font-size: ${theme.fonts.subHeadline.size};
       font-weight: ${theme.fonts.subHeadline.weight};
       margin: 8px 0;
@@ -179,7 +179,7 @@ const useSkillsListStyle = () => {
 
       i {
         margin: auto;
-        color: ${theme.grayscale.background};
+        color: ${theme.grayscale.labelOnBackground};
       }
 
       margin: 8px;

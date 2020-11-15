@@ -28,7 +28,7 @@ export const CvProfileSubpageComponent: React.FunctionComponent<React.PropsWithC
 
   const ContentPart = (props) => (
     <div className="profile-page-content-part">
-      <b>{props.header}</b>
+      <div>{props.header}</div>
       <span>{props.children}</span>
     </div>
   );

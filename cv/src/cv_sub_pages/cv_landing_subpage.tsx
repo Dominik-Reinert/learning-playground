@@ -69,7 +69,7 @@ const useNameStyle = () => {
 
     color: ${theme.grayscale.dark};
 
-    border-bottom: 1px solid ${theme.grayscale.labelOnBackground};
+    border-bottom: 1px solid ${theme.grayscale.borderOnBackground};
   `;
 };
 
@@ -84,6 +84,6 @@ const useSubpageHeaderStyle = () => {
     font-size: ${theme.fonts.subHeadline.size};
     font-weight: ${theme.fonts.subHeadline.weight};
 
-    color: ${theme.grayscale.dark};
+    color: ${theme.grayscale.labelOnBackground};
   `;
 };

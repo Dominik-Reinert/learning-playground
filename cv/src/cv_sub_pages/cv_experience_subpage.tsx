@@ -90,7 +90,7 @@ const useCvPageStyle = () => {
         }
 
         &-left {
-          border-bottom: 1px solid ${theme.colors.normal};
+          border-bottom: 1px solid  ${theme.grayscale.borderOnBackground};
           margin-bottom: 25px;
         }
       }
@@ -124,7 +124,7 @@ const useCvPageStyle = () => {
       }
 
       &-institute {
-        font-size: large;
+        color: ${theme.grayscale.labelOnBackground};
         margin: 0 8px 8px;
         float: left;
       }
@@ -134,17 +134,16 @@ const useCvPageStyle = () => {
       }
 
       &-headline {
-        font-size: normal;
+        color: ${theme.grayscale.labelOnBackground};
         margin: 8px;
       }
 
       &-text {
         margin: 8px 8px 16px;
       }
-
       &-location {
         margin: 8px 8px 16px;
-        color: ${theme.colors.dark};
+        color: ${theme.grayscale.labelOnBackground};
         white-space: nowrap;
 
         &-website {

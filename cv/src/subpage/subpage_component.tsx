@@ -87,7 +87,7 @@ const useSubPageStyle = (colorBackground?: boolean) => {
       .header {
         text-align: center;
 
-        border-bottom: 1px solid ${theme.colors.normal};
+        border-bottom: 1px solid ${theme.grayscale.borderOnBackground};
 
         margin-bottom: 24px;
 
@@ -101,7 +101,7 @@ const useSubPageStyle = (colorBackground?: boolean) => {
         p {
           font-size: ${theme.fonts.subHeadline.size};
           font-weight: ${theme.fonts.subHeadline.weight};
-          color: ${theme.grayscale.dark};
+          color: ${theme.grayscale.labelOnBackground};
 
           &.quote {
             font-style: italic;
