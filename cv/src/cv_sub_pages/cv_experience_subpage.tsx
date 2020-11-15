@@ -27,13 +27,13 @@ export const CvExperienceSubPageComponent: React.FunctionComponent<React.PropsWi
   ) => (
     <div key={`experience-${index}-${institute}`} className="experience-entry">
       <div className="experience-left">
-        <b className="experience-institute">{institute}</b>
+        <div className="experience-institute">{institute}</div>
         <div className="experience-date">
           <span>{date.start}</span>-<span>{date.end}</span>
         </div>
       </div>
       <div className="experience-right">
-        <b className="experience-headline">{headline}</b>
+        <div className="experience-headline">{headline}</div>
         {text && <div className="experience-text">{text}</div>}
         <div className="experience-location">
           {location}
@@ -90,7 +90,7 @@ const useCvPageStyle = () => {
         }
 
         &-left {
-          border-bottom: 1px solid  ${theme.grayscale.borderOnBackground};
+          border-bottom: 1px solid ${theme.grayscale.borderOnBackground};
           margin-bottom: 25px;
         }
       }
@@ -119,38 +119,52 @@ const useCvPageStyle = () => {
         &:not(:first-of-type) {
           margin: 8px 8px 16px;
           padding: 72px 0 0 0;
-          border-top: 1px solid ${theme.colors.normal};
+          border-top: 1px solid ${theme.grayscale.borderOnBackground};
         }
       }
 
       &-institute {
         color: ${theme.grayscale.labelOnBackground};
+        font-size: ${theme.fonts.subHeadline.size};
+        font-weight: ${theme.fonts.subHeadline.weight};
         margin: 0 8px 8px;
         float: left;
       }
 
       &-date {
+        color: ${theme.grayscale.labelOnBackground};
+        font-size: ${theme.fonts.additionalInfo.size};
+        font-weight: ${theme.fonts.additionalInfo.weight};
         margin: 8px 8px 16px;
       }
 
       &-headline {
         color: ${theme.grayscale.labelOnBackground};
+        font-size: ${theme.fonts.subHeadline.size};
+        font-weight: ${theme.fonts.subHeadline.weight};
         margin: 8px;
       }
 
       &-text {
         margin: 8px 8px 16px;
+        color: ${theme.grayscale.labelOnBackground};
+        font-size: ${theme.fonts.normal.size};
+        font-weight: ${theme.fonts.normal.weight};
       }
+
       &-location {
         margin: 8px 8px 16px;
         color: ${theme.grayscale.labelOnBackground};
         white-space: nowrap;
 
+        font-size: ${theme.fonts.additionalInfo.size};
+        font-weight: ${theme.fonts.additionalInfo.weight};
+
         &-website {
           margin-left: 8px;
           padding-left: 8px;
 
-          border-left: 1px solid ${theme.colors.normal};
+          border-left: 1px solid ${theme.grayscale.borderOnBackground};
         }
       }
     }

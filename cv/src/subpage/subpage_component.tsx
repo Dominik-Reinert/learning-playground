@@ -92,10 +92,9 @@ const useSubPageStyle = (colorBackground?: boolean) => {
         margin-bottom: 24px;
 
         h1 {
+          color: ${theme.colors.normal};
           font-size: ${theme.fonts.headline.size};
           font-weight: ${theme.fonts.headline.weight};
-
-          color: ${theme.grayscale.dark};
         }
 
         p {

@@ -5,7 +5,7 @@ export const useHeaderStyle = () => {
   const theme = usePageBaseTheme();
   return css`
     label: header;
-    color: ${theme.grayscale.labelOnBackground};
+    color: ${theme.colors.normal};
     font-size: ${theme.fonts.subHeadline.size};
     font-weight: ${theme.fonts.subHeadline.weight};
 
