@@ -42,7 +42,7 @@ export const CvProfileSubpageComponent: React.FunctionComponent<React.PropsWithC
         </Content>
       </Divider>
       <Divider>
-        <ImageComponent src="20200226_183837-01.jpeg" css={profilePicStyle} />
+        <ImageComponent src="" css={profilePicStyle} />
       </Divider>
       <Divider>
         <Header>{t("detailsHeadline")}</Header>

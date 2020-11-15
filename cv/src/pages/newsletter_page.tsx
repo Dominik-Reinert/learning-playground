@@ -5,6 +5,7 @@ import { ButtonComponent } from "../button/button_component";
 import { fetchNewsletterAll } from "../generated/endpoints/all_fetch";
 import { fetchNewsletterSubscribe } from "../generated/endpoints/subscribe_fetch";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
+import { FooterAdjustedPageContent } from "../page_footer/footer_adjusted_page_content";
 import { PageFooter } from "../page_footer/page_footer";
 import { RouteURL } from "../router/router";
 import { Newsletter } from "./newsletter";
@@ -49,58 +50,57 @@ export const NewsletterPageComponent = () => {
   const subscribeStyle = useSubscribeStyle();
   return (
     <div css={subscribeStyle}>
-      <BackButtonComponent backLink={RouteURL.HOME} />
+        <BackButtonComponent backLink={RouteURL.HOME} />
 
-      <div className="subscribe-form">
-        <div className="headline">
-          Subscribe to get access to the latest news on remote working
+        <div className="subscribe-form">
+          <div className="headline">
+            Subscribe to get access to the latest news on remote working
+          </div>
+          <div className="submit-group">
+            <div className="input-wrapper">
+              <input
+                ref={nameInputRef}
+                type="text"
+                required={true}
+                maxLength={32}
+                placeholder="name"
+              />
+            </div>
+            <div className="input-wrapper">
+              <input
+                ref={lastNameInputRef}
+                type="text"
+                required={true}
+                maxLength={32}
+                placeholder="last name"
+              />
+            </div>
+            <div className="input-wrapper">
+              <input
+                ref={emailInputRef}
+                type="email"
+                required={true}
+                maxLength={500}
+                placeholder="email"
+              />
+            </div>
+            <ButtonComponent label={"Subscribe"} onClick={handleSubmit} />
+          </div>
         </div>
-        <div className="submit-group">
-          <div className="input-wrapper">
-            <input
-              ref={nameInputRef}
-              type="text"
-              required={true}
-              maxLength={32}
-              placeholder="name"
-            />
-          </div>
-          <div className="input-wrapper">
-            <input
-              ref={lastNameInputRef}
-              type="text"
-              required={true}
-              maxLength={32}
-              placeholder="last name"
-            />
-          </div>
-          <div className="input-wrapper">
-            <input
-              ref={emailInputRef}
-              type="email"
-              required={true}
-              maxLength={500}
-              placeholder="email"
-            />
-          </div>
-          <ButtonComponent label={"Subscribe"} onClick={handleSubmit} />
-        </div>
-      </div>
 
-      {subscribed && (
+        {subscribed && (
+          <div>
+            Successfully subscribed to newsletter! Please check your email for
+            the activation link!
+          </div>
+        )}
+
         <div>
-          Successfully subscribed to newsletter! Please check your email for the
-          activation link!
+          Subscriptions:
+          {subscriptions.map((u) => (
+            <div key={u._id}>{u.email}</div>
+          ))}
         </div>
-      )}
-
-      <div>
-        Subscriptions:
-        {subscriptions.map((u) => (
-          <div key={u._id}>{u.email}</div>
-        ))}
-      </div>
-      <PageFooter />
     </div>
   );
 };
@@ -109,6 +109,7 @@ const useSubscribeStyle = () => {
   const theme = usePageBaseTheme();
   return css`
     label: subscribe-form;
+    height: 100%;
 
     .subscribe-form {
       display: flex;

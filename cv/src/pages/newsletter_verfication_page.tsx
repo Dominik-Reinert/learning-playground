@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import { BackButtonComponent } from "../back_button/back_button_component";
-import { PageFooter } from "../page_footer/page_footer";
 import { RouteURL } from "../router/router";
 
 export const NewsletterVerificationPageComponent = () => {
@@ -25,7 +24,6 @@ export const NewsletterVerificationPageComponent = () => {
       <div>Subscribed with id {id}</div>
       {loading && `Loading...`}
       {errorMsg && <div>Error {errorMsg}</div>}
-      <PageFooter />
     </div>
   );
 };

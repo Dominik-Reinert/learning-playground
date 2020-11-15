@@ -30,10 +30,11 @@ const usePageFooterStyle = () => {
 
     justify-content: space-evenly;
 
-    color: ${theme.grayscale.background};
+    color: ${theme.grayscale.labelOnColor};
     background-color: ${theme.grayscale.dark};
 
     padding: 20px 0;
+    margin-top: -60px;
 
     > div {
       flex: 12 0 0;
@@ -42,7 +43,7 @@ const usePageFooterStyle = () => {
 
     a {
       text-decoration: none;
-      color: ${theme.colors.normal};
+      color: ${theme.grayscale.labelOnColor};
     }
 
     .impressum {

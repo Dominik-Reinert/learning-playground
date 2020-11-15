@@ -71,7 +71,6 @@ export const CvPageComponent = () => {
         <CvSkillsSubPageComponent />
       </SubPageComponent>
 
-      <PageFooter />
     </BackgroundComponent>
   );
 };

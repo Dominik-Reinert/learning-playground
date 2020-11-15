@@ -13,19 +13,18 @@ export const HomePageComponent = () => {
           {
             link: RouteURL.NEWSLETTER,
             linkLabel: "Newsletter",
-            picture: "public/20200226_183837-01.jpeg",
+            picture: "",
             text:
               "Check out my awesome newsletter with info on reomte work across europe!",
           },
           {
             link: RouteURL.CV,
             linkLabel: "Curriculum vitae",
-            picture: "public/tab-cv-bg.jpg",
+            picture: "",
             text: "Check out my my curriculum vitae to get to know me better!",
           },
         ]}
       />
-      <PageFooter />
     </div>
   );
 };
