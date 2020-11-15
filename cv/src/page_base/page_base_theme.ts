@@ -1,4 +1,15 @@
+interface PageBaseThemefont {
+  size: string;
+  weight: string;
+}
+
 export interface PageBaseTheme {
+  fonts: {
+    headline: PageBaseThemefont;
+    subHeadline: PageBaseThemefont;
+    outline: PageBaseThemefont;
+    normal: PageBaseThemefont;
+  };
   colors: {
     dark: string;
     normal: string;
@@ -13,6 +24,24 @@ export interface PageBaseTheme {
 }
 
 export const orangeTheme: PageBaseTheme = {
+  fonts: {
+    headline: {
+      size: "24px",
+      weight: "800",
+    },
+    subHeadline: {
+      size: "18px",
+      weight: "500",
+    },
+    outline: {
+      size: "13px",
+      weight: "500",
+    },
+    normal: {
+      size: "13px",
+      weight: "300",
+    },
+  },
   colors: {
     dark: "#FE5800",
     normal: "#FF7300",

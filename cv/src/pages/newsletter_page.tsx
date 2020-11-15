@@ -115,6 +115,7 @@ const useSubscribeStyle = () => {
       flex-direction: column;
 
       min-height: 180px;
+      min-width: 385px;
 
       padding: 20px;
 
@@ -127,12 +128,14 @@ const useSubscribeStyle = () => {
       left: 50%;
       transform: translate(-50%, -50%);
 
-      > * {
-      }
-
       .headline {
+        font-size: ${theme.fonts.headline.size};
+        font-weight: ${theme.fonts.headline.weight};
+
         color: ${theme.grayscale.labelOnBackground};
+
         border-bottom: 0.5px solid ${theme.grayscale.borderOnBackground};
+
         padding-bottom: 12px;
         margin-bottom: 12px;
       }

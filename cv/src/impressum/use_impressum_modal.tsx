@@ -52,7 +52,8 @@ const useImpressumModalStyle = () => {
     .title {
       font-weight: bolder;
       text-align: center;
-      font-size: xx-large;
+      font-size: ${theme.fonts.subHeadline.size};
+      font-weight: ${theme.fonts.subHeadline.weight};
     }
 
     .subtitle {

@@ -6,7 +6,8 @@ export const useHeaderStyle = () => {
   return css`
     label: header;
     color: ${theme.grayscale.dark};
-    font-size: x-large;
+    font-size: ${theme.fonts.subHeadline.size};
+    font-weight: ${theme.fonts.subHeadline.weight};
 
     margin: 16px 8px;
   `;

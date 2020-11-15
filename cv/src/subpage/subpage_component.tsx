@@ -92,12 +92,15 @@ const useSubPageStyle = (colorBackground?: boolean) => {
         margin-bottom: 24px;
 
         h1 {
-          font-size: xxx-large;
+          font-size: ${theme.fonts.headline.size};
+          font-weight: ${theme.fonts.headline.weight};
+
           color: ${theme.grayscale.dark};
         }
 
         p {
-          font-size: x-large;
+          font-size: ${theme.fonts.subHeadline.size};
+          font-weight: ${theme.fonts.subHeadline.weight};
           color: ${theme.grayscale.dark};
 
           &.quote {

@@ -64,7 +64,8 @@ const useNameStyle = () => {
     padding-bottom: 8px;
 
     text-align: center;
-    font-size: xxx-large;
+    font-size: ${theme.fonts.headline.size};
+    font-weight: ${theme.fonts.headline.weight};
 
     color: ${theme.grayscale.dark};
 
@@ -80,7 +81,8 @@ const useSubpageHeaderStyle = () => {
     margin: 8px;
 
     text-align: center;
-    font-size: x-large;
+    font-size: ${theme.fonts.subHeadline.size};
+    font-weight: ${theme.fonts.subHeadline.weight};
 
     color: ${theme.grayscale.dark};
   `;

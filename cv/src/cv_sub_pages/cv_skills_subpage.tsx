@@ -126,7 +126,8 @@ const useSkillsRootStyle = () => {
 
     .technology {
       font-weight: bold;
-      font-size: x-large;
+      font-size: ${theme.fonts.subHeadline.size};
+      font-weight: ${theme.fonts.subHeadline.weight};
     }
 
     .stars {
@@ -158,7 +159,8 @@ const useSkillsListStyle = () => {
 
     .header {
       font-weight: bold;
-      font-size: x-large;
+      font-size: ${theme.fonts.subHeadline.size};
+      font-weight: ${theme.fonts.subHeadline.weight};
       margin: 8px 0;
     }
 
