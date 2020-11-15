@@ -17,6 +17,7 @@ export interface PageBaseTheme {
   };
   grayscale: {
     dark: string;
+    hoverOnDark: string;
     labelOnBackground: string;
     borderOnBackground: string;
     background: string;
@@ -53,6 +54,7 @@ export const orangeTheme: PageBaseTheme = {
   },
   grayscale: {
     dark: "#444444",
+    hoverOnDark: "#5f5f5f",
     labelOnBackground: "#606060",
     borderOnBackground: "#d8d8d8",
     labelOnColor: "#fafafa",

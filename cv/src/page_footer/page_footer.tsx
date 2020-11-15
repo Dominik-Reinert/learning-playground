@@ -44,10 +44,18 @@ const usePageFooterStyle = () => {
     a {
       text-decoration: none;
       color: ${theme.grayscale.labelOnColor};
+
+      &:hover {
+        color: ${theme.grayscale.hoverOnDark};
+      }
     }
 
     .impressum {
       cursor: pointer;
+
+      &:hover {
+        color: ${theme.grayscale.hoverOnDark};
+      }
     }
 
     .github {
@@ -56,6 +64,10 @@ const usePageFooterStyle = () => {
       overflow: hidden;
 
       min-width: 180px;
+
+      &:hover {
+        color: ${theme.grayscale.hoverOnDark};
+      }
     }
   `;
 };
