@@ -70,10 +70,18 @@ const useAnchorStyle = () => {
       &-anchor {
         text-decoration: none;
         outline: none;
-        color: ${theme.grayscale.background};
+        color: ${theme.grayscale.labelOnColor};
+        
+        &:hover {
+          color: ${theme.colors.normal};
+        }
 
         &.selected {
           color: ${theme.colors.normal};
+
+          &:hover {
+            color: ${theme.colors.dark};
+          }
         }
       }
 
