@@ -2,6 +2,7 @@ import { css } from "@emotion/core";
 import * as React from "react";
 import { BackButtonComponent } from "../back_button/back_button_component";
 import { fetchNewsletterAll } from "../generated/endpoints/all_fetch";
+import { fetchNewsletterSubscribe } from "../generated/endpoints/subscribe_fetch";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
 import { PageFooter } from "../page_footer/page_footer";
 import { RouteURL } from "../router/router";
@@ -12,17 +13,19 @@ export const NewsletterPageComponent = () => {
   const inputRef = React.useRef<HTMLInputElement>(undefined);
   const handleSubmit = React.useCallback(() => {
     if (inputRef.current.validity.valid) {
-      fetch("http://localhost:3001/api/newsletter/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      fetchNewsletterSubscribe(
+        {
+          name: "",
+          lastName: "",
+          email: inputRef.current.value,
         },
-        body: JSON.stringify({ email: inputRef.current.value }),
-      }).then((response: Response) => {
-        if (response.ok) {
+        () => {
           setSubscribed(true);
+        },
+        () => {
+          console.error("something went wrong!");
         }
-      });
+      );
     }
   }, [inputRef.current]);
 

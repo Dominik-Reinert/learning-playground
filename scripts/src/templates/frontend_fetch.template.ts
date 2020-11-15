@@ -27,7 +27,7 @@ export async function fetch${endpoint.interfaceName} (
         headers: {
             "Content-Type": "application/json",
         },
-        ${endpoint.body ? `body: JSON.stringify(${endpoint.param})` : ""}
+        ${endpoint.body ? `body: JSON.stringify(body)` : ""}
     });
     if (response.ok) {
         onSuccess(${endpoint.response ? `await response.json()` : ""});
