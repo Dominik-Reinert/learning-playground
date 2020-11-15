@@ -42,7 +42,10 @@ export const ButtonComponent: React.FunctionComponent<ButtonComponentProps> = (
   };
 
   return (
-    <div css={props.isSecondaryButton ? secondaryStyle : buttonStyle} onClick={() => props.onClick?.()}>
+    <div
+      css={props.isSecondaryButton ? secondaryStyle : buttonStyle}
+      onClick={() => props.onClick?.()}
+    >
       {renderIcon()}
       <span className="label">{props.label}</span>
     </div>
@@ -55,17 +58,12 @@ const useButtonComponentStyle = () => {
     label: button;
     cursor: pointer;
 
-    background-color: ${theme.colors.dark};
+    color: ${theme.grayscale.labelOnColor};
+    background-color: ${theme.colors.normal};
+    text-align: center;
+    text-transform: uppercase;
 
     padding: 8px;
-
-    .label {
-      color: ${theme.grayscale.light};
-    }
-
-    .icon {
-      color: ${theme.grayscale.light};
-    }
   `;
 };
 
@@ -75,16 +73,7 @@ const useSecondaryButtonComponentStyle = () => {
     label: button;
     cursor: pointer;
 
-    background-color: ${theme.grayscale.light};
-
-    padding: 8px;
-
-    .label {
-      color: ${theme.grayscale.dark};
-    }
-
-    .icon {
-      color: ${theme.grayscale.dark};
-    }
+    color: ${theme.colors.normal};
+    background-color: ${theme.grayscale.background};
   `;
 };

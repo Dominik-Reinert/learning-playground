@@ -35,7 +35,7 @@ const useImageCenterRootStyle = () => {
     background: linear-gradient(
       0deg,
       ${theme.colors.dark} 0%,
-      ${theme.grayscale.light} 100%
+      ${theme.grayscale.background} 100%
     );
 
     position: relative;
@@ -68,7 +68,7 @@ const useNameStyle = () => {
 
     color: ${theme.grayscale.dark};
 
-    border-bottom: 1px solid ${theme.grayscale.normal};
+    border-bottom: 1px solid ${theme.grayscale.labelOnBackground};
   `;
 };
 

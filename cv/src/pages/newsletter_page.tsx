@@ -58,18 +58,20 @@ export const NewsletterPageComponent = () => {
         <div className="submit-group">
           <div className="input-wrapper">
             <input
-              ref={emailInputRef}
+              ref={nameInputRef}
               type="text"
               required={true}
               maxLength={32}
+              placeholder="name"
             />
           </div>
           <div className="input-wrapper">
             <input
-              ref={emailInputRef}
+              ref={lastNameInputRef}
               type="text"
               required={true}
               maxLength={32}
+              placeholder="last name"
             />
           </div>
           <div className="input-wrapper">
@@ -78,9 +80,10 @@ export const NewsletterPageComponent = () => {
               type="email"
               required={true}
               maxLength={500}
+              placeholder="email"
             />
           </div>
-          <ButtonComponent label={"Submit"} onClick={handleSubmit} />
+          <ButtonComponent label={"Subscribe"} onClick={handleSubmit} />
         </div>
       </div>
 
@@ -117,15 +120,22 @@ const useSubscribeStyle = () => {
 
       width: 50%;
       margin: auto;
+      background-color: ${theme.grayscale.background};
+      border: 0.5px solid ${theme.grayscale.borderOnBackground};
 
       > * {
       }
 
       .headline {
+        color: ${theme.grayscale.labelOnBackground};
+        border-bottom: 0.5px solid ${theme.grayscale.borderOnBackground};
       }
 
       .submit-group {
         display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        min-height: 200px;
 
         .input-wrapper {
           background-color: white;

@@ -72,9 +72,7 @@ const useSubPageStyle = (colorBackground?: boolean) => {
 
     display: flex;
 
-    background-color: ${colorBackground
-      ? theme.colors.light
-      : theme.grayscale.light};
+    background-color: ${theme.grayscale.background};
 
     min-height: 80vh;
     width: 100%;

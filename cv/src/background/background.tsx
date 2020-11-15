@@ -17,6 +17,6 @@ const useBackgroundStyle = () => {
     label: background;
 
     height: 100%;
-    background-color: ${theme.grayscale.light};
+    background-color: ${theme.grayscale.background};
   `;
 };

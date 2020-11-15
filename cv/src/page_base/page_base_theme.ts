@@ -2,24 +2,26 @@ export interface PageBaseTheme {
   colors: {
     dark: string;
     normal: string;
-    light: string;
   };
   grayscale: {
     dark: string;
-    normal: string;
-    light: string;
+    labelOnBackground: string;
+    borderOnBackground: string;
+    background: string;
+    labelOnColor: string;
   };
 }
 
-export const blueTheme: PageBaseTheme = {
+export const orangeTheme: PageBaseTheme = {
   colors: {
-    dark: "#9ECDE9",
-    normal: "#B4D9EE",
-    light: "#D2ECFA",
+    dark: "#FE5800",
+    normal: "#FF7300",
   },
   grayscale: {
-    dark: "#AAAAAA",
-    normal: "#BBBBBB",
-    light: "#CFCFCF",
+    dark: "#444444",
+    labelOnBackground: "#606060",
+    borderOnBackground: "#d8d8d8",
+    labelOnColor: "#fafafa",
+    background: "#f5f5f5",
   },
 };

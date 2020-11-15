@@ -70,7 +70,7 @@ const useAnchorStyle = () => {
       &-anchor {
         text-decoration: none;
         outline: none;
-        color: ${theme.grayscale.light};
+        color: ${theme.grayscale.background};
 
         &.selected {
           color: ${theme.colors.normal};

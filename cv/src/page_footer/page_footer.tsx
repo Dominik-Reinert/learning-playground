@@ -30,7 +30,7 @@ const usePageFooterStyle = () => {
 
     justify-content: space-evenly;
 
-    color: ${theme.grayscale.light};
+    color: ${theme.grayscale.background};
     background-color: ${theme.grayscale.dark};
 
     padding: 20px 0;

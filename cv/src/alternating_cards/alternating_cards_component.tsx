@@ -1,6 +1,7 @@
 import { css } from "@emotion/core";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import { ButtonComponent } from "../button/button_component";
 import { RouteURL } from "../router/router";
 
 export interface AlternatingCardsComponentProps {
@@ -85,6 +86,7 @@ const CardComponent = (props: CardComponentProps) => {
       <div className="card-content-wrapper">
         <div className="card-text">{props.text}</div>
         <div className="card-link link-wrapper">
+          <ButtonComponent label='go to newsletter' onClick={() => {}}  />
           <Link to={`${props.link}`}>{props.linkLabel}</Link>
         </div>
       </div>

@@ -47,7 +47,7 @@ const useHomepageStyle = () => {
     .link-wrapper {
       cursor: pointer;
       color: ${theme.colors.normal};
-      background-color: ${theme.grayscale.light};
+      background-color: ${theme.grayscale.background};
       padding: 6px;
       margin: 18px;
       text-align: center;
