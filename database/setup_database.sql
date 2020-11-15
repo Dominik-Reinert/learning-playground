@@ -3,6 +3,8 @@ USE CV;
 CREATE TABLE newsletter_subscription (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
     hash_id VARCHAR(32) NOT NULL DEFAULT 0,
+    name VARCHAR(32),
+    last_name VARCHAR(32),
     email VARCHAR(500), 
     verified BOOLEAN, 
     creation_date TIMESTAMP NOT NULL DEFAULT current_timestamp
