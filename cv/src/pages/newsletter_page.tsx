@@ -1,6 +1,7 @@
 import { css } from "@emotion/core";
 import * as React from "react";
 import { BackButtonComponent } from "../back_button/back_button_component";
+import { ButtonComponent } from "../button/button_component";
 import { fetchNewsletterAll } from "../generated/endpoints/all_fetch";
 import { fetchNewsletterSubscribe } from "../generated/endpoints/subscribe_fetch";
 import { usePageBaseTheme } from "../hooks/use_page_base_theme";
@@ -10,14 +11,20 @@ import { Newsletter } from "./newsletter";
 
 export const NewsletterPageComponent = () => {
   const [subscribed, setSubscribed] = React.useState<boolean>(false);
-  const inputRef = React.useRef<HTMLInputElement>(undefined);
+  const emailInputRef = React.useRef<HTMLInputElement>(undefined);
+  const nameInputRef = React.useRef<HTMLInputElement>(undefined);
+  const lastNameInputRef = React.useRef<HTMLInputElement>(undefined);
   const handleSubmit = React.useCallback(() => {
-    if (inputRef.current.validity.valid) {
+    if (
+      emailInputRef.current.validity.valid &&
+      nameInputRef.current.validity.valid &&
+      lastNameInputRef.current.validity.valid
+    ) {
       fetchNewsletterSubscribe(
         {
-          name: "",
-          lastName: "",
-          email: inputRef.current.value,
+          name: nameInputRef.current.value,
+          lastName: lastNameInputRef.current.value,
+          email: emailInputRef.current.value,
         },
         () => {
           setSubscribed(true);
@@ -27,7 +34,7 @@ export const NewsletterPageComponent = () => {
         }
       );
     }
-  }, [inputRef.current]);
+  }, [emailInputRef.current, nameInputRef.current, lastNameInputRef.current]);
 
   let [subscriptions, setSubscriptions] = React.useState<Newsletter[]>([]);
   React.useEffect(() => {
@@ -45,21 +52,41 @@ export const NewsletterPageComponent = () => {
       <BackButtonComponent backLink={RouteURL.HOME} />
 
       <div className="subscribe-form">
-        <div className="headline">Subscribe</div>
-        <div className="subline">Sign up</div>
+        <div className="headline">
+          Subscribe to get access to the latest news on remote working
+        </div>
         <div className="submit-group">
           <div className="input-wrapper">
-            <input ref={inputRef} type="email" required={true} />
+            <input
+              ref={emailInputRef}
+              type="text"
+              required={true}
+              maxLength={32}
+            />
           </div>
-          <div className="submit" onClick={handleSubmit}>
-            Subscribe
+          <div className="input-wrapper">
+            <input
+              ref={emailInputRef}
+              type="text"
+              required={true}
+              maxLength={32}
+            />
           </div>
+          <div className="input-wrapper">
+            <input
+              ref={emailInputRef}
+              type="email"
+              required={true}
+              maxLength={500}
+            />
+          </div>
+          <ButtonComponent label={"Submit"} onClick={handleSubmit} />
         </div>
       </div>
 
       {subscribed && (
         <div>
-          Successfully described to newsletter! Please check your email for the
+          Successfully subscribed to newsletter! Please check your email for the
           activation link!
         </div>
       )}
@@ -91,17 +118,10 @@ const useSubscribeStyle = () => {
       width: 50%;
       margin: auto;
 
-      color: ${theme.mainColors.ligthest};
-      background-color: ${theme.mainColors.darker};
-
       > * {
-        margin: auto;
       }
 
       .headline {
-        text-transform: uppercase;
-
-        font-size: x-large;
       }
 
       .submit-group {
@@ -122,13 +142,6 @@ const useSubscribeStyle = () => {
               outline: none;
             }
           }
-        }
-
-        .submit {
-          cursor: pointer;
-          color: ${theme.mainColors.darker};
-          background-color: ${theme.mainColors.ligthest};
-          padding: 6px;
         }
       }
     }

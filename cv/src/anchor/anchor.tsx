@@ -55,7 +55,7 @@ const useAnchorStyle = () => {
       justify-content: center;
       text-align: center;
 
-      background-color: ${theme.overlayBackground};
+      background-color: ${theme.grayscale.dark};
 
       &:first-of-type {
         border-top-left-radius: 8px;
@@ -70,10 +70,10 @@ const useAnchorStyle = () => {
       &-anchor {
         text-decoration: none;
         outline: none;
-        color: ${theme.mainColors.ligthest};
+        color: ${theme.grayscale.light};
 
         &.selected {
-          color: ${theme.mainColors.normal};
+          color: ${theme.colors.normal};
         }
       }
 

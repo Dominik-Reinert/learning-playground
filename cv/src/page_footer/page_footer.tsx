@@ -30,8 +30,8 @@ const usePageFooterStyle = () => {
 
     justify-content: space-evenly;
 
-    color: ${theme.mainColors.ligthest};
-    background-color: ${theme.overlayBackground};
+    color: ${theme.grayscale.light};
+    background-color: ${theme.grayscale.dark};
 
     padding: 20px 0;
 
@@ -41,7 +41,8 @@ const usePageFooterStyle = () => {
     }
 
     a {
-      color: ${theme.mainColors.ligthest};
+      text-decoration: none;
+      color: ${theme.colors.normal};
     }
 
     .impressum {

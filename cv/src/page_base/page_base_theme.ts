@@ -1,35 +1,25 @@
 export interface PageBaseTheme {
-  mainColors: {
-    darkest: string;
-    darker: string;
+  colors: {
+    dark: string;
     normal: string;
-    ligther: string;
-    ligthest: string;
+    light: string;
   };
-  background: string;
-  overlayBackground: string;
+  grayscale: {
+    dark: string;
+    normal: string;
+    light: string;
+  };
 }
 
-export const coralTheme: PageBaseTheme = {
-  mainColors: {
-    darkest: "#C2571A",
-    darker: "#DA621E",
-    normal: "#F26D21",
-    ligther: "#F58B4C",
-    ligthest: "#FFF1B2",
+export const blueTheme: PageBaseTheme = {
+  colors: {
+    dark: "#9ECDE9",
+    normal: "#B4D9EE",
+    light: "#D2ECFA",
   },
-  background: "#FFFCF3",
-  overlayBackground: "#28373c",
-};
-
-export const indigoTheme: PageBaseTheme = {
-  mainColors: {
-    darkest: "#093145",
-    darker: "#0C374D",
-    normal: "#0D3D56",
-    ligther: "#3C6478",
-    ligthest: "#A2CADE",
+  grayscale: {
+    dark: "#AAAAAA",
+    normal: "#BBBBBB",
+    light: "#CFCFCF",
   },
-  background: "#F0F6F9",
-  overlayBackground: "#28373c",
 };

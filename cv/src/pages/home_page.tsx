@@ -46,15 +46,15 @@ const useHomepageStyle = () => {
 
     .link-wrapper {
       cursor: pointer;
-      color: ${theme.mainColors.darker};
-      background-color: ${theme.mainColors.ligthest};
+      color: ${theme.colors.normal};
+      background-color: ${theme.grayscale.light};
       padding: 6px;
       margin: 18px;
       text-align: center;
 
       a {
         text-decoration: none;
-        color: ${theme.mainColors.darker};
+        color: ${theme.colors.normal};
       }
     }
   `;

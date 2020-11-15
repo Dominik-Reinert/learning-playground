@@ -101,7 +101,7 @@ const useProfilePicStyle = () => {
     position: relative;
     overflow: hidden;
     border-radius: 50%;
-    border: 5px solid ${theme.mainColors.ligther};
+    border: 5px solid ${theme.grayscale.normal};
 
     > img {
       display: inline;

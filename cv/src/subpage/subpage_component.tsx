@@ -73,8 +73,8 @@ const useSubPageStyle = (colorBackground?: boolean) => {
     display: flex;
 
     background-color: ${colorBackground
-      ? theme.mainColors.ligthest
-      : theme.background};
+      ? theme.colors.light
+      : theme.grayscale.light};
 
     min-height: 80vh;
     width: 100%;
@@ -89,18 +89,18 @@ const useSubPageStyle = (colorBackground?: boolean) => {
       .header {
         text-align: center;
 
-        border-bottom: 1px solid ${theme.mainColors?.darker};
+        border-bottom: 1px solid ${theme.colors.normal};
 
         margin-bottom: 24px;
 
         h1 {
           font-size: xxx-large;
-          color: ${theme.mainColors?.darker ?? "blue"};
+          color: ${theme.grayscale.dark};
         }
 
         p {
           font-size: x-large;
-          color: ${theme.mainColors?.darker ?? "blue"};
+          color: ${theme.grayscale.dark};
 
           &.quote {
             font-style: italic;

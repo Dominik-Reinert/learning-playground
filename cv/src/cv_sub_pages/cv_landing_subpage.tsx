@@ -31,11 +31,11 @@ const useImageCenterRootStyle = () => {
     label: image-center-root-style;
 
     height: 100vh;
-    background-color: ${theme.background};
+    background-color: ${theme.colors.dark};
     background: linear-gradient(
       0deg,
-      ${theme.background} 0%,
-      ${theme.mainColors.ligthest} 100%
+      ${theme.colors.dark} 0%,
+      ${theme.grayscale.light} 100%
     );
 
     position: relative;
@@ -66,9 +66,9 @@ const useNameStyle = () => {
     text-align: center;
     font-size: xxx-large;
 
-    color: ${theme.mainColors?.ligther};
+    color: ${theme.grayscale.dark};
 
-    border-bottom: 1px solid ${theme.mainColors?.ligther};
+    border-bottom: 1px solid ${theme.grayscale.normal};
   `;
 };
 
@@ -82,6 +82,6 @@ const useSubpageHeaderStyle = () => {
     text-align: center;
     font-size: x-large;
 
-    color: ${theme.mainColors?.ligther};
+    color: ${theme.grayscale.dark};
   `;
 };

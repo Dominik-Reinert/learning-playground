@@ -13,6 +13,7 @@ import {
 
 export interface ButtonComponentProps {
   label: string;
+  isSecondaryButton?: boolean;
   icon?: WebfontIconComponentProps | BrandIconComponentProps;
   onClick: Callback<void>;
 }
@@ -27,6 +28,7 @@ export const ButtonComponent: React.FunctionComponent<ButtonComponentProps> = (
   props: ButtonComponentProps
 ) => {
   const buttonStyle = useButtonComponentStyle();
+  const secondaryStyle = useSecondaryButtonComponentStyle();
 
   const renderIcon = () => {
     if (props.icon) {
@@ -40,7 +42,7 @@ export const ButtonComponent: React.FunctionComponent<ButtonComponentProps> = (
   };
 
   return (
-    <div css={buttonStyle} onClick={() => props.onClick?.()}>
+    <div css={props.isSecondaryButton ? secondaryStyle : buttonStyle} onClick={() => props.onClick?.()}>
       {renderIcon()}
       <span className="label">{props.label}</span>
     </div>
@@ -53,16 +55,36 @@ const useButtonComponentStyle = () => {
     label: button;
     cursor: pointer;
 
-    background-color: ${theme.mainColors.darkest};
+    background-color: ${theme.colors.dark};
 
     padding: 8px;
 
     .label {
-      color: ${theme.mainColors.ligthest};
+      color: ${theme.grayscale.light};
     }
 
     .icon {
-      color: ${theme.mainColors.ligthest};
+      color: ${theme.grayscale.light};
+    }
+  `;
+};
+
+const useSecondaryButtonComponentStyle = () => {
+  const theme = usePageBaseTheme();
+  return css`
+    label: button;
+    cursor: pointer;
+
+    background-color: ${theme.grayscale.light};
+
+    padding: 8px;
+
+    .label {
+      color: ${theme.grayscale.dark};
+    }
+
+    .icon {
+      color: ${theme.grayscale.dark};
     }
   `;
 };

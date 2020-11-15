@@ -1,21 +1,11 @@
 import { ThemeProvider } from "emotion-theming";
 import * as React from "react";
-import { coralTheme, indigoTheme, PageBaseTheme } from "./page_base_theme";
+import { blueTheme } from "./page_base_theme";
 
-export enum Theme {
-  CORAL = "CORAL",
-  INDIGO = "INDIGO",
-}
-
-interface PageBaseThemeProviderProps {
-  theme: Theme;
-}
+interface PageBaseThemeProviderProps {}
 
 export const PageBaseThemeProvider: React.FunctionComponent<PageBaseThemeProviderProps> = ({
   children,
-  theme,
 }) => {
-  const themeToUse: PageBaseTheme =
-    theme === Theme.CORAL ? coralTheme : indigoTheme;
-  return <ThemeProvider theme={themeToUse}>{children}</ThemeProvider>;
+  return <ThemeProvider theme={blueTheme}>{children}</ThemeProvider>;
 };

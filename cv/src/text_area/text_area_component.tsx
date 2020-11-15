@@ -43,7 +43,7 @@ const useTextAreaCss = () => {
     border: 1px solid green;
     border-radius: 4px;
 
-    background-color: ${theme.mainColors.ligthest};
+    background-color: ${theme.grayscale.light};
 
     .value {
       position: absolute;
@@ -52,7 +52,7 @@ const useTextAreaCss = () => {
 
       margin: 6px;
 
-      color: ${theme.mainColors.darkest};
+      color: ${theme.grayscale.dark};
       background-color: transparent;
 
       border: none;

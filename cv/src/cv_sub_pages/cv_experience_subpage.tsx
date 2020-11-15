@@ -90,7 +90,7 @@ const useCvPageStyle = () => {
         }
 
         &-left {
-          border-bottom: 1px solid ${theme.mainColors?.ligther};
+          border-bottom: 1px solid ${theme.colors.normal};
           margin-bottom: 25px;
         }
       }
@@ -119,7 +119,7 @@ const useCvPageStyle = () => {
         &:not(:first-of-type) {
           margin: 8px 8px 16px;
           padding: 72px 0 0 0;
-          border-top: 1px solid ${theme.mainColors?.ligther ?? "white"};
+          border-top: 1px solid ${theme.colors.normal};
         }
       }
 
@@ -144,14 +144,14 @@ const useCvPageStyle = () => {
 
       &-location {
         margin: 8px 8px 16px;
-        color: ${theme.mainColors.ligther};
+        color: ${theme.colors.dark};
         white-space: nowrap;
 
         &-website {
           margin-left: 8px;
           padding-left: 8px;
 
-          border-left: 1px solid ${theme.mainColors.ligther};
+          border-left: 1px solid ${theme.colors.normal};
         }
       }
     }

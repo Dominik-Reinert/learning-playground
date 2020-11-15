@@ -42,7 +42,7 @@ const useModalStyle = (open: boolean) => {
       : undefined;
   };
 
-  const backgroundRgb = hexToRgb(theme.mainColors.darkest);
+  const backgroundRgb = hexToRgb(theme.grayscale.normal);
   const rgbaValue = backgroundRgb
     ? `rgba(${backgroundRgb.r}, ${backgroundRgb.g}, ${backgroundRgb.b}, 0.8)`
     : "";
@@ -66,7 +66,7 @@ const useModalStyle = (open: boolean) => {
     transform: translate(-50%, -50%);
 
     .modal-content {
-      background-color: ${theme.background};
+      background-color: ${theme.grayscale.normal};
 
       min-width: 200px;
       min-height: 200px;

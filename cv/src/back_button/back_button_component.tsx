@@ -38,7 +38,7 @@ const useBackButtonStyle = () => {
 
     text-decoration: none;
 
-    color: ${theme.mainColors.darker};
+    color: ${theme.colors.normal};
 
     > * {
       margin: 4px;

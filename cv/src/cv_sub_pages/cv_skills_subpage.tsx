@@ -131,7 +131,7 @@ const useSkillsRootStyle = () => {
 
     .stars {
       margin-top: 8px;
-      color: ${theme.mainColors.ligther};
+      color: ${theme.grayscale.light};
     }
 
     .top-skills {
@@ -177,7 +177,7 @@ const useSkillsListStyle = () => {
 
       i {
         margin: auto;
-        color: ${theme.mainColors.ligther};
+        color: ${theme.grayscale.light};
       }
 
       margin: 8px;

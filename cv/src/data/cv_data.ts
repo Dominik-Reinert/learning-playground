@@ -1,4 +1,4 @@
-import { CvExperience } from "../pages/cv_experience";
+import { CvExperience } from "../cv_sub_pages/cv_experience";
 
 export const scholaryExperience: CvExperience[] = [
   {
