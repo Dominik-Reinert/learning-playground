@@ -8,6 +8,7 @@
 
 
 
+
   
 
     {
@@ -51,6 +52,13 @@
       "request": "launch",
       "name": "hundeschule back start",
       "program": "${workspaceFolder}/hundeschule/infra/dist/start_backend.js",
+      "autoAttachChildProcesses": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "hundeschule front start",
+      "program": "${workspaceFolder}/hundeschule/infra/dist/start_frontend.js",
       "autoAttachChildProcesses": true
     }
   ]
