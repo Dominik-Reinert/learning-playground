@@ -7,6 +7,7 @@
 
 
 
+
   
 
     {
@@ -43,6 +44,13 @@
       "request": "launch",
       "name": "debug routes",
       "program": "${workspaceFolder}/scripts/dist/generate_routes.js",
+      "autoAttachChildProcesses": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "hundeschule back start",
+      "program": "${workspaceFolder}/hundeschule/infra/dist/start_backend.js",
       "autoAttachChildProcesses": true
     }
   ]
