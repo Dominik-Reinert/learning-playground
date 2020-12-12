@@ -1,3 +1,12 @@
 [submodule "backend/creds"]
 	path = backend/creds
 	url = https://github.com/Dominik-Reinert/creds
+[submodule "hundeschule/src/creds"]
+	path = hundeschule/src/creds
+	url = https://github.com/Dominik-Reinert/creds
+[submodule "hundeschule/back/creds"]
+	path = hundeschule/back/creds
+	url = https://github.com/Dominik-Reinert/creds
+[submodule "hundeschule/creds"]
+	path = hundeschule/creds
+	url = https://github.com/Dominik-Reinert/creds
